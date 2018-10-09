@@ -1,0 +1,36 @@
+D:\julian\Ing. Sistemas\Utilitarios\bin\Debug\Utilitarios.dll
+D:\julian\Ing. Sistemas\Utilitarios\bin\Debug\Utilitarios.pdb
+D:\julian\Ing. Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.dll
+D:\julian\Ing. Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.xml
+D:\julian\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CoreCompileInputs.cache
+D:\julian\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CopyComplete
+D:\julian\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.dll
+D:\julian\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.pdb
+D:\julian\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csprojAssemblyReference.cache
+C:\Users\Duvan\Downloads\Ing. Sistemas\Utilitarios\bin\Debug\Utilitarios.dll
+C:\Users\Duvan\Downloads\Ing. Sistemas\Utilitarios\bin\Debug\Utilitarios.pdb
+C:\Users\Duvan\Downloads\Ing. Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Duvan\Downloads\Ing. Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Duvan\Downloads\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csprojAssemblyReference.cache
+C:\Users\Duvan\Downloads\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CoreCompileInputs.cache
+C:\Users\Duvan\Downloads\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CopyComplete
+C:\Users\Duvan\Downloads\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.dll
+C:\Users\Duvan\Downloads\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.pdb
+C:\Users\Duvan\Desktop\Ing. Sistemas\Utilitarios\bin\Debug\Utilitarios.dll
+C:\Users\Duvan\Desktop\Ing. Sistemas\Utilitarios\bin\Debug\Utilitarios.pdb
+C:\Users\Duvan\Desktop\Ing. Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Duvan\Desktop\Ing. Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Duvan\Desktop\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csprojAssemblyReference.cache
+C:\Users\Duvan\Desktop\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CoreCompileInputs.cache
+C:\Users\Duvan\Desktop\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CopyComplete
+C:\Users\Duvan\Desktop\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.dll
+C:\Users\Duvan\Desktop\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.pdb
+D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\bin\Debug\Utilitarios.dll
+D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\bin\Debug\Utilitarios.pdb
+D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.dll
+D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.xml
+D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CoreCompileInputs.cache
+D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CopyComplete
+D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.dll
+D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.pdb
+D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csprojAssemblyReference.cache

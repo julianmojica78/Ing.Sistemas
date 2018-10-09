@@ -1,0 +1,240 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controller/MasterPageAdmin.master.cs" Inherits="View_MasterPageAdmin" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Plato Web</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../Styles/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../Styles/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../Styles/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../Styles/dist/css/AdminLTE.min.css">
+    <%--<link rel="stylesheet" href="../Styles/dist/css/skins/skin-black.min.css" >--%>
+    <link rel="stylesheet" href="../Styles/dist/css/skins/skin-black-light.min.css">
+    <link rel="stylesheet" href="../Styles/bower_components/morris.js/morris.css">
+    <link rel="stylesheet" href="../Styles/bower_components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="../Styles/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../Styles/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../Styles/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<%--    <script type="text/javascript">
+
+        var bpregunta = true;
+        window.onbeforeunload = comfirmExit;
+        
+
+        function comfirmExit() {
+
+            if (bpregunta) {
+                var boton = document.getElementById('<%=BT_cerrar.ClientID%>');
+                boton.click();
+                return confirm("se va a cerrar la paguina y cerrar su sesion, seguro que quiera hacerlo ");
+            }
+           
+        }
+        
+    </script>--%>
+
+<body class="hold-transition skin-blue sidebar-mini" onbeforeunload="return comfirmExit()">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="ListadePlatos.aspx" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>PW</b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Plato Web</b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">
+                        <asp:Label ID="LB_menunave" runat="server" Text="Menu de navegacion"></asp:Label></li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span>
+                                <asp:Label ID="LB_users" runat="server" Text="Usuarios"></asp:Label></span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="ListaClientes.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_clientes" runat="server" Text="Clientes"></asp:Label></a></li>
+                            <li><a href="ListaEmpleados.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_Emple" runat="server" Text="Empleados"></asp:Label></a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-comments"></i>
+                            <span>
+                                <asp:Label ID="LB_comen" runat="server" Text="Comentarios"></asp:Label></span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="ListaComentarios.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_Coment" runat="server" Text="Comentarios"></asp:Label></a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-cutlery"></i>
+                            <span>
+                                <asp:Label ID="LB_menu" runat="server" Text="Menu"></asp:Label></span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="ListadePlatos.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_menu1" runat="server" Text="Menu"></asp:Label></a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-circle"></i>
+                            <span>
+                                <asp:Label ID="LB_Mesas" runat="server" Text="Mesas"></asp:Label></span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="ListarMesas.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_mesas1" runat="server" Text="Mesas"></asp:Label></a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-money"></i>
+                            <span>
+                                <asp:Label ID="LB_ventas" runat="server" Text="Ventas"></asp:Label></span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="ListaVentas.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_pedidos" runat="server" Text="Pedidos"></asp:Label></a></li>
+                            <li><a href="ListaReservas.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_Rerservas" runat="server" Text="Reservas"></asp:Label></a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-file-text"></i>
+                            <span>
+                                <asp:Label ID="LB_Reportes" runat="server" Text="Reportes"></asp:Label></span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="ReporteVentas.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_repo1" runat="server" Text="Reporte Ventas"></asp:Label></a></li>
+                            <li><a href="ReporteEmpleados.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_repo2" runat="server" Text="Reporte Empleados"></asp:Label></a></li>
+                            <li><a href="ReporteReserva.aspx"><i class="fa fa-circle-o"></i>
+                                <asp:Label ID="LB_repo3" runat="server" Text="Reporte Reserva"></asp:Label></a></li>
+                        </ul>
+
+                    </li>
+                            <li><a href="Idioma.aspx"><i class="fa fa-language"></i>
+                            <span>
+                                <asp:Label ID="LB_Idioma" runat="server" Text="Idioma"></asp:Label></span>
+                        </a>
+                    </li>
+            </section>
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <form id="form1" runat="server">
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </form>
+        </div>
+
+        <aside class="control-sidebar control-sidebar-dark">
+            <a href="Cerrar.aspx">
+                <asp:Label ID="LB_cerrar" runat="server" Text="Cerrar Sesion"></asp:Label></a>
+        </aside>
+
+    </div>
+
+    <!-- jQuery 3 -->
+    <script src="../Styles/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../Styles/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../Styles/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="../Styles/bower_components/raphael/raphael.min.js"></script>
+    <script src="../Styles/bower_components/morris.js/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../Styles/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="../Styles/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="../Styles/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../Styles/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../Styles/bower_components/moment/min/moment.min.js"></script>
+    <script src="../Styles/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="../Styles/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="../Styles/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="../Styles/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../Styles/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../Styles/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../Styles/dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../Styles/dist/js/demo.js"></script>
+</body>
+</html>

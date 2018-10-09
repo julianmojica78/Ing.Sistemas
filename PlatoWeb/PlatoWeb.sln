@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "..\Datos\Datos.csproj", "{8B1D3E62-E892-4E4C-B736-F75334786BD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logica", "..\Logica\Logica.csproj", "{6962972F-C6C2-41A6-843E-8F6CDB836A61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilitarios", "..\Utilitarios\Utilitarios.csproj", "{12375BF9-7A44-42D1-8DE7-CCC0ED7B71AF}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PlatoWeb(1)", ".", "{FABF71C0-27D6-45ED-BA34-47BCEF0F955B}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{6962972f-c6c2-41a6-843e-8f6cdb836a61}|Logica.dll;{8B1D3E62-E892-4E4C-B736-F75334786BD4}|Datos.dll;{12375BF9-7A44-42D1-8DE7-CCC0ED7B71AF}|Utilitarios.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53180"
+		Debug.AspNetCompiler.PhysicalPath = "..\PlatoWeb\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53180\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53180"
+		Release.AspNetCompiler.PhysicalPath = "..\PlatoWeb\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53180\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "53180"
+		SlnRelativePath = "..\PlatoWeb\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encapsular", "..\Encapsular\Encapsular.csproj", "{17AF97F7-7E63-4E5B-8359-5A33CC97055B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B1D3E62-E892-4E4C-B736-F75334786BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1D3E62-E892-4E4C-B736-F75334786BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1D3E62-E892-4E4C-B736-F75334786BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1D3E62-E892-4E4C-B736-F75334786BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6962972F-C6C2-41A6-843E-8F6CDB836A61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6962972F-C6C2-41A6-843E-8F6CDB836A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6962972F-C6C2-41A6-843E-8F6CDB836A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6962972F-C6C2-41A6-843E-8F6CDB836A61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12375BF9-7A44-42D1-8DE7-CCC0ED7B71AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12375BF9-7A44-42D1-8DE7-CCC0ED7B71AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12375BF9-7A44-42D1-8DE7-CCC0ED7B71AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12375BF9-7A44-42D1-8DE7-CCC0ED7B71AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FABF71C0-27D6-45ED-BA34-47BCEF0F955B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FABF71C0-27D6-45ED-BA34-47BCEF0F955B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FABF71C0-27D6-45ED-BA34-47BCEF0F955B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FABF71C0-27D6-45ED-BA34-47BCEF0F955B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{17AF97F7-7E63-4E5B-8359-5A33CC97055B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17AF97F7-7E63-4E5B-8359-5A33CC97055B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17AF97F7-7E63-4E5B-8359-5A33CC97055B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17AF97F7-7E63-4E5B-8359-5A33CC97055B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BD88A90-20F4-457C-88B4-98671FC30270}
+	EndGlobalSection
+EndGlobal
