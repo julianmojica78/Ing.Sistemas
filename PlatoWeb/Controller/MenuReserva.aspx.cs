@@ -22,6 +22,15 @@ public partial class View_MenuReserva : System.Web.UI.Page
         com = idioma.idiomaMenureserva(FORMULARIO, DDL);
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;
+        //LIdioma idioma = new LIdioma();
+        //UIdioma com = new UIdioma();
+        //int DDL = int.Parse(Session["ddl"].ToString());
+        ////com = idioma.idiomaMenureserva(FORMULARIO, DDL);
+
+        //DataTable info = idioma.obtenerControl(FORMULARIO, DDL);
+        //Hashtable compIdioma = new Hashtable();
+        //Session["mensajes"] = compIdioma;
+        //compIdioma = idioma.hastableIdioma(info, compIdioma);
         Session["men"] = compIdioma["JS_menuR"].ToString();
         DL_menuReser.DataBind();
         
@@ -72,23 +81,20 @@ public partial class View_MenuReserva : System.Web.UI.Page
     protected void B_guardar_Click(object sender, EventArgs e)
     {
         UuserReservas dato = new UuserReservas();
-        UPreserva datos = new UPreserva();
         LUser doc = new LUser();
-        L_Persistencia dac = new L_Persistencia();
         ClientScriptManager cm = this.ClientScript;
         string nombre = Session["usuario"].ToString();
-        System.Data.DataTable validez1 = doc.obteberidres(nombre); //duda aca con doc
+        System.Data.DataTable validez1 = doc.obteberidres(nombre);
         Int32 id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
         Button btn = (Button)sender;
         DataListItem item = (DataListItem)btn.NamingContainer;
         TextBox guardar = (TextBox)item.FindControl("TB_insertarPedido");
-        datos.Cantidad = int.Parse(guardar.Text);
+        dato.Cant = int.Parse(guardar.Text);
         Label lblid = (Label)item.FindControl("LB_idPlato");
-        datos.Id_plato = int.Parse(lblid.Text);
-        datos.Id_reserva = id_reserva;
+        dato.Id_plato = int.Parse(lblid.Text);
+        dato.Id_reserva = id_reserva;
 
-        dac.insertarPlatoR(datos);
-       // doc.insertarplares(dato);
+        doc.insertarplares(dato);
         String mens = Session["men"].ToString();
         cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('" + mens.ToString() + "');</script>");
 

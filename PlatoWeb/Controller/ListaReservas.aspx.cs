@@ -41,9 +41,8 @@ public partial class View_ListaReservas : System.Web.UI.Page
         GV_listReservas.Columns[2].HeaderText = com.H;
         GV_listReservas.Columns[3].HeaderText = com.I;
 
-        LUser dato = new LUser();
-        L_Persistencia data = new L_Persistencia();
-        GV_listReservas.DataSource = data.ListReserva();
+        LUser dato = new LUser(); ;
+        GV_listReservas.DataSource = dato.ListaReservas();
         GV_listReservas.DataBind();
     }
 

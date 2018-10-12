@@ -9,20 +9,19 @@ using System.Threading.Tasks;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("idioma", Schema = "idioma")]
-    public class UAidioma
+    [Table("formulario", Schema = "idioma")]
+    public class UFormularios
     {
-        private Int32 id;
         private String nombre;
-        private String terminacion;
+        private String url;
+        private Int32 id;
 
         [Key]
-        [Column("id")]
-        public int Id { get => id; set => id = value; }
         [Column("nombre")]
         public string Nombre { get => nombre; set => nombre = value; }
-        [Column("terminacion")]
-        public string Terminacion { get => terminacion; set => terminacion = value; }
-
+        [Column("url")]
+        public string Url { get => url; set => url = value; }
+        [Column("id")]
+        public int Id { get => id; set => id = value; }
     }
 }

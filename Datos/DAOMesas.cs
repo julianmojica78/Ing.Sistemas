@@ -34,5 +34,16 @@ namespace Datos
                 db.SaveChanges();
             }
         }
+
+        public List<Mesas> obtenerMesar()
+        {
+            using (var db = new Mapeo("mesa"))
+            {
+                var a = db.mesa.ToList<Mesas>();
+                return a.ToList<Mesas>();
+
+            }
+
+        }
     }
 }

@@ -1512,6 +1512,7 @@ namespace Datos
             {
                 NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_insertarpedido1", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                //dataAdapter.SelectCommand.Parameters.Add("_id_pedido", NpgsqlDbType.Integer).Value = datos.Id_pedido1;
                 dataAdapter.SelectCommand.Parameters.Add("_id_mesa", NpgsqlDbType.Integer).Value = pedido.Id_mesa;
                 dataAdapter.SelectCommand.Parameters.Add("_id_usuario", NpgsqlDbType.Integer).Value = pedido.Id_mesero;
                 conection.Open();
@@ -1754,7 +1755,87 @@ namespace Datos
                 }
             }
             return Registro;
-        }        
+        }
+        //public DataTable obtenerComentarios()
+        //{
+        //    DataTable Usuario = new DataTable();
+        //    NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        //    try
+        //    {
+        //        NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_comentarios", conection);
+        //        dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+        //        conection.Open();
+        //        dataAdapter.Fill(Usuario);
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        throw Ex;
+        //    }
+        //    finally
+        //    {
+        //        if (conection != null)
+        //        {
+        //            conection.Close();
+        //        }
+        //    }
+        //    return Usuario;
+        //}
+        //public DataTable validarBuscarco(String Nombre)
+        //{
+        //    DataTable Usuario = new DataTable();
+        //    NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        //    try
+        //    {
+        //        NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_validar_buscarcom", conection);
+        //        dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+        //        dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = Nombre;
+
+        //        conection.Open();
+        //        dataAdapter.Fill(Usuario);
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        throw Ex;
+        //    }
+        //    finally
+        //    {
+        //        if (conection != null)
+        //        {
+        //            conection.Close();
+        //        }
+        //    }
+        //    return Usuario;
+        //}
+        //public DataTable buscarUsuario(String nombre)
+        //{
+        //    DataTable Usuario = new DataTable();
+        //    NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        //    try
+        //    {
+        //        NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_buscar_clientes", conection);
+        //        dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+        //        dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = nombre;
+
+        //        conection.Open();
+        //        dataAdapter.Fill(Usuario);
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        throw Ex;
+        //    }
+        //    finally
+        //    {
+        //        if (conection != null)
+        //        {
+        //            conection.Close();
+        //        }
+        //    }
+        //    return Usuario;
+        //}
         public DataTable eliminarMesa(UUser datos)
         {
             DataTable Registro = new DataTable();
@@ -2074,15 +2155,8 @@ namespace Datos
                 return a.ToList<ULcomentarios>();
 
             }
-        }
-        public List<Menu> listarPlatos()
-        {
-            using (var db = new Mapeo("menu"))
-            {
-                var a = db.menu.ToList<Menu>();
-                return a.ToList<Menu>();
 
-            }
+
         }
         public DataTable informeEmpleado()
         {
@@ -2105,47 +2179,7 @@ namespace Datos
                 return a.ToList<UInformeRe>();
 
             }
-        }
-        public List<UReservation> listadodeReservas(int id)
-        {
-            using (var db = new Mapeo("reserva"))
-            {
-                var a = db.reserva.ToList<UReservation>();
-                return a.ToList<UReservation>();
-            }
-        }
-        public List<UUsuario> listadodePuntos(int id)
-        {
-            using (var db = new Mapeo("reserva"))
-            {
-                var a = db.puntos.ToList<UUsuario>();
-                return a.ToList<UUsuario>();
 
-            }
-        }
-        public List<ULclientes> listadodeClientes()
-        {
-            using (var db = new Mapeo("reserva"))
-            {
-                var a = db.clientes.ToList<ULclientes>();
-                return a.ToList<ULclientes>();
-            }
-        }
-        public List<UuserPedido> ObtenerPedidos(Int32 user_id)
-        {
-            using (var db = new Mapeo("pedido"))
-            {
-                var a = db.pedido.ToList<UuserPedido>();
-                return a.ToList<UuserPedido>();
-            }
-        }
-        public List<UOtenerRe> ObtenerRes()
-        {
-            using (var db = new Mapeo("obtener"))
-            {
-                var a = db.obtener.ToList<UOtenerRe>();
-                return a.ToList<UOtenerRe>();
-            }
         }
         public List<UInformeVe> listarVentas()
         {
@@ -2155,17 +2189,8 @@ namespace Datos
                 return a.ToList<UInformeVe>();
 
             }
-        }
-        public List<ULReserva> listarResr()
-        {
-            using (var db = new Mapeo("istReser"))
-            {
-                var a = db.listReser.ToList<ULReserva>();
-                return a.ToList<ULReserva>();
 
-            }
         }
-
         public void insertarReserva(UReservation reserva)
         {
             using (var db = new Mapeo("reserva"))
@@ -2174,46 +2199,160 @@ namespace Datos
                 db.SaveChanges();
             }
         }
-        public void insertarContacto(UContacto contacto)
-        {
-            using (var db = new Mapeo("contactenos"))
-            {
-                db.contactenos.Add(contacto);
-                db.SaveChanges();
-            }
-        }
-        public void insertarToken(UTokenRecu token)
-        {
-            using (var db = new Mapeo("recuperarToken"))
-            {
-                db.recuperarToken.Add(token);
-                db.SaveChanges();
-            }
-        }
-        public void insertPedido(UPedido pedido)
-        {
-            using (var db = new Mapeo("pedido1"))
-            {
-                db.pedido1.Add(pedido);
-                db.SaveChanges();
-            }
-        }
-        public void insertPedidoRe(UPreserva pedido)
-        {
-            using (var db = new Mapeo("platoR"))
-            {
-                db.platoR.Add(pedido);
-                db.SaveChanges();
-            }
-        }
-        public void insertUbicacion(UuserPedido pedido)
+
+        public List<UPedido> listarPedidos()
         {
             using (var db = new Mapeo("pedido"))
             {
-                db.pedido.Add(pedido);
+                var a = db.pedido.ToList<UPedido>();
+                return a.ToList<UPedido>();
+
+            }
+
+        }
+
+        public List<Menu> buscarPlatos(String nombre)
+        {
+            using (var db = new Mapeo("menu"))
+            {
+                var a = db.menu.ToList<Menu>().Where(x => x.Nombre.Contains(nombre));
+                return a.ToList<Menu>();
+
+            }
+
+        }
+
+        public List<UUse> buscarEmpleado(String nombre)
+        {
+            using (var db = new Mapeo("usuario"))
+            {
+                var a = db.usuario.ToList<UUse>().Where(x => x.Nombre.Contains(nombre));
+                return a.ToList<UUse>();
+
+            }
+
+        }
+        public List<UPedido> buscarVentas(String nombre)
+        {
+            using (var db = new Mapeo("pedido"))
+            {
+                var a = db.pedido.ToList<UPedido>().Where(x => x.Nombre.Contains(nombre));
+                return a.ToList<UPedido>();
+
+            }
+
+        }
+
+        public List<UReservation> obtenerReser(UReservation dato)
+        {
+            using (var db = new Mapeo("reserva"))
+            {
+                var a = db.reserva.OrderByDescending(x => x.Id_reserva).ToList<UReservation>().Where(x => x.Id_usuario == dato.Id_usuario);
+                return a.ToList<UReservation>();
+
+            }
+
+        }
+
+        public void insertTokenre(UTokenRe toke)
+        {
+            using (var db = new Mapeo("tokenre"))
+            {
+                db.tokenre.Add(toke);
                 db.SaveChanges();
             }
         }
 
+        public void eliminarToken(UTokenRe toke)
+        {
+            using (var db = new Mapeo("tonkenre"))
+            {
+                db.tokenre.Attach(toke);
+                db.Entry(toke).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
+
+        public void actualizarReserva(UReservation menu)
+        {
+            using (var db = new Mapeo("menu"))
+            {
+                db.reserva.Attach(menu);
+                var entry = db.Entry(menu);
+                entry.State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public List<UCocinero> listarCocinero()
+        {
+            using (var db = new Mapeo("cocinero"))
+            {
+                var a = db.cocinero.ToList<UCocinero>();
+                return a.ToList<UCocinero>();
+
+            }
+
+        }
+        public List<UCocinero1> listarCocinero1()
+        {
+            
+            using (var db = new Mapeo("cocinero1"))
+            {
+                var a = db.cocinero1.ToList<UCocinero1>();
+                return a.ToList<UCocinero1>();
+
+            }
+        }
+
+        public List<UPlatos> listarPlatos(Int32 id_pedido)
+        {
+            List<UPlatos> lista;
+            using (var db = new Mapeo("platos"))
+            {
+                var a = from p in db.platos
+                        where p.Id_pedido == id_pedido
+                        select p;
+                lista = a.ToList();
+
+            }
+            return lista;
+        }
+
+        public List<UPlatos1> listarPlatos1(Int32 id_pedido)
+        {
+            List<UPlatos1> lista;
+            using (var db = new Mapeo("platos1"))
+            {
+                var a = from p in db.platos1
+                        where p.Id_pedido == id_pedido
+                        select p;
+                lista = a.ToList();
+
+            }
+            return lista;
+        }
+
+        public void actualizarDespachos(UPedidoplato platos)
+        {
+            using (var db = new Mapeo("pedidos"))
+            {
+                db.pedidos.Attach(platos);
+                var entry = db.Entry(platos);
+                entry.State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public void actualizarDespachos1(UReservaplatos reserva)
+        {
+            using (var db = new Mapeo("reservas"))
+            {
+                db.reservas.Attach(reserva);
+                var entry = db.Entry(reserva);
+                entry.State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
     }
 }

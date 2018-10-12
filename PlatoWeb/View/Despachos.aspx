@@ -70,7 +70,7 @@
                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                     <SortedDescendingHeaderStyle BackColor="#242121" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Despachos" runat="server" SelectMethod="depacho" TypeName="Logica.LUser"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Despachos" runat="server" SelectMethod="listarCocinero" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
             </td>
             <td style="width: 0.1%" class="auto-style1">
                 &nbsp;</td>
@@ -91,7 +91,7 @@
                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                     <SortedDescendingHeaderStyle BackColor="#242121" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Plato" runat="server" SelectMethod="infoplato" TypeName="Logica.LUser">
+                <asp:ObjectDataSource ID="ODS_Plato" runat="server" SelectMethod="listarPlatos" TypeName="Logica.L_Persistencia">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="GV_Pedidos" DefaultValue="" Name="id_pedido" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>
@@ -138,7 +138,7 @@
                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                     <SortedDescendingHeaderStyle BackColor="#242121" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Despacho1" runat="server" SelectMethod="depacho1" TypeName="Logica.LUser"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Despacho1" runat="server" SelectMethod="listarCocinero1" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
             </td>
             <td style="width: 0.1%" class="auto-style1">
                 &nbsp;</td>
@@ -159,7 +159,7 @@
                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                     <SortedDescendingHeaderStyle BackColor="#242121" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Plato1" runat="server" SelectMethod="infoplato1" TypeName="Logica.LUser">
+                <asp:ObjectDataSource ID="ODS_Plato1" runat="server" SelectMethod="listarPlatos1" TypeName="Logica.L_Persistencia">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="GV_Reservas" Name="id_pedido" PropertyName="SelectedValue" Type="Int32" DefaultValue="" />
                     </SelectParameters>

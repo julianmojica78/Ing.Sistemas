@@ -48,7 +48,7 @@
                         </table>
                     </ItemTemplate>
                 </asp:DataList>
-                <asp:ObjectDataSource ID="ODS_Plato" runat="server" SelectMethod="listadeMenu" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Plato" runat="server" SelectMethod="listarmenu" TypeName="Logica.LUser"></asp:ObjectDataSource>
             </td>
         </tr>
     </table>

@@ -54,6 +54,8 @@ namespace Logica
 
         }
 
+
+
         public List<UAidioma> obtenerIdioma()
         {
             Idioma dao = new Idioma();
@@ -76,7 +78,7 @@ namespace Logica
             Idioma data = new Idioma();
             UIdioma dato = new UIdioma();
 
-            if (idioma.Id != 1)
+            if (datos.Id != 1)
             {
                 data.eliminarIdiomas(datos);
                 dato.Mensaje = "<script type='text/javascript'>alert('" + idioma.Mensaje.ToString() + "');window.location=\"Idioma.aspx\"</script>";
@@ -245,73 +247,120 @@ namespace Logica
                 fila["Fecha ingreso"] = inter.Rows[i]["fecha_ingreso"].ToString();
                 fila["Fecha despacho"] = inter.Rows[i]["fecha_despacho"].ToString();
                 fila["Precio"] = inter.Rows[i]["precio"].ToString();
+                //fila["Fotos"] = streamFile(intermedio.Rows[i]["foto"].ToString());
+
                 informacion.Rows.Add(fila);
             }
 
             return datos;
         }
-        public UContacto insertarcontacto(UContacto contacto)
+
+        public List<UPedido> obtenerPedido()
         {
             DUser dao = new DUser();
-            dao.insertarContacto(contacto);
-            UContacto user = new UContacto();
-            return user;
+            return dao.listarPedidos();
         }
-        public List<Menu> listadeMenu()
+
+        public List<Menu> buscarPlatos(String nombre)
         {
             DUser dao = new DUser();
-            return dao.listarPlatos();
+            return dao.buscarPlatos(nombre);
         }
-        public List<UReservation> listadeReservas(Int32 id)
+
+        public List<UUse> buscarEmpleado(String nombre)
         {
             DUser dao = new DUser();
-            return dao.listadodeReservas(id);
+            return dao.buscarEmpleado(nombre);
         }
-        public List<UUsuario> listadePuntos(Int32 id)
+
+        public List<UPedido> buscarVentas(String nombre)
         {
             DUser dao = new DUser();
-            return dao.listadodePuntos(id);
+            return dao.buscarVentas(nombre);
         }
-        public List<ULclientes> listadeClientes()
+
+        public List<Mesas> obtenerMesas()
+        {
+            DAOMesas dao = new DAOMesas();
+            return dao.obtenerMesar();
+        }
+        public List<UCocinero> listarCocinero()
         {
             DUser dao = new DUser();
-            return dao.listadodeClientes();
+            return dao.listarCocinero();
         }
-        public List<UuserPedido> obtenPedido(int user_id)
+        public List<UCocinero1> listarCocinero1()
         {
             DUser dao = new DUser();
-            return dao.ObtenerPedidos(user_id);
+            return dao.listarCocinero1();
         }
-        public UPedido insertarPedido(UPedido pedido)
+
+        public List<UPlatos> listarPlatos(Int32 id_pedido)
         {
             DUser dao = new DUser();
-            dao.insertPedido(pedido);
-            UPedido user = new UPedido();
-            return user;
+            return dao.listarPlatos(id_pedido);
         }
-        public UuserPedido guardarUbicacion(UuserPedido pedido)
+        public List<UPlatos1> listarPlatos1(Int32 id_pedido)
         {
             DUser dao = new DUser();
-            dao.insertUbicacion(pedido);
-            UuserPedido user = new UuserPedido();
-            return user;
+            return dao.listarPlatos1(id_pedido);
         }
-        public List<UOtenerRe> obtenRe()
+
+        public UDespachos actualizardespacho(UPedidoplato reserva)
         {
             DUser dao = new DUser();
-            return dao.ObtenerRes();
+            dao.actualizarDespachos(reserva);
+            UDespachos desp = new UDespachos();
+
+            desp.Url = "Despachos.aspx";
+            return desp;
         }
-        public UPreserva insertarPlatoR(UPreserva pedido)
+
+        public UDespachos actualizardespacho1(UReservaplatos reserva)
         {
             DUser dao = new DUser();
-            dao.insertPedidoRe(pedido);
-            UPreserva user = new UPreserva();
-            return user;
+            dao.actualizarDespachos1(reserva);
+            UDespachos desp = new UDespachos();
+
+            desp.Url = "Despachos.aspx";
+            return desp;
         }
-        public List<ULReserva> ListReserva()
+
+        public UReserva pago(UReservation datos , UReserva mensaje)
         {
-            DUser dao = new DUser();
-            return dao.listarResr();
+            DUser user = new DUser();
+            UReserva data = new UReserva();
+            UTokenRe token = new UTokenRe();
+            UReservation reserva = new UReservation();
+            UEmpleados usuario = new UEmpleados();
+
+
+            System.Data.DataTable validez1 = ToDataTable(user.obtenerReser(datos));
+            data.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+            data.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
+            token.Reserva_id = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+            reserva.Estado = 1;
+            reserva.Puntos = 10;
+            user.eliminarToken(token);
+            user.actualizarReserva(reserva);
+            
+
+
+
+            data.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Inicio.aspx\"</script>";
+
+            return data;
         }
+
+        //public UUsuario insertUsuario(UEmpleados datos, UUsuario mensaje)
+        //{
+        //    DUser dao = new DUser();
+        //    UUsuario user = new UUsuario();
+
+        //    dao.insertComentario(comentario);
+        //    user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Inicio.aspx\"</script>";
+
+        //    return user;
+        //}
     }
 }

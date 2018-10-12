@@ -119,28 +119,30 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
     protected void TB_Filtro_TextChanged(object sender, EventArgs e)
     {
 
-        LUser dato = new LUser();
-        UUsuario datos = new UUsuario();
+        L_Persistencia dato = new L_Persistencia();
+        UUser datos = new UUser();
         ClientScriptManager cm = this.ClientScript;
-        DataTable usuario;
 
-        datos.Nombre = TB_Filtro.Text.ToString();
+        String nombre = TB_Filtro.Text.ToString();
 
         try
         {
-            usuario = dato.BuscarEmpleado(datos);
+            DataTable validez = dato.ToDataTable(dato.buscarEmpleado(nombre));
 
-            GV_Empleados.DataSource = usuario;
+            datos.X = int.Parse(validez.Rows[0]["user_id"].ToString());
+
+            GV_Empleados.DataSource = dato.buscarEmpleado(nombre);
             GV_Empleados.DataBind();
 
         }
         catch
         {
-            usuario = dato.BuscarEmpleado(datos);
+            //usuario = dato.BuscarEmpleado(datos);
             this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Empleado no Existe');window.location=\"ListaEmpleados.aspx\"</script>");
 
 
         }
+
     }
 
     protected void GV_Resultado_SelectedIndexChanged(object sender, EventArgs e)

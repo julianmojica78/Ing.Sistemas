@@ -203,11 +203,12 @@ namespace Logica
         {
             DUser data = new DUser();
             UReserva user = new UReserva();
+            L_Persistencia conver = new L_Persistencia();
 
             if (datos.Nombre != null)
             {
-              data.insertarReserva(dato);
-                System.Data.DataTable validez1 = data.obtenerReserva(dato.Id_usuario);
+                data.insertarReserva(dato);
+                System.Data.DataTable validez1 = conver.ToDataTable(data.obtenerReser(dato));
                 user.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
 
                 System.Data.DataTable validez = data.generarTokenReserva(user.Id_reserva);
@@ -221,8 +222,14 @@ namespace Logica
                     token.Correo = validez.Rows[0]["email"].ToString();
                     token.Fecha = DateTime.Now.ToFileTimeUtc();
 
+                    UTokenRe toke = new UTokenRe();
                     String userToken = encriptar(JsonConvert.SerializeObject(token));
-                    data.almacenarTokenReserva(userToken, token.Id);
+                    toke.Token = userToken;
+                    toke.Reserva_id = token.Id;
+                    toke.Fecha_creado = DateTime.Now;
+                    toke.Fecha_vigencia = DateTime.Now.AddHours(12);
+
+                    data.insertTokenre(toke);
 
                     CorreoR correo = new CorreoR();
 
@@ -586,19 +593,19 @@ namespace Logica
             return usuario;
         }
 
-        public UUsuario InsertarComentario(UComentarios datos)
-        {
+        //public UUsuario InsertarComentario(UComentarios datos)
+        //{
 
-            UComentarios comentario = new UComentarios();
-            DUser data = new DUser();
-            UUsuario mensaje = new UUsuario();
+        //    UComentarios comentario = new UComentarios();
+        //    DUser data = new DUser();
+        //    UUsuario mensaje = new UUsuario();
 
-            data.insertarComentarios(datos);
+        //    data.insertarComentarios(datos);
 
-            mensaje.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Inicio.aspx\"</script>";
+        //    mensaje.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Inicio.aspx\"</script>";
 
-            return mensaje;
-        }
+        //    return mensaje;
+        //}
 
         public UReportes obtenerinfomer()
         {
@@ -708,7 +715,6 @@ namespace Logica
             DUser data = new DUser();
             DataTable validez = data.generarToken(user_name);
             UUserToken token = new UUserToken();
-            UTokenRecu tokenR = new UTokenRecu();
 
             if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
             {
@@ -725,9 +731,11 @@ namespace Logica
                 token.Clave = validez.Rows[0]["clave"].ToString();
                 token.Session = validez.Rows[0]["session"].ToString();
                 token.Estado = int.Parse(validez.Rows[0]["estado"].ToString());
+
                 token.Fecha = DateTime.Now.ToFileTimeUtc();
+
                 String userToken = encriptar(JsonConvert.SerializeObject(token));
-                data.insertarToken(tokenR);
+                data.almacenarToken(userToken, token.Id);
 
                 Correo correo = new Correo();
 
@@ -1139,6 +1147,14 @@ namespace Logica
             DataTable data = dato.Insertarpreserva(plato);
             return data;
         }
+
+        public DataTable obterplatocaje()
+        {
+            DUser dato = new DUser();
+            DataTable data = dato.obtenerPlato();
+            return data;
+        }
+
         public DataTable buscarmesa(string nombre)
         {
             DUser dato = new DUser();

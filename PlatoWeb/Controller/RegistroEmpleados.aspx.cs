@@ -37,6 +37,7 @@ public partial class View_RegistroEmpleados : System.Web.UI.Page
         CV_CContrasena.Text = com.J;
         LB_rol.Text = com.K;
         B_Crear.Text = com.O;
+        Session["men"] = com.P; 
     }
 
     protected void B_Crear_Click(object sender, EventArgs e)
@@ -59,8 +60,9 @@ public partial class View_RegistroEmpleados : System.Web.UI.Page
         datos.Session = "a";
         datos.Sesiones = 0;
         datos.Intentos = 0;
+        mensaje.Mensaje = Session["men"].ToString();
 
-        mensaje = user.insertarUsuario(datos);
+        mensaje = user.insertarUsuario(datos, mensaje);
         this.RegisterStartupScript("mensaje", mensaje.Mensaje);
 
     }

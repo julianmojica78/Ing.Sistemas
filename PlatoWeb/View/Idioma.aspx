@@ -114,7 +114,7 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="obtenerIdioma" TypeName="Logica.LIdioma"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="obtenerIdioma" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
             </td>
             <td style="width: 1%">&nbsp;</td>
             <td style="width: 45%">
@@ -143,7 +143,7 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Controles" runat="server" SelectMethod="obtenerControles" TypeName="Logica.LIdioma">
+                <asp:ObjectDataSource ID="ODS_Controles" runat="server" SelectMethod="listarcontroles" TypeName="Logica.LIdioma">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="GV_Formulario" Name="formulario" PropertyName="SelectedValue" Type="Int32" />
                         <asp:ControlParameter ControlID="GV_Idioma" Name="idioma" PropertyName="SelectedValue" Type="Int32" />
@@ -189,7 +189,7 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Formulario" runat="server" SelectMethod="obtenerFormulario" TypeName="Logica.LIdioma"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Formulario" runat="server" SelectMethod="listarformulario" TypeName="Logica.LIdioma"></asp:ObjectDataSource>
             </td>
             <td style="width: 1%">&nbsp;</td>
             <td style="width: 45%">&nbsp;</td>

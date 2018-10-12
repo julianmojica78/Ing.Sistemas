@@ -75,7 +75,7 @@ public partial class View_Idioma : System.Web.UI.Page
 
             Int32 idioma = int.Parse(Session["idioma"].ToString());
             Int32 formulario = int.Parse(Session["formulario"].ToString());
-            DataTable datos = user.obtenerControl(formulario, idioma);
+            DataTable datos = user.ToDataTable(user.listarcontroles(formulario,idioma));
         }
         catch
         {
@@ -151,7 +151,7 @@ public partial class View_Idioma : System.Web.UI.Page
         ClientScriptManager cm = this.ClientScript;
         try
         {
-            datos.Id = int.Parse(Session["idioma"].ToString());
+            idioma.Id = int.Parse(Session["idioma"].ToString());
             idioma.Nombre = Session["nombre"].ToString();
             idioma.Terminacion = Session["terminacion"].ToString();
             datos.Mensaje = Session["men1"].ToString();

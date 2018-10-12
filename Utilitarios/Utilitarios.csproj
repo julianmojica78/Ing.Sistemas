@@ -55,22 +55,24 @@
     <Compile Include="Menu.cs" />
     <Compile Include="Mesas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UAcontrol.cs" />
     <Compile Include="UAidioma.cs" />
-    <Compile Include="UContacto.cs" />
+    <Compile Include="UCocinero.cs" />
+    <Compile Include="UCocinero1.cs" />
     <Compile Include="UControles.cs" />
     <Compile Include="UEmpleados.cs" />
+    <Compile Include="UFormularios.cs" />
     <Compile Include="UIdioma.cs" />
     <Compile Include="UInformeRe.cs" />
     <Compile Include="UInformeVe.cs" />
-    <Compile Include="ULclientes.cs" />
     <Compile Include="ULcomentarios.cs" />
     <Compile Include="UComentarios.cs" />
     <Compile Include="UDespachos.cs" />
-    <Compile Include="ULplatos.cs" />
-    <Compile Include="ULReserva.cs" />
-    <Compile Include="UOtenerRe.cs" />
     <Compile Include="UPedido.cs" />
-    <Compile Include="UPreserva.cs" />
+    <Compile Include="UPedidoplato.cs" />
+    <Compile Include="UPlatos.cs" />
+    <Compile Include="UPlatos1.cs" />
+    <Compile Include="URegistrou.cs" />
     <Compile Include="UReportes.Designer.cs" />
     <Compile Include="UReportes1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -78,8 +80,9 @@
       <DependentUpon>UReportes.xsd</DependentUpon>
     </Compile>
     <Compile Include="UReserva.cs" />
+    <Compile Include="UReservaplatos.cs" />
     <Compile Include="UReservation.cs" />
-    <Compile Include="UTokenRecu.cs" />
+    <Compile Include="UTokenRe.cs" />
     <Compile Include="UUse.cs" />
     <Compile Include="UUser.cs" />
     <Compile Include="UuserCrear.cs" />

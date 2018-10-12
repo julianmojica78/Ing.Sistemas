@@ -36,15 +36,16 @@ public partial class View_Registro : System.Web.UI.Page
         REV_Nombre1.Text = com.N;
         REV_Nombre2.Text = com.O;
         B_Crear.Text = com.P;
-        Session["men"] = com.Q;
+        Session["mensaje"] = com.Q;
         Session["men1"] = com.R;
     }
 
     protected void B_Crear_Click(object sender, EventArgs e)
     {
         ClientScriptManager cm = this.ClientScript;
-        UUsuario datos = new UUsuario();
-        LUser user = new LUser();
+        UEmpleados datos = new UEmpleados();
+        UUsuario dato = new UUsuario();
+        LUsuario user = new LUsuario();
         UUser mensaje = new UUser();
 
         datos.Nombre = TB_Nombre.Text.ToString();
@@ -61,11 +62,11 @@ public partial class View_Registro : System.Web.UI.Page
         datos.Intentos = 0;
         datos.Session = "a"; 
 
-        datos.A = Session["men"].ToString();
-        datos.Extension = Session["men1"].ToString();
+        dato.Mensaje = Session["mensaje"].ToString();
+        dato.Extension = Session["men1"].ToString();
 
-        datos = user.Registro(datos);
-        this.RegisterStartupScript("mensaje",datos.Mensaje);
+        dato = user.insertUsuario(datos , dato);
+        this.RegisterStartupScript("mensaje",dato.Mensaje);
 
         //Response.Redirect(datos.Url);
 

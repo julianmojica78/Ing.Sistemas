@@ -52,16 +52,17 @@ public partial class View_AgregarControl : System.Web.UI.Page
     {
         UIdioma user = new UIdioma();
         LIdioma datos = new LIdioma();
+        UControles idioma = new UControles();
 
 
 
-        user.Idioma = int.Parse(DDL_Idioma.SelectedValue.ToString());
-        user.Formulario = int.Parse(L_Formulario.Text.ToString());
-        user.Control = L_Control.Text.ToString();
-        user.Texto = TB_Texto.Text.ToString();
+        idioma.Idioma_id = int.Parse(DDL_Idioma.SelectedValue.ToString());
+        idioma.Formulario_id= int.Parse(L_Formulario.Text.ToString());
+        idioma.Control = L_Control.Text.ToString();
+        idioma.Texto = TB_Texto.Text.ToString();
         user.Mensaje = Session["men"].ToString();
         user.A = Session["men1"].ToString();
-        user = datos.agregarControl(user);
+        user = datos.agregarControl(idioma,user);
         this.RegisterStartupScript("mensaje", user.Mensaje);
     }
 }

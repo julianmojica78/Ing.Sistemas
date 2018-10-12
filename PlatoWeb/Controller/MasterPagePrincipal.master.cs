@@ -38,6 +38,7 @@ public partial class View_MasterPagePrincipal : System.Web.UI.MasterPage
         L_Comentario.Text = com.I;
         REV_tex.Text = com.J;
         BT_Enviar.Text = com.K;
+        Session["men"] = com.L;
 
 
         Estado est = new Estado();
@@ -117,14 +118,13 @@ public partial class View_MasterPagePrincipal : System.Web.UI.MasterPage
     {
 
         UComentarios datos = new UComentarios();
+        L_Persistencia user = new L_Persistencia();
         UUsuario mensaje = new UUsuario();
-        LUser user = new LUser();
 
         datos.Descripcion = TB_Comentario.Text.ToString();
         datos.User_id = int.Parse(Session["user_id"].ToString());
-
-
-        mensaje = user.InsertarComentario(datos);
+        mensaje.Mensaje = Session["men"].ToString();
+        mensaje = user.insertarcomentario(datos, mensaje);
         this.Page.Response.Write(mensaje.Mensaje);
     }
 }

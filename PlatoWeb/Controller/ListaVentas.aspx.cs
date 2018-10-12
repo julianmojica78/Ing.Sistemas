@@ -42,8 +42,8 @@ public partial class View_ListaVentas : System.Web.UI.Page
         GV_listVentas.DataBind();
 
 
-        LUser dato = new LUser();
-        GV_listVentas.DataSource = dato.ListaVentas();
+        L_Persistencia dato = new L_Persistencia();
+        GV_listVentas.DataSource = dato.obtenerPedido();
         GV_listVentas.DataBind();
 
     }
@@ -51,20 +51,29 @@ public partial class View_ListaVentas : System.Web.UI.Page
     protected void TB_Filtro_TextChanged(object sender, EventArgs e)
     {
 
-        LUser dato = new LUser();
-        UUsuario datos = new UUsuario();
+        L_Persistencia dato = new L_Persistencia();
+        UUser datos = new UUser();
         ClientScriptManager cm = this.ClientScript;
-        DataTable usuario;
 
-        datos.Nombre = TB_Filtro.Text.ToString();
-        //datos = dato.BuscarEmpleado(datos);
-        usuario = dato.BuscarVentas(datos);
+        String nombre = TB_Filtro.Text.ToString();
 
-        GV_listVentas.DataSource = usuario;
-        GV_listVentas.DataBind();
+        try
+        {
+            DataTable validez = dato.ToDataTable(dato.buscarVentas(nombre));
 
-        //this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Empleado no Existe');window.location=\"ListaEmpleados.aspx\"</script>");
-    }
+            datos.X = int.Parse(validez.Rows[0]["id_pedido"].ToString());
+
+            GV_listVentas.DataSource = dato.buscarVentas(nombre);
+            GV_listVentas.DataBind();
+
+        }
+        catch
+        {
+            this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Dato no Existe');window.location=\"ListaVentas.aspx\"</script>");
+
+
+        }
+}
 
     protected void BT_Buscar_Click(object sender, EventArgs e)
     {

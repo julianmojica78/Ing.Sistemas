@@ -178,7 +178,7 @@ namespace Datos
             return Usuario;
         }
 
-        public DataTable validarControl(UIdioma datos)
+        public DataTable validarControl(UControles datos)
         {
             DataTable Usuario = new DataTable();
             NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -187,7 +187,7 @@ namespace Datos
             {
                 NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("idioma.f_validar_controles", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_idioma", NpgsqlDbType.Integer).Value = datos.Idioma;
+                dataAdapter.SelectCommand.Parameters.Add("_idioma", NpgsqlDbType.Integer).Value = datos.Idioma_id;
                 //dataAdapter.SelectCommand.Parameters.Add("_formulario", NpgsqlDbType.Integer).Value = datos.Formulario;
                 dataAdapter.SelectCommand.Parameters.Add("_control", NpgsqlDbType.Text).Value = datos.Control;
                 //dataAdapter.SelectCommand.Parameters.Add("_texto", NpgsqlDbType.Text).Value = datos.Texto;
@@ -335,6 +335,14 @@ namespace Datos
                 db.SaveChanges();
             }
         }
+        public void insertControl(UControles idioma)
+        {
+            using (var db = new Mapeo("controles"))
+            {
+                db.controles.Add(idioma);
+                db.SaveChanges();
+            }
+        }
         public List<UAidioma> listarIdioma()
         {
             using (var db = new Mapeo("idioma"))
@@ -343,6 +351,32 @@ namespace Datos
                 return a.ToList<UAidioma>();
 
             }
+
+        }
+        public List<UControles> listarControl(Int32 formulario, Int32 idioma)
+        {
+            List<UControles> lista;
+            using (var db = new Mapeo("controles"))
+            {
+                var a = from p in db.controles
+                        where p.Formulario_id == formulario
+                        where p.Idioma_id == idioma
+                        select p;
+                lista = a.ToList();      
+                
+            }
+            return lista;
+        }
+
+        public List<UFormularios> listarFormulario()
+        {
+            using (var db = new Mapeo("formulario"))
+            {
+                var a = db.formulario.ToList<UFormularios>();
+                return a.ToList<UFormularios>();
+
+            }
+
 
         }
         public void modificarIdioma(UControles idioma)

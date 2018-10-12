@@ -49,7 +49,7 @@ public partial class View_Resrvas : System.Web.UI.Page
         REV_Fecha.Text = com.G;
         RV_Hora.Text = com.H;
         RV_Cantidad.Text = com.I;
-        Session["men"] = com.J;
+        Session["confirmacion"] = com.J;
         Session["men1"] = com.K;
         Session["men2"] = com.L;
         Session["men3"] = com.M;
@@ -101,7 +101,7 @@ public partial class View_Resrvas : System.Web.UI.Page
         
         dato.Dia = TB_Fecha.Text.ToString() + ' ' + int.Parse(DDL_Hora.SelectedItem.ToString()) + ":00";
         dato.Id_mesa = int.Parse(DDL_Cantp.SelectedValue.ToString());
-        datos.A = Session["men"].ToString();
+        datos.A = Session["confirmacion"].ToString();
         datos.B = Session["men1"].ToString();
         datos.C = Session["men2"].ToString();
         datos.D = Session["men3"].ToString();

@@ -41,17 +41,22 @@ public partial class View_CanjePuntos : System.Web.UI.Page
         GV_Historial.Columns[1].HeaderText = compIdioma["LB_Dia"].ToString();
         DL_canje.DataBind();
         Session["men"] = compIdioma["JS_canje"].ToString();
-        
+
+
+
+
         int Id = int.Parse(Session["user_id"].ToString());
         LUser dao = new LUser();
         DataTable tabla = new DataTable();
-        L_Persistencia data = new L_Persistencia();
+
         int id_usuario = int.Parse(Session["user_id"].ToString());
-        GV_Historial.DataSource = data.listadeReservas(id_usuario);
+        GV_Historial.DataSource = dao.obtenerReservas(id_usuario);
         GV_Historial.DataBind();
 
-        DataTable inter = data.ToDataTable(data.listadePuntos(Id));
-        //tabla = data.listadePuntos(Id);
+        
+
+        tabla = dao.obtenerPuntos(Id);
+        //DataTable obtepuntos = dao.canje(id_usuario, Id);
         UuserReservas dato = dao.canje(tabla);
         LB_puntos.Text = dato.Cant.ToString();
         L_puntosInsu.Visible = dato.Est1;

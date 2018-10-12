@@ -61,7 +61,7 @@
                 <asp:ListItem Value="2">Ingles</asp:ListItem>
             </asp:DropDownList>
 
-                    <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="obtenerIdioma" TypeName="Logica.LIdioma"></asp:ObjectDataSource>
+                    <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="obtenerIdioma" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
 
                 </td>
                 <td>

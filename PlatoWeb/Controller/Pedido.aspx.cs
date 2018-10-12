@@ -39,25 +39,20 @@ public partial class View_Pedido : System.Web.UI.Page
     protected void B_guardar_Click(object sender, EventArgs e)
     {
         UuserPedido dato = new UuserPedido();
-        UPedido datos = new UPedido();
         ClientScriptManager cm = this.ClientScript;
         LUser doc = new LUser();
-        L_Persistencia dac = new L_Persistencia();
 
-        datos.Id_usuario = int.Parse(Session["user_id"].ToString());
-        //DataTable validez1 = doc.obtenerpe(dato.Id_usuario);
-        //DataTable validez1 = dac.obtenPedido(dato.Id_usuario);
-        DataTable validez1 = dac.ToDataTable(dac.obtenPedido(dato.Id_usuario));
-        datos.Id_pedido = int.Parse(validez1.Rows[0]["id_pedido"].ToString());
+        dato.Id_usuario = int.Parse(Session["user_id"].ToString());
+        DataTable validez1 = doc.obtenerpe(dato.Id_usuario);
+        dato.Id_pedido = int.Parse(validez1.Rows[0]["id_pedido"].ToString());
         Button btn = (Button)sender;
         DataListItem item = (DataListItem)btn.NamingContainer;
         TextBox guardar = (TextBox)item.FindControl("TB_insertarPedido");
-        datos.Cantidad = int.Parse(guardar.Text);
+        dato.Cantidad = int.Parse(guardar.Text);
         Label lblid = (Label)item.FindControl("LB_Codigop");
-        datos.Id_plato = int.Parse(lblid.Text);
+        dato.Id_plato = int.Parse(lblid.Text);
 
-        dac.insertarPedido(datos);
-        //doc.guardarPedido(dato);
+        doc.guardarPedido(dato);
         String mens = Session["men"].ToString();
         cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('" + mens.ToString() + "');</script>");
 
@@ -69,10 +64,9 @@ public partial class View_Pedido : System.Web.UI.Page
         UuserPedido dato = new UuserPedido();
         ClientScriptManager cm = this.ClientScript;
         LUser doc = new LUser();
-        L_Persistencia dac = new L_Persistencia();
         dato.Id_mesa = int.Parse(DDL_Ubicacion.SelectedValue.ToString());
         dato.Id_mesero = int.Parse(Session["user_id"].ToString());
-        dac.guardarUbicacion(dato);
+        doc.guardarPedido1(dato);
     }
 
 

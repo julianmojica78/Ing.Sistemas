@@ -52,6 +52,32 @@ public partial class View_ListadePlatos : System.Web.UI.Page
         GV_Platos.DataBind();
     }
 
+    //protected void GridView1_SelectedIndexChanged1(object sender, GridViewRowEventArgs e)
+    //{
+    //    Session["id_plato"] = GV_Platos.SelectedRow.Cells[1].Text;
+    //    Session["nombre"] = GV_Platos.SelectedRow.Cells[2].Text;
+    //    Session["descripcion"] = GV_Platos.SelectedRow.Cells[3].Text;
+    //    Session["precio"] = GV_Platos.SelectedRow.Cells[4].Text;
+    //    Session["imagen"] = GV_Platos.SelectedRow.Cells[5].Text;
+
+
+    //    try
+    //    {
+    //        try
+    //        {
+    //            ((Label)e.Row.FindControl("GV_Platos")).Text = ((Hashtable)Session["mensajes"])["GV_Platos"].ToString();
+    //        }
+    //        catch (Exception exe)
+    //        {
+
+    //            ((Button)e.Row.FindControl("B_Seleccionar")).Text = ((Hashtable)Session["mensajes"])["B_Seleccionar"].ToString();
+    //        }
+    //    }
+    //    catch (Exception exx)
+    //    {
+    //    }
+    //}
+
     protected void B_modificar_Click(object sender, EventArgs e)
     {
         Response.Redirect("ModificarMenu.aspx");
@@ -82,16 +108,26 @@ public partial class View_ListadePlatos : System.Web.UI.Page
 
     protected void TB_Filtro_TextChanged(object sender, EventArgs e)
     {
-        LUser dato = new LUser();
+        L_Persistencia dato = new L_Persistencia();
         UUser datos = new UUser();
         ClientScriptManager cm = this.ClientScript;
         String nombre = TB_Filtro.Text.ToString();
         // datos.Nombre = nombre;
-        DataTable validez = dato.validarbuscarM(nombre);
+        try
+        {
+            DataTable validez = dato.ToDataTable(dato.buscarPlatos(nombre));
 
-        datos.X = int.Parse(validez.Rows[0]["id_plato"].ToString());
-        GV_Platos.DataSource = dato.buscarPla((TB_Filtro.Text.ToString()));
-        GV_Platos.DataBind();
+            datos.X = int.Parse(validez.Rows[0]["id_plato"].ToString());
+            GV_Platos.DataSource = dato.buscarPlatos((TB_Filtro.Text.ToString()));
+            GV_Platos.DataBind();
+        }
+        catch
+        {
+            this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Plato no Existe');window.location=\"ListadePlatos.aspx\"</script>");
+
+        }
+
+
 
     }
 

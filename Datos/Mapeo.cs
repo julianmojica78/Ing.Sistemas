@@ -26,16 +26,19 @@ namespace Datos
         public DbSet<ULcomentarios> comentario { get; set; }
         public DbSet<UInformeRe> informeRe { get; set; }
         public DbSet<UReservation> reserva { get; set; }
-        public DbSet<UContacto> contactenos { get; set; }
+
         public DbSet<UInformeVe> informeVe { get; set; }
-        public DbSet<UTokenRecu> recuperarToken { get; set; }
-        public DbSet<UUsuario> puntos { get; set; }
-        public DbSet<ULclientes> clientes { get; set; }
-        public DbSet<UuserPedido> pedido { get; set; }
-        public DbSet<UPedido> pedido1 { get; set; }
-        public DbSet<UOtenerRe> obtener { get; set; }
-        public DbSet<UPreserva> platoR { get; set; }
-        public DbSet<ULReserva> listReser { get; set; }
+        public DbSet<UFormularios> formulario { get; set; }
+        public DbSet<UPedido> pedido { get; set; }
+        public DbSet<UTokenRe> tokenre { get; set; }
+        public DbSet<UCocinero> cocinero { get; set; }
+        public DbSet<UCocinero1> cocinero1 { get; set; }
+        public DbSet<UPlatos> platos { get; set; }
+        public DbSet<UPlatos1> platos1 { get; set; }
+        public DbSet<UPedidoplato> pedidos { get; set; }
+
+        public DbSet<UReservaplatos> reservas { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

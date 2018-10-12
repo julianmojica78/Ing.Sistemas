@@ -133,7 +133,7 @@ public partial class View_MasterPageCliente : System.Web.UI.MasterPage
 
         datos.Descripcion = TB_Comentario.Text.ToString();
         datos.User_id = int.Parse(Session["user_id"].ToString());
-                mensaje.Mensaje = Session["men"].ToString();
+        mensaje.Mensaje = Session["men"].ToString();
         mensaje = user.insertarcomentario(datos, mensaje);
         this.Page.Response.Write(mensaje.Mensaje);
     }

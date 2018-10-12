@@ -53,9 +53,8 @@ public partial class View_ListaClientes : System.Web.UI.Page
         GV_listClien.Columns[5].HeaderText = com.K;
 
         LUser dato = new LUser();
-        L_Persistencia data = new L_Persistencia();
 
-        GV_listClien.DataSource = data.listadeClientes();
+        GV_listClien.DataSource = dato.ListaClientes();
         GV_listClien.DataBind();
 
     }
@@ -73,6 +72,7 @@ public partial class View_ListaClientes : System.Web.UI.Page
         DataTable usuario;
 
         datos.Nombre = TB_Filtro.Text.ToString();
+        //datos = dato.BuscarEmpleado(datos);
         usuario = dato.BuscarCliente(datos);
 
         GV_listClien.DataSource = usuario;

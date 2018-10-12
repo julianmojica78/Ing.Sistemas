@@ -12,6 +12,8 @@ namespace Utilitarios
     [Table("reservas", Schema = "usuario")]
     public class UReservation
     {
+
+        private Int32 id_reserva;
         private Int32 id_mesa;
         private String dia;
         private Int32 id_usuario;
@@ -19,6 +21,10 @@ namespace Utilitarios
         private Int32? estado;
 
         [Key]
+        [Column("id_reserva")]
+        public int Id_reserva { get => id_reserva; set => id_reserva = value; }
+        [Column("id_mesa")]
+        public int Id_mesa { get => id_mesa; set => id_mesa = value; }
         [Column("dia")]
         public string Dia { get => dia; set => dia = value; }
         [Column("id_usuario")]
@@ -27,7 +33,5 @@ namespace Utilitarios
         public int? Puntos { get => puntos; set => puntos = value; }
         [Column("estado")]
         public int? Estado { get => estado; set => estado = value; }
-        [Column("id_mesa")]
-        public int Id_mesa { get => id_mesa; set => id_mesa = value; }
     }
 }

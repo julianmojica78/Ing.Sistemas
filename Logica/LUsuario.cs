@@ -7,13 +7,43 @@ namespace Logica
 {
     public class LUsuario
     {
-        public UUsuario insertarUsuario(UEmpleados usuario)
+        public UUsuario insertarUsuario(UEmpleados usuario, UUsuario mensaje)
         {
             DUser dao = new DUser();
             UUsuario user = new UUsuario();
-            dao.insertUsuario(usuario);
-            user.Mensaje = "<script type='text/javascript'>alert('" + user.B.ToString() + "');window.location=\"ListaEmpleados.aspx\"</script>";
+        
+            System.Data.DataTable validez = dao.validarRegistro(usuario.User_Name1, usuario.Email);
+            if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+            {
+                dao.insertUsuario(usuario);
+                user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"ListaEmpleados.aspx\"</script>";
 
+            }
+            else
+            {
+                user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Extension.ToString() + "');window.location=\"Registro.aspx\"</script>";
+            }
+
+            return user;
+
+        }
+
+        public UUsuario insertUsuario(UEmpleados usuario, UUsuario mensaje)
+        {
+            DUser dao = new DUser();
+            UUsuario user = new UUsuario();
+
+            System.Data.DataTable validez = dao.validarRegistro(usuario.User_Name1, usuario.Email);
+            if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+            {
+                dao.insertUsuario(usuario);
+                user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Loggin.aspx\"</script>";
+
+            }
+            else
+            {
+                user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Extension.ToString() + "');window.location=\"Registro.aspx\"</script>";
+            }
 
             return user;
 

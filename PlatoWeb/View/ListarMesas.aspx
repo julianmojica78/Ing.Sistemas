@@ -62,7 +62,7 @@
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:CommandField ShowSelectButton="True" ButtonType="Button" />
-                        <asp:BoundField DataField="id_mesa" HeaderText="Codigo mesa" />
+                        <asp:BoundField DataField="id_mesas" HeaderText="Codigo mesa" />
                         <asp:BoundField DataField="cantidad" HeaderText="Cantidad de personas" />
                         <asp:BoundField DataField="ubicacion" HeaderText="Ubicacion" />
                     </Columns>
@@ -80,7 +80,7 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_listarMesa" runat="server" SelectMethod="Listadomesas" TypeName="Logica.Luser"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_listarMesa" runat="server" SelectMethod="obtenerMesas" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
             </td>
             <td>&nbsp;</td>
         </tr>
