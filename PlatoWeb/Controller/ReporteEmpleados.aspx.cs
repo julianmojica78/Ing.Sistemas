@@ -41,7 +41,7 @@ public partial class View_ReporteEmpleados : System.Web.UI.Page
         LUser persona = new LUser();
 
         DataTable inter = report.ToDataTable(report.obtenerReporteEmpleado());
-
+        
         informacion = datos.Tables["Empleados"];
 
         DataTable intermedio = report.ToDataTable(report.obtenerReporteEmpleado());

@@ -52,32 +52,6 @@ public partial class View_ListadePlatos : System.Web.UI.Page
         GV_Platos.DataBind();
     }
 
-    //protected void GridView1_SelectedIndexChanged1(object sender, GridViewRowEventArgs e)
-    //{
-    //    Session["id_plato"] = GV_Platos.SelectedRow.Cells[1].Text;
-    //    Session["nombre"] = GV_Platos.SelectedRow.Cells[2].Text;
-    //    Session["descripcion"] = GV_Platos.SelectedRow.Cells[3].Text;
-    //    Session["precio"] = GV_Platos.SelectedRow.Cells[4].Text;
-    //    Session["imagen"] = GV_Platos.SelectedRow.Cells[5].Text;
-
-
-    //    try
-    //    {
-    //        try
-    //        {
-    //            ((Label)e.Row.FindControl("GV_Platos")).Text = ((Hashtable)Session["mensajes"])["GV_Platos"].ToString();
-    //        }
-    //        catch (Exception exe)
-    //        {
-
-    //            ((Button)e.Row.FindControl("B_Seleccionar")).Text = ((Hashtable)Session["mensajes"])["B_Seleccionar"].ToString();
-    //        }
-    //    }
-    //    catch (Exception exx)
-    //    {
-    //    }
-    //}
-
     protected void B_modificar_Click(object sender, EventArgs e)
     {
         Response.Redirect("ModificarMenu.aspx");

@@ -141,17 +141,6 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
 
 
         }
-        ////datos = dato.BuscarEmpleado(datos);
-        //usuario = dato.BuscarEmpleado(datos);
-
-        //GV_Empleados.DataSource = usuario;
-        //GV_Empleados.DataBind();
-
-        //this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Empleado no Existe');window.location=\"ListaEmpleados.aspx\"</script>");
-
-
-
-
     }
 
     protected void GV_Resultado_SelectedIndexChanged(object sender, EventArgs e)

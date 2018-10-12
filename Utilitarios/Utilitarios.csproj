@@ -56,14 +56,21 @@
     <Compile Include="Mesas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UAidioma.cs" />
+    <Compile Include="UContacto.cs" />
     <Compile Include="UControles.cs" />
     <Compile Include="UEmpleados.cs" />
     <Compile Include="UIdioma.cs" />
     <Compile Include="UInformeRe.cs" />
     <Compile Include="UInformeVe.cs" />
+    <Compile Include="ULclientes.cs" />
     <Compile Include="ULcomentarios.cs" />
     <Compile Include="UComentarios.cs" />
     <Compile Include="UDespachos.cs" />
+    <Compile Include="ULplatos.cs" />
+    <Compile Include="ULReserva.cs" />
+    <Compile Include="UOtenerRe.cs" />
+    <Compile Include="UPedido.cs" />
+    <Compile Include="UPreserva.cs" />
     <Compile Include="UReportes.Designer.cs" />
     <Compile Include="UReportes1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -72,6 +79,7 @@
     </Compile>
     <Compile Include="UReserva.cs" />
     <Compile Include="UReservation.cs" />
+    <Compile Include="UTokenRecu.cs" />
     <Compile Include="UUse.cs" />
     <Compile Include="UUser.cs" />
     <Compile Include="UuserCrear.cs" />

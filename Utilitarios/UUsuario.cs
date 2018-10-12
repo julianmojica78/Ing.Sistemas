@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Utilitarios
 {
+    [Serializable]
+    [Table("usuario", Schema = "usuario")]
     public class UUsuario
     {
         private Int32 user_id;
@@ -108,7 +112,8 @@ namespace Utilitarios
                 cedula = value;
             }
         }
-
+        [Key]
+        [Column("id_plato")]
         public int Puntos
         {
             get

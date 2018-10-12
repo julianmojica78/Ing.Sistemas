@@ -245,12 +245,73 @@ namespace Logica
                 fila["Fecha ingreso"] = inter.Rows[i]["fecha_ingreso"].ToString();
                 fila["Fecha despacho"] = inter.Rows[i]["fecha_despacho"].ToString();
                 fila["Precio"] = inter.Rows[i]["precio"].ToString();
-                //fila["Fotos"] = streamFile(intermedio.Rows[i]["foto"].ToString());
-
                 informacion.Rows.Add(fila);
             }
 
             return datos;
+        }
+        public UContacto insertarcontacto(UContacto contacto)
+        {
+            DUser dao = new DUser();
+            dao.insertarContacto(contacto);
+            UContacto user = new UContacto();
+            return user;
+        }
+        public List<Menu> listadeMenu()
+        {
+            DUser dao = new DUser();
+            return dao.listarPlatos();
+        }
+        public List<UReservation> listadeReservas(Int32 id)
+        {
+            DUser dao = new DUser();
+            return dao.listadodeReservas(id);
+        }
+        public List<UUsuario> listadePuntos(Int32 id)
+        {
+            DUser dao = new DUser();
+            return dao.listadodePuntos(id);
+        }
+        public List<ULclientes> listadeClientes()
+        {
+            DUser dao = new DUser();
+            return dao.listadodeClientes();
+        }
+        public List<UuserPedido> obtenPedido(int user_id)
+        {
+            DUser dao = new DUser();
+            return dao.ObtenerPedidos(user_id);
+        }
+        public UPedido insertarPedido(UPedido pedido)
+        {
+            DUser dao = new DUser();
+            dao.insertPedido(pedido);
+            UPedido user = new UPedido();
+            return user;
+        }
+        public UuserPedido guardarUbicacion(UuserPedido pedido)
+        {
+            DUser dao = new DUser();
+            dao.insertUbicacion(pedido);
+            UuserPedido user = new UuserPedido();
+            return user;
+        }
+        public List<UOtenerRe> obtenRe()
+        {
+            DUser dao = new DUser();
+            return dao.ObtenerRes();
+        }
+        public UPreserva insertarPlatoR(UPreserva pedido)
+        {
+            DUser dao = new DUser();
+            dao.insertPedidoRe(pedido);
+            UPreserva user = new UPreserva();
+            return user;
+        }
+        public List<ULReserva> ListReserva()
+        {
+            DUser dao = new DUser();
+            return dao.listarResr();
         }
     }
 }

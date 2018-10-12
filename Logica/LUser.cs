@@ -708,6 +708,7 @@ namespace Logica
             DUser data = new DUser();
             DataTable validez = data.generarToken(user_name);
             UUserToken token = new UUserToken();
+            UTokenRecu tokenR = new UTokenRecu();
 
             if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
             {
@@ -724,11 +725,9 @@ namespace Logica
                 token.Clave = validez.Rows[0]["clave"].ToString();
                 token.Session = validez.Rows[0]["session"].ToString();
                 token.Estado = int.Parse(validez.Rows[0]["estado"].ToString());
-
                 token.Fecha = DateTime.Now.ToFileTimeUtc();
-
                 String userToken = encriptar(JsonConvert.SerializeObject(token));
-                data.almacenarToken(userToken, token.Id);
+                data.insertarToken(tokenR);
 
                 Correo correo = new Correo();
 
@@ -1140,14 +1139,6 @@ namespace Logica
             DataTable data = dato.Insertarpreserva(plato);
             return data;
         }
-
-        public DataTable obterplatocaje()
-        {
-            DUser dato = new DUser();
-            DataTable data = dato.obtenerPlato();
-            return data;
-        }
-
         public DataTable buscarmesa(string nombre)
         {
             DUser dato = new DUser();

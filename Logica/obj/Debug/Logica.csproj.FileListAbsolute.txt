@@ -84,3 +84,29 @@ D:\Ing. Sistemas\Ing. Sistemas\Logica\obj\Debug\Logica.csproj.CoreCompileInputs.
 D:\Ing. Sistemas\Ing. Sistemas\Logica\obj\Debug\Logica.csproj.CopyComplete
 D:\Ing. Sistemas\Ing. Sistemas\Logica\obj\Debug\Logica.dll
 D:\Ing. Sistemas\Ing. Sistemas\Logica\obj\Debug\Logica.pdb
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Logica.dll.config
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Logica.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Logica.pdb
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Datos.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Utilitarios.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\EntityFramework.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Npgsql.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\System.ValueTuple.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Datos.pdb
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Datos.dll.config
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Utilitarios.pdb
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\EntityFramework.xml
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Npgsql.pdb
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\Npgsql.xml
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\System.ValueTuple.xml
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\obj\Debug\Logica.csprojAssemblyReference.cache
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\obj\Debug\Logica.csproj.CoreCompileInputs.cache
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\obj\Debug\Logica.csproj.CopyComplete
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\obj\Debug\Logica.dll
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Logica\obj\Debug\Logica.pdb
