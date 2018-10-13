@@ -53,8 +53,9 @@ public partial class View_ListaClientes : System.Web.UI.Page
         GV_listClien.Columns[5].HeaderText = com.K;
 
         LUser dato = new LUser();
+        L_Persistencia data = new L_Persistencia();
 
-        GV_listClien.DataSource = dato.ListaClientes();
+        GV_listClien.DataSource = data.listadeClientes();
         GV_listClien.DataBind();
 
     }
@@ -67,16 +68,34 @@ public partial class View_ListaClientes : System.Web.UI.Page
     protected void TB_Filtro_TextChanged(object sender, EventArgs e)
     {
         LUser dato = new LUser();
+        L_Persistencia data = new L_Persistencia();
         UUsuario datos = new UUsuario();
         ClientScriptManager cm = this.ClientScript;
         DataTable usuario;
 
-        datos.Nombre = TB_Filtro.Text.ToString();
-        //datos = dato.BuscarEmpleado(datos);
-        usuario = dato.BuscarCliente(datos);
+        String nombre = TB_Filtro.Text.ToString();
 
-        GV_listClien.DataSource = usuario;
-        GV_listClien.DataBind();
+        try
+        {
+            DataTable validez = data.ToDataTable(data.buscarCliente(nombre));
+
+            datos.X = int.Parse(validez.Rows[0]["user_id"].ToString());
+
+
+            GV_listClien.DataSource = data.buscarCliente(nombre);
+            GV_listClien.DataBind();
+
+
+        }
+        catch
+        {
+
+        }
+
+        //usuario = data.buscarCliente(datos);
+
+        //GV_listClien.DataSource = usuario;
+        //GV_listClien.DataBind();
 
         //this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Empleado no Existe');window.location=\"ListaEmpleados.aspx\"</script>");
 

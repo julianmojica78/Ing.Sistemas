@@ -32,7 +32,7 @@ public partial class View_CanjePuntos : System.Web.UI.Page
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;
         compIdioma = idioma.hastableIdioma(info, compIdioma);
-        L_PuntosR.Text = compIdioma["L_PuntosR"].ToString(); 
+        L_PuntosR.Text = compIdioma["L_PuntosR"].ToString();
         L_cantPuntos.Text = compIdioma["L_cantPuntos"].ToString();
         L_puntosInsu.Text = compIdioma["L_puntosInsu"].ToString();
         L_Historial.Text = compIdioma["L_Historial"].ToString();
@@ -42,21 +42,16 @@ public partial class View_CanjePuntos : System.Web.UI.Page
         DL_canje.DataBind();
         Session["men"] = compIdioma["JS_canje"].ToString();
 
-
-
-
         int Id = int.Parse(Session["user_id"].ToString());
         LUser dao = new LUser();
         DataTable tabla = new DataTable();
-
+        L_Persistencia data = new L_Persistencia();
         int id_usuario = int.Parse(Session["user_id"].ToString());
-        GV_Historial.DataSource = dao.obtenerReservas(id_usuario);
+        GV_Historial.DataSource = data.listadeReservas(id_usuario);
         GV_Historial.DataBind();
 
-        
-
-        tabla = dao.obtenerPuntos(Id);
-        //DataTable obtepuntos = dao.canje(id_usuario, Id);
+        DataTable inter = data.ToDataTable(data.listadePuntos(Id));
+        //tabla = data.listadePuntos(Id);
         UuserReservas dato = dao.canje(tabla);
         LB_puntos.Text = dato.Cant.ToString();
         L_puntosInsu.Visible = dato.Est1;
@@ -91,7 +86,7 @@ public partial class View_CanjePuntos : System.Web.UI.Page
         {
             try
             {
-               ((Button)e.Item.FindControl("BT_Canje")).Text = ((Hashtable)Session["mensajes"])["BT_Canje"].ToString();
+                ((Button)e.Item.FindControl("BT_Canje")).Text = ((Hashtable)Session["mensajes"])["BT_Canje"].ToString();
 
             }
             catch (Exception ex)

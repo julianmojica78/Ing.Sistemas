@@ -2204,7 +2204,7 @@ namespace Datos
         {
             using (var db = new Mapeo("pedido"))
             {
-                var a = db.pedido.ToList<UPedido>();
+                var a = db.pedid.ToList<UPedido>();
                 return a.ToList<UPedido>();
 
             }
@@ -2232,11 +2232,51 @@ namespace Datos
             }
 
         }
+        public List<ULclientes> buscarCliente(String nombre)
+        {
+            using (var db = new Mapeo("usuario"))
+            {
+                var a = db.clientes.ToList<ULclientes>().Where(x => x.Nombre.Contains(nombre));
+                return a.ToList<ULclientes>();
+
+            }
+
+        }
+        public List<ULcomentarios> buscarComent(String nombre)
+        {
+            using (var db = new Mapeo("usuario"))
+            {
+                var a = db.comentario.ToList<ULcomentarios>().Where(x => x.User_name.Contains(nombre));
+                return a.ToList<ULcomentarios>();
+
+            }
+
+        }
+        public List<ULReserva> buscarReservas(String nombre)
+        {
+            using (var db = new Mapeo("usuario"))
+            {
+                var a = db.listReser.ToList<ULReserva>().Where(x => x.Nombre.Contains(nombre));
+                return a.ToList<ULReserva>();
+
+            }
+
+        }
+        public List<Mesas> buscarMesa(String nombre)
+        {
+            using (var db = new Mapeo("usuario"))
+            {
+                var a = db.mesa.ToList<Mesas>().Where(x => x.Ubicacion.Contains(nombre));
+                return a.ToList<Mesas>();
+
+            }
+
+        }
         public List<UPedido> buscarVentas(String nombre)
         {
             using (var db = new Mapeo("pedido"))
             {
-                var a = db.pedido.ToList<UPedido>().Where(x => x.Nombre.Contains(nombre));
+                var a = db.pedid.ToList<UPedido>().Where(x => x.Nombre.Contains(nombre));
                 return a.ToList<UPedido>();
 
             }
@@ -2344,13 +2384,149 @@ namespace Datos
             }
         }
 
-        public void actualizarDespachos1(UReservaplatos reserva)
+        public void actualizarDespachos1(UPreserva reserva)
         {
-            using (var db = new Mapeo("reservas"))
+            using (var db = new Mapeo("plator"))
             {
-                db.reservas.Attach(reserva);
+                db.platoR.Attach(reserva);
                 var entry = db.Entry(reserva);
                 entry.State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        // public List<UInformeRe> listarReservas()
+        //{
+        //    using (var db = new Mapeo("informeRe"))
+        //    {
+        //        var a = db.informeRe.ToList<UInformeRe>();
+        //        return a.ToList<UInformeRe>();
+
+        //    }
+        //}
+        public List<Menu> listarPlat()
+        {
+            using (var db = new Mapeo("menu"))
+            {
+                var a = db.menu.ToList<Menu>();
+                return a.ToList<Menu>();
+
+            }
+        }
+        public List<UReservation> listadodeReservas(int id)
+        {
+            using (var db = new Mapeo("reserva"))
+            {
+                var a = db.reserva.ToList<UReservation>();
+                return a.ToList<UReservation>();
+            }
+        }
+        public List<UEmpleados> listadodePuntos(int id)
+        {
+            using (var db = new Mapeo("reserva"))
+            {
+                var a = db.user.ToList<UEmpleados>();
+                return a.ToList<UEmpleados>();
+
+            }
+        }
+        //public List<ULclientes> listadodeClientes()
+        //{
+        //    using (var db = new Mapeo("clientes"))
+        //    {
+        //        var a = db.clientes.ToList<ULclientes>();
+        //        return a.ToList<ULclientes>();
+        //    }
+        //}
+
+        public List<ULclientes> listarclientes()
+        {
+            using (var db = new Mapeo("clientes"))
+            {
+                var a = db.clientes.ToList<ULclientes>();
+                return a.ToList<ULclientes>();
+            }
+        }
+        public List<Uubicacion> ObtenerPedidos(Int32 user_id)
+        {
+            using (var db = new Mapeo("pedido"))
+            {
+                var a = db.pedido.ToList<Uubicacion>();
+                return a.ToList<Uubicacion>();
+            }
+        }
+        public List<UOtenerRe> ObtenerRes()
+        {
+            using (var db = new Mapeo("obtener"))
+            {
+                var a = db.obtener.ToList<UOtenerRe>();
+                return a.ToList<UOtenerRe>();
+            }
+        }
+        //public List<UInformeVe> listarVentas()
+        //{
+        //    using (var db = new Mapeo("informeVe"))
+        //    {
+        //        var a = db.informeVe.ToList<UInformeVe>();
+        //        return a.ToList<UInformeVe>();
+
+        //    }
+        //}
+        public List<ULReserva> listarResr()
+        {
+            using (var db = new Mapeo("istReser"))
+            {
+                var a = db.listReser.ToList<ULReserva>();
+                return a.ToList<ULReserva>();
+
+            }
+        }
+
+        //public void insertarReserva(UReservation reserva)
+        //{
+        //    using (var db = new Mapeo("reserva"))
+        //    {
+        //        db.reserva.Add(reserva);
+        //        db.SaveChanges();
+        //    }
+        //}
+        public void insertarContacto(UContacto contacto)
+        {
+            using (var db = new Mapeo("contactenos"))
+            {
+                db.contactenos.Add(contacto);
+                db.SaveChanges();
+            }
+        }
+        public void insertarToken(UTokenRecu token)
+        {
+            using (var db = new Mapeo("recuperarToken"))
+            {
+                db.recuperarToken.Add(token);
+                db.SaveChanges();
+            }
+        }
+        public void insertPedido(UPedidoplato pedido)
+        {
+            using (var db = new Mapeo("pedidos"))
+            {
+                db.pedidos.Add(pedido);
+                db.SaveChanges();
+            }
+        }
+        public void insertPedidoRe(UPreserva pedido)
+        {
+            using (var db = new Mapeo("platoR"))
+            {
+                db.platoR.Add(pedido);
+                db.SaveChanges();
+            }
+        }
+        public void insertUbicacion(Uubicacion pedido)
+        {
+            using (var db = new Mapeo("pedido"))
+            {
+                db.pedido.Add(pedido);
                 db.SaveChanges();
             }
         }

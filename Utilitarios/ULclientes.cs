@@ -21,15 +21,15 @@ namespace Utilitarios
         private int puntos;
 
         [Key]
-        [Column("id_usuario")]
+        [Column("codigo")]
         public int Id_usuario { get => id_usuario; set => id_usuario = value; }
-        [Column("user_name")]
+        [Column("usuario")]
         public string User_name { get => user_name; set => user_name = value; }
         [Column("nombre")]
         public string Nombre { get => nombre; set => nombre = value; }
         [Column("apellido")]
         public string Apellido { get => apellido; set => apellido = value; }
-        [Column("email")]
+        [Column("correo")]
         public string Email { get => email; set => email = value; }
         [Column("telefono")]
         public string Telefono { get => telefono; set => telefono = value; }

@@ -22,7 +22,7 @@ public partial class View_Reservas : System.Web.UI.Page
         GV_Reserva.Columns[2].HeaderText = com.B;
         GV_Reserva.Columns[3].HeaderText = com.D;
         BT_Platos.Text = com.C;
-        LB_reserT.Text = com.E;  
+        LB_reserT.Text = com.E;
     }
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

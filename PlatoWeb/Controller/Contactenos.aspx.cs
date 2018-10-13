@@ -36,7 +36,7 @@ public partial class View_Contactenos : System.Web.UI.Page
         LB_Detalle.Text = com.E;
         BT_Enviar.Text = com.F;
         Session["men"] = com.G;
-        
+
 
     }
 
@@ -44,10 +44,17 @@ public partial class View_Contactenos : System.Web.UI.Page
     {
         UUser dato = new UUser();
         LUser contacto = new LUser();
+        L_Persistencia logica = new L_Persistencia();
+        UContacto menu = new UContacto();
+        menu.Nombre = TB_Nombre.Text.ToString();
+        menu.Telefono = TB_Telefono.Text.ToString();
+        menu.Email = TB_Email.Text.ToString();
+        menu.Detalle = TB_Detalle.Text.ToString();
+        menu = logica.insertarcontacto(menu);
         ClientScriptManager cm = this.ClientScript;
-        dato = contacto.contactenos(TB_Nombre.Text, TB_Telefono.Text, TB_Email.Text, TB_Detalle.Text);
+        //dato = contacto.contactenos(TB_Nombre.Text, TB_Telefono.Text, TB_Email.Text, TB_Detalle.Text);
         String mens = Session["men"].ToString();
-        this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('"+ mens.ToString() +"');window.location=\"Inicio.aspx\"</script>");
+        this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + mens.ToString() + "');window.location=\"Inicio.aspx\"</script>");
         //this.Page.Response.Write(mens);
     }
 }

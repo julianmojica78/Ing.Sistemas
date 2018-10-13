@@ -62,14 +62,34 @@ public partial class View_ListaComentarios : System.Web.UI.Page
     {
         LUser dato = new LUser();
         UUser datos = new UUser();
-        String nombre = TB_Filtrar.Text.ToString();
-        datos.Nombre = nombre;
-        DataTable validez = dato.buscarcomen(datos.Nombre);
+        L_Persistencia data = new L_Persistencia();
+        DataTable usuario;
+        //String nombre = TB_Filtrar.Text.ToString();
+        //datos.Nombre = nombre;
+        //DataTable validez = dato.buscarcomen(datos.Nombre);
 
-            datos.X = int.Parse(validez.Rows[0]["id_comentarios"].ToString());        
-            GV_Listar.DataSource = dato.buscarcomen(TB_Filtrar.Text.ToString());
+        //datos.X = int.Parse(validez.Rows[0]["id_comentarios"].ToString());
+        //GV_Listar.DataSource = dato.buscarcomen(TB_Filtrar.Text.ToString());
+        //GV_Listar.DataBind();
+        String nombre = TB_Filtrar.Text.ToString();
+
+        try
+        {
+            DataTable validez = data.ToDataTable(data.buscarComen(nombre));
+
+            datos.X = int.Parse(validez.Rows[0]["user_id"].ToString());
+
+
+            GV_Listar.DataSource = data.buscarComen(nombre);
             GV_Listar.DataBind();
-        
+
+
+        }
+        catch
+        {
+
+        }
+
     }
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

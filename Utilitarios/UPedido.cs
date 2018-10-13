@@ -17,6 +17,7 @@ namespace Utilitarios
         private Int32 cantidad;
         private String fecha_ingreso;
         private String fecha_despacho;
+        
 
         [Key]
         [Column("id_pedido")]

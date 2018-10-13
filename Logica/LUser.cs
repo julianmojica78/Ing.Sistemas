@@ -715,6 +715,7 @@ namespace Logica
             DUser data = new DUser();
             DataTable validez = data.generarToken(user_name);
             UUserToken token = new UUserToken();
+            UTokenRecu tokenR = new UTokenRecu();
 
             if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
             {
@@ -735,7 +736,7 @@ namespace Logica
                 token.Fecha = DateTime.Now.ToFileTimeUtc();
 
                 String userToken = encriptar(JsonConvert.SerializeObject(token));
-                data.almacenarToken(userToken, token.Id);
+                data.insertarToken(tokenR);
 
                 Correo correo = new Correo();
 

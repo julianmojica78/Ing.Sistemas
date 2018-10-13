@@ -15,7 +15,7 @@ public partial class View_Pedido : System.Web.UI.Page
         Response.Cache.SetAllowResponseInBrowserHistory(false);
         Response.Cache.SetNoStore();
 
-       
+
 
         Int32 FORMULARIO = 33;
         LIdioma idioma = new LIdioma();
@@ -27,7 +27,7 @@ public partial class View_Pedido : System.Web.UI.Page
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;
         compIdioma = idioma.hastableIdioma(info, compIdioma);
-        LB_pedidoT.Text = compIdioma["LB_pedidoT"].ToString(); 
+        LB_pedidoT.Text = compIdioma["LB_pedidoT"].ToString();
         LB_seleccion.Text = compIdioma["LB_seleccion"].ToString(); ;
         BT_Mesa.Text = compIdioma["BT_Mesa"].ToString(); ;
         LB_menuT.Text = compIdioma["LB_menuT"].ToString(); ;
@@ -39,20 +39,27 @@ public partial class View_Pedido : System.Web.UI.Page
     protected void B_guardar_Click(object sender, EventArgs e)
     {
         UuserPedido dato = new UuserPedido();
+        UPedidoplato datos = new UPedidoplato();
+        UuserPedido pe = new UuserPedido();
         ClientScriptManager cm = this.ClientScript;
         LUser doc = new LUser();
+        L_Persistencia dac = new L_Persistencia();
 
-        dato.Id_usuario = int.Parse(Session["user_id"].ToString());
-        DataTable validez1 = doc.obtenerpe(dato.Id_usuario);
-        dato.Id_pedido = int.Parse(validez1.Rows[0]["id_pedido"].ToString());
+        pe.Id_usuario = int.Parse(Session["user_id"].ToString());
+        //DataTable validez1 = doc.obtenerpe(dato.Id_usuario);
+        //DataTable validez1 = dac.obtenPedido(dato.Id_usuario);
+        DataTable validez1 = dac.ToDataTable(dac.obtenPedido(dato.Id_usuario));
+        datos.Id_pedido = int.Parse(validez1.Rows[0]["id_pedido"].ToString());
+        datos.Fecha_ingreso = DateTime.Now;
         Button btn = (Button)sender;
         DataListItem item = (DataListItem)btn.NamingContainer;
         TextBox guardar = (TextBox)item.FindControl("TB_insertarPedido");
-        dato.Cantidad = int.Parse(guardar.Text);
+        datos.Cantidad = int.Parse(guardar.Text);
         Label lblid = (Label)item.FindControl("LB_Codigop");
-        dato.Id_plato = int.Parse(lblid.Text);
+        datos.Id_plato = int.Parse(lblid.Text);
 
-        doc.guardarPedido(dato);
+        dac.insertarPedido(datos);
+        //doc.guardarPedido(dato);
         String mens = Session["men"].ToString();
         cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('" + mens.ToString() + "');</script>");
 
@@ -61,12 +68,13 @@ public partial class View_Pedido : System.Web.UI.Page
 
     protected void BT_Mesa_Click(object sender, EventArgs e)
     {
-        UuserPedido dato = new UuserPedido();
+        Uubicacion dato = new Uubicacion();
         ClientScriptManager cm = this.ClientScript;
         LUser doc = new LUser();
+        L_Persistencia dac = new L_Persistencia();
         dato.Id_mesa = int.Parse(DDL_Ubicacion.SelectedValue.ToString());
-        dato.Id_mesero = int.Parse(Session["user_id"].ToString());
-        doc.guardarPedido1(dato);
+        dato.Id_usuario = int.Parse(Session["user_id"].ToString());
+        dac.guardarUbicacion(dato);
     }
 
 
@@ -74,25 +82,25 @@ public partial class View_Pedido : System.Web.UI.Page
     protected void DataList1_SelectedIndexChanged(object sender, DataListItemEventArgs e)
     {
 
+        try
+        {
             try
             {
-                try
-                {
-                
-                    ((Label)e.Item.FindControl("LB_ingreCant")).Text = ((Hashtable)Session["mensajes"])["LB_ingreCant"].ToString();
+
+                ((Label)e.Item.FindControl("LB_ingreCant")).Text = ((Hashtable)Session["mensajes"])["LB_ingreCant"].ToString();
                 ((Button)e.Item.FindControl("B_guardar")).Text = ((Hashtable)Session["mensajes"])["B_guardar"].ToString();
 
-            }
-                catch (Exception ex)
-                {
-
-                ((Button)e.Item.FindControl("B_guardar")).Text = ((Hashtable)Session["mensajes"])["B_guardar"].ToString();
-            }
             }
             catch (Exception ex)
             {
+
+                ((Button)e.Item.FindControl("B_guardar")).Text = ((Hashtable)Session["mensajes"])["B_guardar"].ToString();
             }
         }
+        catch (Exception ex)
+        {
+        }
+    }
 
- 
+
 }

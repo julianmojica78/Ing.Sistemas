@@ -41,7 +41,7 @@ public partial class View_ListadePlatos : System.Web.UI.Page
         GV_Platos.Columns[4].HeaderText = com.L;
         GV_Platos.Columns[5].HeaderText = com.M;
         Session["men"] = com.N;
-
+        Session["buscarp"] = com.O;
 
 
 
@@ -123,7 +123,7 @@ public partial class View_ListadePlatos : System.Web.UI.Page
         }
         catch
         {
-            this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Plato no Existe');window.location=\"ListadePlatos.aspx\"</script>");
+            this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + Session["buscarp"].ToString() + "');window.location=\"ListadePlatos.aspx\"</script>");
 
         }
 

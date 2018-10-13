@@ -50,7 +50,7 @@ public partial class View_ModificarEmpleado : System.Web.UI.Page
         REV_Nombre2.Text = com.T;
         RV_Rol.Text = com.W;
         B_Modificar.Text = com.X;
-
+        Session["modificar"] = com.Y;
 
         UUsuario datos = new UUsuario();
         LUser user = new LUser();
@@ -104,8 +104,10 @@ public partial class View_ModificarEmpleado : System.Web.UI.Page
         datos.User_id = (data.User_id); 
         datos.Session = "a";
         //datos.User_id = int.Parse(Session["codigo"].ToString());
+        data.Mensaje = Session["modificar"].ToString();
 
-        data = modificar.modificarUsuario(datos);
+
+        data = modificar.modificarUsuario(datos,data);
         this.RegisterStartupScript("mensaje", data.Mensaje);
 
     }

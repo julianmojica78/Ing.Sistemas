@@ -193,6 +193,7 @@ namespace Logica
             com.L = compIdioma["LB_Precio"].ToString();
             com.M = compIdioma["LB_Imagen"].ToString();
             com.N = compIdioma["JS_elimin"].ToString();
+            com.O = compIdioma["JS_buscarp"].ToString();
 
             return com;
         }
@@ -297,6 +298,7 @@ namespace Logica
             com.Q = compIdioma["JS_eliminarE"].ToString();
             com.R = compIdioma["JS_modificarE"].ToString();
             com.S = compIdioma["JS_RegisE"].ToString();
+            com.T = compIdioma["JS_buscaremp"].ToString();
 
             return com;
         }
@@ -347,6 +349,7 @@ namespace Logica
             com.G = compIdioma["LB_Codigo"].ToString();
             com.H = compIdioma["LB_Cant"].ToString();
             com.I = compIdioma["LB_Ubi"].ToString();
+            //com.J = compIdioma["JS_buscard"].ToString();
 
             return com;
         }
@@ -582,6 +585,7 @@ namespace Logica
             com.V = compIdioma["2"].ToString();
             com.W = compIdioma["RV_Rol"].ToString();
             com.X = compIdioma["B_Modificar"].ToString();
+            com.Y = compIdioma["JS_modificar"].ToString();
             return com;
         }
 

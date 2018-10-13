@@ -55,23 +55,23 @@ namespace Logica
             return dao.listarEmpleados();
         }
 
-        public UUsuario modificarUsuario(UEmpleados usuario)
+        public UUsuario modificarUsuario(UEmpleados usuario , UUsuario mensaje)
         {
             DUser dao = new DUser();
             UUsuario user = new UUsuario();
             dao.modificarUsuario(usuario);
-            user.Mensaje = "<script type='text/javascript'>alert('" + user.A.ToString() + "');window.location=\"ListaEmpleados.aspx\"</script>";
+            user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"ListaEmpleados.aspx\"</script>";
 
 
             return user;
 
         }
-        public UUsuario eliminarUsuario(UEmpleados usuario)
+        public UUsuario eliminarUsuario(UEmpleados usuario,UUsuario mensaje)
         {
             DUser dao = new DUser();
             UUsuario user = new UUsuario();
             dao.eliminarUsuario(usuario);
-            user.Mensaje = "<script type='text/javascript'>alert('" + user.Mensaje.ToString() + "');window.location=\"ListaEmpleados.aspx\"</script>";
+            user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"ListaEmpleados.aspx\"</script>";
 
 
             return user;

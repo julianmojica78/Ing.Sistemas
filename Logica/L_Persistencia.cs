@@ -272,6 +272,26 @@ namespace Logica
             DUser dao = new DUser();
             return dao.buscarEmpleado(nombre);
         }
+        public List<ULclientes> buscarCliente(String nombre)
+        {
+            DUser dao = new DUser();
+            return dao.buscarCliente(nombre);
+        }
+        public List<ULcomentarios> buscarComen(String nombre)
+        {
+            DUser dao = new DUser();
+            return dao.buscarComent(nombre);
+        }
+        public List<ULReserva> buscarReserva(String nombre)
+        {
+            DUser dao = new DUser();
+            return dao.buscarReservas(nombre);
+        }
+        public List<Mesas> buscarMesa(String nombre)
+        {
+            DUser dao = new DUser();
+            return dao.buscarMesa(nombre);
+        }
 
         public List<UPedido> buscarVentas(String nombre)
         {
@@ -316,7 +336,7 @@ namespace Logica
             return desp;
         }
 
-        public UDespachos actualizardespacho1(UReservaplatos reserva)
+        public UDespachos actualizardespacho1(UPreserva reserva)
         {
             DUser dao = new DUser();
             dao.actualizarDespachos1(reserva);
@@ -362,5 +382,69 @@ namespace Logica
 
         //    return user;
         //}
+
+        public UContacto insertarcontacto(UContacto contacto)
+        {
+            DUser dao = new DUser();
+            dao.insertarContacto(contacto);
+            UContacto user = new UContacto();
+            return user;
+        }
+        public List<Menu> listadeMenu()
+        {
+            DUser dao = new DUser();
+            return dao.listarPlat();
+        }
+        public List<UReservation> listadeReservas(Int32 id)
+        {
+            DUser dao = new DUser();
+            return dao.listadodeReservas(id);
+        }
+        public List<UEmpleados> listadePuntos(Int32 id)
+        {
+            DUser dao = new DUser();
+            return dao.listadodePuntos(id);
+        }
+        public List<ULclientes> listadeClientes()
+        {
+            DUser dao = new DUser();
+            return dao.listarclientes();
+        }
+        public List<Uubicacion> obtenPedido(int user_id)
+        {
+            DUser dao = new DUser();
+            return dao.ObtenerPedidos(user_id);
+        }
+        public UPedido insertarPedido(UPedidoplato pedido)
+        {
+            DUser dao = new DUser();
+            dao.insertPedido(pedido);
+            UPedido user = new UPedido();
+            return user;
+        }
+        public UuserPedido guardarUbicacion(Uubicacion pedido)
+        {
+            DUser dao = new DUser();
+            dao.insertUbicacion(pedido);
+            UuserPedido user = new UuserPedido();
+            return user;
+        }
+        public List<UOtenerRe> obtenRe()
+        {
+            DUser dao = new DUser();
+            return dao.ObtenerRes();
+        }
+        public UPreserva insertarPlatoR(UPreserva pedido)
+        {
+            DUser dao = new DUser();
+            dao.insertPedidoRe(pedido);
+            UPreserva user = new UPreserva();
+            return user;
+        }
+        public List<ULReserva> ListReserva()
+        {
+            DUser dao = new DUser();
+            return dao.listarResr();
+        }
     }
 }

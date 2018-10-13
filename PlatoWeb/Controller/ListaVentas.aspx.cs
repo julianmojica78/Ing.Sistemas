@@ -40,6 +40,7 @@ public partial class View_ListaVentas : System.Web.UI.Page
         GV_listVentas.Columns[2].HeaderText = com.H;
         GV_listVentas.Columns[3].HeaderText = com.I;
         GV_listVentas.DataBind();
+        //Session["buscard"] = com.J;
 
 
         L_Persistencia dato = new L_Persistencia();
@@ -69,7 +70,7 @@ public partial class View_ListaVentas : System.Web.UI.Page
         }
         catch
         {
-            this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Dato no Existe');window.location=\"ListaVentas.aspx\"</script>");
+            //this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + Session["buscard"].ToString() + "');window.location=\"ListaVentas.aspx\"</script>");
 
 
         }

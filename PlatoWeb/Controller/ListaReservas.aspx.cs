@@ -41,8 +41,9 @@ public partial class View_ListaReservas : System.Web.UI.Page
         GV_listReservas.Columns[2].HeaderText = com.H;
         GV_listReservas.Columns[3].HeaderText = com.I;
 
-        LUser dato = new LUser(); ;
-        GV_listReservas.DataSource = dato.ListaReservas();
+        LUser dato = new LUser();
+        L_Persistencia data = new L_Persistencia();
+        GV_listReservas.DataSource = data.ListReserva();
         GV_listReservas.DataBind();
     }
 
@@ -50,15 +51,34 @@ public partial class View_ListaReservas : System.Web.UI.Page
     {
         LUser dato = new LUser();
         UUsuario datos = new UUsuario();
+        L_Persistencia data = new L_Persistencia();
         ClientScriptManager cm = this.ClientScript;
         DataTable usuario;
 
-        datos.Nombre = TB_Filtro.Text.ToString();
-        //datos = dato.BuscarEmpleado(datos);
-        usuario = dato.BuscarVentas(datos);
+        //datos.Nombre = TB_Filtro.Text.ToString();
+        ////datos = dato.BuscarEmpleado(datos);
+        //usuario = dato.BuscarVentas(datos);
 
-        GV_listReservas.DataSource = usuario;
-        GV_listReservas.DataBind();
+        //GV_listReservas.DataSource = usuario;
+        //GV_listReservas.DataBind();
+        String nombre = TB_Filtro.Text.ToString();
+
+        try
+        {
+            DataTable validez = data.ToDataTable(data.buscarReserva(nombre));
+
+            datos.X = int.Parse(validez.Rows[0]["user_id"].ToString());
+
+
+            GV_listReservas.DataSource = data.buscarReserva(nombre);
+            GV_listReservas.DataBind();
+
+
+        }
+        catch
+        {
+
+        }
 
         //this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Empleado no Existe');window.location=\"ListaEmpleados.aspx\"</script>");
 

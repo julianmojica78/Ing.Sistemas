@@ -29,6 +29,7 @@ namespace Utilitarios
         private Int32 sesiones;
         private Int32 intentos;
         private String b;
+        private Int32 x;
         
 
         public int User_id
@@ -196,5 +197,6 @@ namespace Utilitarios
         public int Sesiones { get => sesiones; set => sesiones = value; }
         public int Intentos { get => intentos; set => intentos = value; }
         public string B { get => b; set => b = value; }
+        public int X { get => x; set => x = value; }
     }
 }

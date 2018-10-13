@@ -5,6 +5,7 @@ using Logica;
 using System.Collections;
 using System.Web.UI.WebControls;
 using System.Web.UI;
+using System.Data;
 
 public partial class View_ListarMesas : System.Web.UI.Page
 {
@@ -74,8 +75,35 @@ public partial class View_ListarMesas : System.Web.UI.Page
     protected void TB_Filtro_TextChanged(object sender, EventArgs e)
     {
         LUser dato = new LUser();
-        GV_Mesas.DataSource = dato.buscarmesa(TB_Filtro.Text.ToString());
-        GV_Mesas.DataBind();
+        Mesas datos = new Mesas();
+        L_Persistencia data = new L_Persistencia();
+        UUser user = new UUser();
+        DataTable usuario;
+        //String nombre = TB_Filtrar.Text.ToString();
+        //datos.Nombre = nombre;
+        //DataTable validez = dato.buscarcomen(datos.Nombre);
+
+        //datos.X = int.Parse(validez.Rows[0]["id_comentarios"].ToString());
+        //GV_Listar.DataSource = dato.buscarcomen(TB_Filtrar.Text.ToString());
+        //GV_Listar.DataBind();
+        String nombre = TB_Filtro.Text.ToString();
+
+        try
+        {
+            DataTable validez = data.ToDataTable(data.buscarMesa(nombre));
+
+            user.X= int.Parse(validez.Rows[0]["user_id"].ToString());
+
+
+            GV_Mesas.DataSource = data.buscarMesa(nombre);
+            GV_Mesas.DataBind();
+
+
+        }
+        catch
+        {
+
+        }
     }
 
     protected void GV_Empleados_SelectedIndexChanged(object sender, EventArgs e)

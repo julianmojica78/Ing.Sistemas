@@ -47,9 +47,10 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
         GV_Empleados.Columns[7].HeaderText = com.N;
         GV_Empleados.Columns[8].HeaderText = com.O;
         GV_Empleados.Columns[9].HeaderText = com.P;
-        Session["men"] = com.Q;
+        Session["eliminar"] = com.Q;
         Session["men1"] = com.R;
         Session["men2"] = com.S;
+        Session["buscaremp"] = com.S;
 
 
 
@@ -96,10 +97,10 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
         datos.User_Name1 = data.User_Name1;
         datos.Clave = data.Clave;
         datos.User_id = (data.User_id);
-        data.Mensaje = Session["men"].ToString();
+        data.Mensaje = Session["eliminar"].ToString();
         data.A = Session["men1"].ToString();
         data.B = Session["men2"].ToString();
-        data = eliminar.eliminarUsuario(datos);
+        data = eliminar.eliminarUsuario(datos,data);
         this.RegisterStartupScript("mensaje", data.Mensaje);
 
 
@@ -138,7 +139,7 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
         catch
         {
             //usuario = dato.BuscarEmpleado(datos);
-            this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Empleado no Existe');window.location=\"ListaEmpleados.aspx\"</script>");
+            this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + Session["buscaremp"].ToString() + "');window.location=\"ListaEmpleados.aspx\"</script>");
 
 
         }

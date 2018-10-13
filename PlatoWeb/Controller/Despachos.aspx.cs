@@ -78,10 +78,11 @@ public partial class View_Despachos : System.Web.UI.Page
         L_Persistencia user = new L_Persistencia();
 
         Session["pedido"] = GV_Despachar.SelectedRow.Cells[0].Text;
-        //Session["reserva"] = GridView1.SelectedRow.Cells[0].Text;
-        //Session["plato"]= GridView1.SelectedRow.Cells[1].Text;
+        Session["plato"]= GV_Despachar.SelectedRow.Cells[1].Text;
+        Session["cantidad"] = GV_Despachar.SelectedRow.Cells[2].Text;
         reserva.Id_pedido = int.Parse(Session["pedido"].ToString());
-        //Int32 id_plato = int.Parse(Session["plato"].ToString());
+        reserva.Id_plato = int.Parse(Session["plato"].ToString());
+        reserva.Cantidad = int.Parse(Session["cantidad"].ToString());
         reserva.Fecha_despacho = DateTime.Now;
 
        datos = user.actualizardespacho(reserva);
@@ -112,15 +113,17 @@ public partial class View_Despachos : System.Web.UI.Page
     {
         ClientScriptManager cm = this.ClientScript;
         UDespachos datos = new UDespachos();
-        UReservaplatos reserva = new UReservaplatos();
+        UPreserva reserva = new UPreserva();
         L_Persistencia user = new L_Persistencia();
 
         Session["pedido"] = GV_DespachoR.SelectedRow.Cells[0].Text;
         //Session["reserva"] = GridView1.SelectedRow.Cells[0].Text;
-        //Session["plato"]= GridView1.SelectedRow.Cells[1].Text;
+        Session["plato"] = GV_DespachoR.SelectedRow.Cells[1].Text;
+        Session["cantidad"] = GV_DespachoR.SelectedRow.Cells[2].Text;
         reserva.Id_reserva = int.Parse(Session["pedido"].ToString());
-        //Int32 id_plato = int.Parse(Session["plato"].ToString());
-        reserva.Fecha_despacho1 = DateTime.Now;
+        reserva.Id_plato = int.Parse(Session["plato"].ToString());
+        reserva.Cantidad = int.Parse(Session["cantidad"].ToString());
+        reserva.Fecha_despacho = DateTime.Now;
 
         datos = user.actualizardespacho1(reserva);
         Response.Redirect(datos.Url);
