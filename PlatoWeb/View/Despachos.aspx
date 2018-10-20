@@ -91,7 +91,7 @@
                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                     <SortedDescendingHeaderStyle BackColor="#242121" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Plato" runat="server" SelectMethod="listarPlatos" TypeName="Logica.L_Persistencia">
+                <asp:ObjectDataSource ID="ODS_Plato" runat="server" SelectMethod="listarPla" TypeName="Logica.L_Persistencia">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="GV_Pedidos" DefaultValue="" Name="id_pedido" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>

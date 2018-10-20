@@ -20,8 +20,18 @@ public partial class View_ListaVentas : System.Web.UI.Page
         Int32 FORMULARIO = 15;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaListaventas(FORMULARIO, DDL);
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaListaventas(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaListaventas(FORMULARIO, DDL);
+        }
+
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;

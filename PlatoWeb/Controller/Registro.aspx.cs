@@ -15,8 +15,20 @@ public partial class View_Registro : System.Web.UI.Page
         Int32 FORMULARIO = 31;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaRegistro(FORMULARIO, DDL);
+        
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaRegistro(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaRegistro(FORMULARIO, DDL);
+        }
+
+
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;
         

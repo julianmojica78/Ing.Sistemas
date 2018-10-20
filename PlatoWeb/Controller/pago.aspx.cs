@@ -19,8 +19,18 @@ public partial class View_pago : System.Web.UI.Page
         Int32 FORMULARIO = 35;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaPago(FORMULARIO, DDL);
+       
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaPago(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaPago(FORMULARIO, DDL);
+        }
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;
@@ -56,14 +66,15 @@ public partial class View_pago : System.Web.UI.Page
     protected void BT_Pagar_Click(object sender, EventArgs e)
     {
         ClientScriptManager cm = this.ClientScript;
-        LUser user = new LUser();
-        UReserva datos = new UReserva();
+        L_Persistencia user = new L_Persistencia();
+        UReservation datos = new UReservation();
+        UReserva mensaje = new UReserva();
 
 
         datos.Id_usuario = int.Parse(Session["user_id"].ToString());
-        datos.Mensaje = Session["men"].ToString();
-        datos = user.pago(datos);
-        this.RegisterStartupScript("mensaje",datos.Mensaje);
+        mensaje.Mensaje = Session["men"].ToString();
+       mensaje = user.pago(datos,mensaje);
+        this.RegisterStartupScript("mensaje",mensaje.Mensaje);
 
         Session["user_id"] = null;
 

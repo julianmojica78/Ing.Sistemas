@@ -17,7 +17,7 @@ public partial class View_Cerrar : System.Web.UI.Page
         Response.Cache.SetNoStore();
 
 
-        LUser user = new LUser();
+        L_Persistencia user = new L_Persistencia();
         UUsuario datos = new UUsuario();
         datos.Session = Session.SessionID;
         datos.User_Name1 = Session["nombre"].ToString();

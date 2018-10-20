@@ -18,8 +18,19 @@ public partial class View_MenuReserva : System.Web.UI.Page
         Int32 FORMULARIO = 24;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaMenureserva(FORMULARIO, DDL);
+        
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaMenureserva(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaMenureserva(FORMULARIO, DDL);
+        }
+
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;
         Session["men"] = compIdioma["JS_menuR"].ToString();

@@ -47,6 +47,7 @@ namespace Datos
         public DbSet<UOtenerRe> obtener { get; set; }
         public DbSet<UPreserva> platoR { get; set; }
         public DbSet<ULReserva> listReser { get; set; }
+        public DbSet<UAutenticatio> autentication { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder builder)

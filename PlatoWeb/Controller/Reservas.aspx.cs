@@ -15,8 +15,20 @@ public partial class View_Reservas : System.Web.UI.Page
         Int32 FORMULARIO = 39;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaReserva(FORMULARIO, DDL);
+      
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaReserva(FORMULARIO, DDL);
+
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaReserva(FORMULARIO, DDL);
+        }
+
         Hashtable compIdioma = new Hashtable();
         GV_Reserva.Columns[1].HeaderText = com.A;
         GV_Reserva.Columns[2].HeaderText = com.B;

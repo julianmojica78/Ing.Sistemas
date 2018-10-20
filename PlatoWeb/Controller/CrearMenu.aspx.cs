@@ -19,8 +19,18 @@ public partial class View_CrearMenu : System.Web.UI.Page
         Int32 FORMULARIO = 4;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaCreamenu(FORMULARIO, DDL);
+       
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaCreamenu(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaCreamenu(FORMULARIO, DDL);
+        }
+        
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;

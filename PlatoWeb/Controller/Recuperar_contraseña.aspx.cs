@@ -13,8 +13,19 @@ public partial class View_Recuperar_contraseña : System.Web.UI.Page
         Int32 FORMULARIO = 32;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaRecuperar_contraseña(FORMULARIO, DDL);
+       
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaRecuperar_contraseña(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaRecuperar_contraseña(FORMULARIO, DDL);
+        }
+
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;

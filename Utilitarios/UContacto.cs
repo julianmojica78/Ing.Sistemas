@@ -19,6 +19,8 @@ namespace Utilitarios
         private String telefono;
 
         [Key]
+        [Column("id_contactenos")]
+        public int Id { get => id; set => id = value; }
         [Column("nombre")]
         public string Nombre { get => nombre; set => nombre = value; }
         [Column("email")]
@@ -27,7 +29,6 @@ namespace Utilitarios
         public string Detalle { get => detalle; set => detalle = value; }
         [Column("telefono")]
         public string Telefono { get => telefono; set => telefono = value; }
-        [Column("id_contactenos")]
-        public int Id { get => id; set => id = value; }
+
     }
 }

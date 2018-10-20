@@ -18,8 +18,17 @@ public partial class View_ListarMesas : System.Web.UI.Page
         Int32 FORMULARIO = 13;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaListarmesas(FORMULARIO, DDL);
+   
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaListarmesas(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaListarmesas(FORMULARIO, DDL);
+        }
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;

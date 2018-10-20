@@ -21,8 +21,18 @@ public partial class View_ListaReservas : System.Web.UI.Page
         Int32 FORMULARIO = 12;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaListaReservas(FORMULARIO, DDL);
+       
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaListaReservas(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaListaReservas(FORMULARIO, DDL);
+        }
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;

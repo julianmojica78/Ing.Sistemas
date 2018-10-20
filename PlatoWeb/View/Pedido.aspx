@@ -46,9 +46,9 @@
                 <asp:Label ID="LB_seleccion" runat="server" Text="Seleccione la Mesa"></asp:Label>
             </td>
             <td style="width: 45%">
-                <asp:DropDownList ID="DDL_Ubicacion" runat="server" DataSourceID="ODS_Ubicacion" DataTextField="ubicacion" DataValueField="id_mesa" Height="20px" Width="246px">
+                <asp:DropDownList ID="DDL_Ubicacion" runat="server" DataSourceID="ODS_Ubicacion" DataTextField="ubicacion" DataValueField="id_mesas" Height="20px" Width="246px">
                 </asp:DropDownList>
-                <asp:ObjectDataSource ID="ODS_Ubicacion" runat="server" SelectMethod="obtenerubi" TypeName="Logica.LUser"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Ubicacion" runat="server" SelectMethod="obtenerMesas" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
             </td>
             <td aria-atomic="False" aria-busy="False" style="width: 5%">&nbsp;</td>
         </tr>

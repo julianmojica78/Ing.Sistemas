@@ -78,11 +78,8 @@ public partial class View_Despachos : System.Web.UI.Page
         L_Persistencia user = new L_Persistencia();
 
         Session["pedido"] = GV_Despachar.SelectedRow.Cells[0].Text;
-        Session["plato"]= GV_Despachar.SelectedRow.Cells[1].Text;
-        Session["cantidad"] = GV_Despachar.SelectedRow.Cells[2].Text;
         reserva.Id_pedido = int.Parse(Session["pedido"].ToString());
-        reserva.Id_plato = int.Parse(Session["plato"].ToString());
-        reserva.Cantidad = int.Parse(Session["cantidad"].ToString());
+
         reserva.Fecha_despacho = DateTime.Now;
 
        datos = user.actualizardespacho(reserva);

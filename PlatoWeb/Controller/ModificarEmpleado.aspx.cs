@@ -19,8 +19,19 @@ public partial class View_ModificarEmpleado : System.Web.UI.Page
         Int32 FORMULARIO = 26;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaModificarempleado(FORMULARIO, DDL);
+        
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaModificarempleado(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaModificarempleado(FORMULARIO, DDL);
+        }
+
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;

@@ -21,8 +21,18 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
         Int32 FORMULARIO = 11;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaListaempleados(FORMULARIO, DDL);
+       
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaListaempleados(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaListaempleados(FORMULARIO, DDL);
+        }
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;

@@ -736,6 +736,10 @@ namespace Logica
                 token.Fecha = DateTime.Now.ToFileTimeUtc();
 
                 String userToken = encriptar(JsonConvert.SerializeObject(token));
+                tokenR.Text = userToken;
+                tokenR.User_id = token.Id;
+                tokenR.Fecha_creado = DateTime.Now;
+                tokenR.Fecha_vigencia = DateTime.Now.AddMinutes(30);
                 data.insertarToken(tokenR);
 
                 Correo correo = new Correo();

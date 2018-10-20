@@ -15,8 +15,19 @@ public partial class View_MasterPageAdmin : System.Web.UI.MasterPage
         Int32 FORMULARIO = 17;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaMasteradmin(FORMULARIO, DDL);
+
+
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaMasteradmin(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaMasteradmin(FORMULARIO, DDL);
+        }
+
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;

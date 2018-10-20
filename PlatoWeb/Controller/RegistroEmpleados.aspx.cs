@@ -19,8 +19,18 @@ public partial class View_RegistroEmpleados : System.Web.UI.Page
         Int32 FORMULARIO = 30;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaRegistrarempleado(FORMULARIO, DDL);
+ 
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaRegistrarempleado(FORMULARIO, DDL);
+
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaRegistrarempleado(FORMULARIO, DDL);
+        }
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;
@@ -57,6 +67,7 @@ public partial class View_RegistroEmpleados : System.Web.UI.Page
         datos.User_Name1 = TB_Usuario.Text.ToString();
         datos.Clave = TB_Contrasena.Text.ToString();
         datos.Rclave = TB_CConrasena.Text.ToString();
+        datos.Puntos = 0;
         datos.Session = "a";
         datos.Sesiones = 0;
         datos.Intentos = 0;

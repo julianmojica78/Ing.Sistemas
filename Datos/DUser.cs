@@ -2234,7 +2234,7 @@ namespace Datos
         }
         public List<ULclientes> buscarCliente(String nombre)
         {
-            using (var db = new Mapeo("usuario"))
+            using (var db = new Mapeo("clientes"))
             {
                 var a = db.clientes.ToList<ULclientes>().Where(x => x.Nombre.Contains(nombre));
                 return a.ToList<ULclientes>();
@@ -2244,7 +2244,7 @@ namespace Datos
         }
         public List<ULcomentarios> buscarComent(String nombre)
         {
-            using (var db = new Mapeo("usuario"))
+            using (var db = new Mapeo("comentario"))
             {
                 var a = db.comentario.ToList<ULcomentarios>().Where(x => x.User_name.Contains(nombre));
                 return a.ToList<ULcomentarios>();
@@ -2254,7 +2254,7 @@ namespace Datos
         }
         public List<ULReserva> buscarReservas(String nombre)
         {
-            using (var db = new Mapeo("usuario"))
+            using (var db = new Mapeo("listReser"))
             {
                 var a = db.listReser.ToList<ULReserva>().Where(x => x.Nombre.Contains(nombre));
                 return a.ToList<ULReserva>();
@@ -2264,7 +2264,7 @@ namespace Datos
         }
         public List<Mesas> buscarMesa(String nombre)
         {
-            using (var db = new Mapeo("usuario"))
+            using (var db = new Mapeo("mesa"))
             {
                 var a = db.mesa.ToList<Mesas>().Where(x => x.Ubicacion.Contains(nombre));
                 return a.ToList<Mesas>();
@@ -2303,6 +2303,16 @@ namespace Datos
             }
         }
 
+        public List<UTokenRe> obtenTokenre(UReserva toke)
+        {
+            using (var db = new Mapeo("tokenre"))
+            {
+                var a = db.tokenre.OrderByDescending(x => x.Id).ToList<UTokenRe>().Where(x=> x.Reserva_id == toke.Id_reserva);
+                return a.ToList<UTokenRe>();
+
+            }
+
+        }
         public void eliminarToken(UTokenRe toke)
         {
             using (var db = new Mapeo("tonkenre"))
@@ -2324,6 +2334,28 @@ namespace Datos
             }
         }
 
+        public List<UEmpleados> obtenDatospago(UReserva data)
+        {
+            using (var db = new Mapeo("user"))
+            {
+                var a = db.user.ToList<UEmpleados>().Where(x => x.User_id == data.Id_usuario);
+                return a.ToList<UEmpleados>();
+
+            }
+
+        }
+
+        public void actualizarPago(UEmpleados menu)
+        {
+            using (var db = new Mapeo("user"))
+            {
+                db.user.Attach(menu);
+                var entry = db.Entry(menu);
+                entry.State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
         public List<UCocinero> listarCocinero()
         {
             using (var db = new Mapeo("cocinero"))
@@ -2332,7 +2364,6 @@ namespace Datos
                 return a.ToList<UCocinero>();
 
             }
-
         }
         public List<UCocinero1> listarCocinero1()
         {
@@ -2373,6 +2404,16 @@ namespace Datos
             return lista;
         }
 
+        public List<UPedidoplato> obtenerPedido(UPedidoplato pedido)
+        {
+
+            using (var db = new Mapeo("pedidos"))
+            {
+                var a = db.pedidos.ToList<UPedidoplato>().Where(x => x.Id_pedido == pedido.Id_pedido);
+                return a.ToList<UPedidoplato>();
+
+            }
+        }
         public void actualizarDespachos(UPedidoplato platos)
         {
             using (var db = new Mapeo("pedidos"))
@@ -2447,11 +2488,11 @@ namespace Datos
                 return a.ToList<ULclientes>();
             }
         }
-        public List<Uubicacion> ObtenerPedidos(Int32 user_id)
+        public List<Uubicacion> ObtenerPedidos(UuserPedido user_id)
         {
             using (var db = new Mapeo("pedido"))
             {
-                var a = db.pedido.ToList<Uubicacion>();
+                var a = db.pedido.OrderByDescending(x => x.Id_pedido).ToList<Uubicacion>().Where(x => x.Id_usuario == user_id.Id_usuario) ;
                 return a.ToList<Uubicacion>();
             }
         }
@@ -2530,5 +2571,47 @@ namespace Datos
                 db.SaveChanges();
             }
         }
+        public List<UAutenticatio> obtenerautentication(UUsuario datos)
+        {
+            using (var db = new Mapeo("autentication"))
+            {
+                var a = db.autentication.ToList<UAutenticatio>().Where(x => x.Session == datos.Session);
+                return a.ToList<UAutenticatio>();
+
+            }
+        }
+        public void actualizarAutentication(UAutenticatio auten)
+        {
+            using (var db = new Mapeo("autentication"))
+            {
+                db.autentication.Attach(auten);
+                var entry = db.Entry(auten);
+                entry.State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public List<UEmpleados> obtenusuario(UUsuario data)
+        {
+            using (var db = new Mapeo("user"))
+            {
+                var a = db.user.ToList<UEmpleados>().Where(x => x.User_Name1 == data.User_Name1);
+                return a.ToList<UEmpleados>();
+
+            }
+
+        }
+
+        public void actualizarSesiones(UEmpleados auten)
+        {
+            using (var db = new Mapeo("user"))
+            {
+                db.user.Attach(auten);
+                var entry = db.Entry(auten);
+                entry.State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
     }
 }

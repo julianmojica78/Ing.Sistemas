@@ -150,6 +150,6 @@
         </tr>
     </table>
     <br />
-                <asp:ObjectDataSource ID="ODS_Plato" runat="server" SelectMethod="obterplatocaje" TypeName="Logica.LUser"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Plato" runat="server" SelectMethod="listadeMenu" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
             </asp:Content>
 

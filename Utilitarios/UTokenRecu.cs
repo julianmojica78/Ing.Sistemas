@@ -15,19 +15,19 @@ namespace Utilitarios
         private int id;
         private int user_id;
         private String text;
-        private String fecha_creado;
-        private String fecha_vigencia;
+        private DateTime fecha_creado;
+        private DateTime fecha_vigencia;
 
         [Key]
         [Column("id")]
         public int Id { get => id; set => id = value; }
         [Column("user_id")]
         public int User_id { get => user_id; set => user_id = value; }
-        [Column("text")]
+        [Column("token")]
         public string Text { get => text; set => text = value; }
         [Column("fecha_creado")]
-        public string Fecha_creado { get => fecha_creado; set => fecha_creado = value; }
+        public DateTime Fecha_creado { get => fecha_creado; set => fecha_creado = value; }
         [Column("fecha_vigencia")]
-        public string Fecha_vigencia { get => fecha_vigencia; set => fecha_vigencia = value; }
+        public DateTime Fecha_vigencia { get => fecha_vigencia; set => fecha_vigencia = value; }
     }
 }

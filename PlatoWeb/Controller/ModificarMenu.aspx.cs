@@ -17,8 +17,17 @@ public partial class View_ModificarMenu : System.Web.UI.Page
         Int32 FORMULARIO = 27;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
-        com = idioma.idiomaModificarmenu(FORMULARIO, DDL);
+        try
+        {
+            int DDL = int.Parse(Session["ddl"].ToString());
+            com = idioma.idiomaModificarmenu(FORMULARIO, DDL);
+        }
+        catch
+        {
+            int DDL = 1;
+            com = idioma.idiomaModificarmenu(FORMULARIO, DDL);
+        }
+
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;

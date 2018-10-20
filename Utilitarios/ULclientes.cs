@@ -12,25 +12,25 @@ namespace Utilitarios
     [Table("vista_listaclientes", Schema = "usuario")]
     public class ULclientes
     {
-        private int id_usuario;
-        private String user_name;
+        private int codigo;
+        private String usuario;
         private String nombre;
         private String apellido;
-        private String email;
+        private String correo;
         private String telefono;
         private int puntos;
 
         [Key]
         [Column("codigo")]
-        public int Id_usuario { get => id_usuario; set => id_usuario = value; }
+        public int Codigo { get => codigo; set => codigo = value; }
         [Column("usuario")]
-        public string User_name { get => user_name; set => user_name = value; }
+        public string Usuario { get => usuario; set => usuario = value; }
         [Column("nombre")]
         public string Nombre { get => nombre; set => nombre = value; }
         [Column("apellido")]
         public string Apellido { get => apellido; set => apellido = value; }
         [Column("correo")]
-        public string Email { get => email; set => email = value; }
+        public string Correo { get => correo; set => correo = value; }
         [Column("telefono")]
         public string Telefono { get => telefono; set => telefono = value; }
         [Column("puntos")]

@@ -16,9 +16,9 @@ namespace Utilitarios
         private int id_plato;
         private int cantidad;
         private DateTime fecha_ingreso;
-        private DateTime fecha_despacho;
+        private DateTime? fecha_despacho;
         private int id;
-        private int cortesia;
+        private int? cortesia;
         //private int id_usuario;
 
         [Key]
@@ -33,10 +33,10 @@ namespace Utilitarios
         [Column("fecha_ingreso")]
         public DateTime Fecha_ingreso { get => fecha_ingreso; set => fecha_ingreso = value; }
         [Column("fecha_despacho")]
-        public DateTime Fecha_despacho { get => fecha_despacho; set => fecha_despacho = value; }
+        public DateTime? Fecha_despacho { get => fecha_despacho; set => fecha_despacho = value; }
 
         [Column("cortesia")]
-        public int Cortesia { get => cortesia; set => cortesia = value; }
+        public int? Cortesia { get => cortesia; set => cortesia = value; }
         //public int Id_usuario { get => id_usuario; set => id_usuario = value; }
 
 

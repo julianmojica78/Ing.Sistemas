@@ -126,7 +126,7 @@ namespace Logica
             UUsuario user = new UUsuario();
 
             dao.insertComentario(comentario);
-            user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Inicio.aspx\"</script>";
+            user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"InicioCliente.aspx\"</script>";
 
             return user;
         }
@@ -307,12 +307,20 @@ namespace Logica
         public List<UCocinero> listarCocinero()
         {
             DUser dao = new DUser();
-            return dao.listarCocinero();
+            List<UCocinero> lista = new List<UCocinero>();
+            lista = dao.listarCocinero();
+            return lista;
         }
         public List<UCocinero1> listarCocinero1()
         {
             DUser dao = new DUser();
             return dao.listarCocinero1();
+        }
+
+        public DataTable listarPla(Int32 id_pedido)
+        {
+            DUser dao = new DUser();
+            return ToDataTable(dao.listarPlatos(id_pedido));
         }
 
         public List<UPlatos> listarPlatos(Int32 id_pedido)
@@ -329,7 +337,16 @@ namespace Logica
         public UDespachos actualizardespacho(UPedidoplato reserva)
         {
             DUser dao = new DUser();
-            dao.actualizarDespachos(reserva);
+            UPedidoplato datos = new UPedidoplato();
+            System.Data.DataTable validez1 = ToDataTable(dao.obtenerPedido(reserva));
+            datos.Id = int.Parse(validez1.Rows[0]["id"].ToString());
+            datos.Id_pedido = int.Parse(validez1.Rows[0]["id_pedido"].ToString());
+            datos.Id_plato = int.Parse(validez1.Rows[0]["id_plato"].ToString());
+            datos.Cantidad = int.Parse(validez1.Rows[0]["cantidad"].ToString());
+            datos.Fecha_ingreso = DateTime.Parse(validez1.Rows[0]["fecha_ingreso"].ToString());
+            datos.Fecha_despacho = DateTime.Now;
+
+            dao.actualizarDespachos(datos);
             UDespachos desp = new UDespachos();
 
             desp.Url = "Despachos.aspx";
@@ -343,6 +360,7 @@ namespace Logica
             UDespachos desp = new UDespachos();
 
             desp.Url = "Despachos.aspx";
+
             return desp;
         }
 
@@ -358,12 +376,39 @@ namespace Logica
             System.Data.DataTable validez1 = ToDataTable(user.obtenerReser(datos));
             data.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
             data.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
-            token.Reserva_id = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+            System.Data.DataTable validez2 = ToDataTable(user.obtenTokenre(data));
+            token.Id = int.Parse(validez2.Rows[0]["id"].ToString());
+            token.Reserva_id = int.Parse(validez2.Rows[0]["reserva_id"].ToString());
+            token.Token = validez2.Rows[0]["token"].ToString();
+            token.Fecha_creado = DateTime.Parse(validez2.Rows[0]["fecha_creado"].ToString());
+            token.Fecha_vigencia = DateTime.Parse(validez2.Rows[0]["fecha_vigencia"].ToString());
+            reserva.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+            reserva.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
+            reserva.Id_mesa = int.Parse(validez1.Rows[0]["id_mesa"].ToString());
+            reserva.Dia = validez1.Rows[0]["dia"].ToString();
             reserva.Estado = 1;
             reserva.Puntos = 10;
             user.eliminarToken(token);
             user.actualizarReserva(reserva);
-            
+            System.Data.DataTable validez = ToDataTable(user.obtenDatospago(data));
+            usuario.User_id = int.Parse(validez.Rows[0]["user_id"].ToString());
+            usuario.Nombre = validez.Rows[0]["nombre"].ToString();
+            usuario.Apellido = validez.Rows[0]["apellido"].ToString();
+            usuario.Email = validez.Rows[0]["email"].ToString();
+            usuario.Telefono = validez.Rows[0]["telefono"].ToString();
+            usuario.Cedula = validez.Rows[0]["cedula"].ToString();
+            Int32 puntos = int.Parse(validez.Rows[0]["puntos"].ToString());
+            usuario.Puntos = puntos + 10;
+            usuario.Id_Rol = int.Parse(validez.Rows[0]["id_rol"].ToString());
+            usuario.User_Name1 = validez.Rows[0]["User_Name1"].ToString();
+            usuario.Clave = validez.Rows[0]["clave"].ToString();
+            usuario.Session = validez.Rows[0]["session"].ToString();
+            usuario.Rclave = validez.Rows[0]["rclave"].ToString();
+            usuario.Intentos = int.Parse(validez.Rows[0]["Intentos"].ToString());
+            usuario.Sesiones = int.Parse(validez.Rows[0]["sesiones"].ToString());
+            user.actualizarPago(usuario); 
+
+
 
 
 
@@ -410,7 +455,7 @@ namespace Logica
             DUser dao = new DUser();
             return dao.listarclientes();
         }
-        public List<Uubicacion> obtenPedido(int user_id)
+        public List<Uubicacion> obtenPedido(UuserPedido user_id)
         {
             DUser dao = new DUser();
             return dao.ObtenerPedidos(user_id);
@@ -446,5 +491,47 @@ namespace Logica
             DUser dao = new DUser();
             return dao.listarResr();
         }
+
+        public UUsuario Cerrar(UUsuario datos)
+        {
+            DUser data = new DUser();
+            UUsuario user = new UUsuario();
+            UAutenticatio auten = new UAutenticatio();
+            UEmpleados usuario = new UEmpleados();
+
+            System.Data.DataTable validez1 = ToDataTable(data.obtenerautentication(datos));
+            auten.Id = int.Parse(validez1.Rows[0]["id"].ToString());
+            auten.User_id = int.Parse(validez1.Rows[0]["user_id"].ToString());
+            auten.Ip = validez1.Rows[0]["ip"].ToString();
+            auten.Mac = validez1.Rows[0]["mac"].ToString();
+            auten.Fecha_inicio = DateTime.Parse(validez1.Rows[0]["fecha_inicio"].ToString());
+            auten.Session = validez1.Rows[0]["session"].ToString();
+            auten.Fecha_fin = DateTime.Now;
+            data.actualizarAutentication(auten);
+            System.Data.DataTable validez = ToDataTable(data.obtenusuario(datos));
+            usuario.User_id = int.Parse(validez.Rows[0]["user_id"].ToString());
+            usuario.Nombre = validez.Rows[0]["nombre"].ToString();
+            usuario.Apellido = validez.Rows[0]["apellido"].ToString();
+            usuario.Email = validez.Rows[0]["email"].ToString();
+            usuario.Telefono = validez.Rows[0]["telefono"].ToString();
+            usuario.Cedula = validez.Rows[0]["cedula"].ToString();
+            usuario.Puntos = int.Parse(validez.Rows[0]["puntos"].ToString());
+            usuario.Id_Rol = int.Parse(validez.Rows[0]["id_rol"].ToString());
+            usuario.User_Name1 = validez.Rows[0]["User_Name1"].ToString();
+            usuario.Clave = validez.Rows[0]["clave"].ToString();
+            usuario.Session = validez.Rows[0]["session"].ToString();
+            usuario.Rclave = validez.Rows[0]["rclave"].ToString();
+            usuario.Intentos = int.Parse(validez.Rows[0]["Intentos"].ToString());
+            Int32 sesiones = int.Parse(validez.Rows[0]["sesiones"].ToString());
+            usuario.Sesiones = sesiones - 1;
+            data.actualizarSesiones(usuario);  
+            user.Mensaje = "Loggin.aspx";   
+
+
+            return user;
+        }
+
+
+
     }
 }

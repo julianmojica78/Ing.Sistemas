@@ -20,8 +20,18 @@ public partial class View_Pedido : System.Web.UI.Page
         Int32 FORMULARIO = 33;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        int DDL = int.Parse(Session["ddl"].ToString());
+        //int DDL = int.Parse(Session["ddl"].ToString());
         //com = idioma.idiomaPedido(FORMULARIO, DDL);
+        Int32 DDL;
+        try
+        {
+            DDL = int.Parse(Session["ddl"].ToString());
+        }
+        catch
+        {
+            DDL = 1;
+        }
+
 
         DataTable info = idioma.obtenerControl(FORMULARIO, DDL);
         Hashtable compIdioma = new Hashtable();
@@ -40,15 +50,15 @@ public partial class View_Pedido : System.Web.UI.Page
     {
         UuserPedido dato = new UuserPedido();
         UPedidoplato datos = new UPedidoplato();
-        UuserPedido pe = new UuserPedido();
+        //UuserPedido pe = new UuserPedido();
         ClientScriptManager cm = this.ClientScript;
         LUser doc = new LUser();
         L_Persistencia dac = new L_Persistencia();
 
-        pe.Id_usuario = int.Parse(Session["user_id"].ToString());
+        dato.Id_usuario = int.Parse(Session["user_id"].ToString());
         //DataTable validez1 = doc.obtenerpe(dato.Id_usuario);
         //DataTable validez1 = dac.obtenPedido(dato.Id_usuario);
-        DataTable validez1 = dac.ToDataTable(dac.obtenPedido(dato.Id_usuario));
+        DataTable validez1 = dac.ToDataTable(dac.obtenPedido(dato));
         datos.Id_pedido = int.Parse(validez1.Rows[0]["id_pedido"].ToString());
         datos.Fecha_ingreso = DateTime.Now;
         Button btn = (Button)sender;
