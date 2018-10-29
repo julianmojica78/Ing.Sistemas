@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Utilitarios;
 using Logica;
 using System.Collections;
+using System.Data;
 
 public partial class View_Registro : System.Web.UI.Page
 {
@@ -59,6 +60,7 @@ public partial class View_Registro : System.Web.UI.Page
         UUsuario dato = new UUsuario();
         LUsuario user = new LUsuario();
         UUser mensaje = new UUser();
+        LUser us = new LUser();
 
         datos.Nombre = TB_Nombre.Text.ToString();
         datos.Apellido = TB_Apellido.Text.ToString();
@@ -78,6 +80,7 @@ public partial class View_Registro : System.Web.UI.Page
         dato.Extension = Session["men1"].ToString();
 
         dato = user.insertUsuario(datos , dato);
+
         this.RegisterStartupScript("mensaje",dato.Mensaje);
 
         //Response.Redirect(datos.Url);

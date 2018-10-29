@@ -12,7 +12,7 @@ namespace Datos
         private readonly string schema;
 
         public Mapeo(string schema)
-            : base("name=Postgres")
+            : base("name=Sql")
         {
             this.schema = schema;
         }
@@ -48,6 +48,7 @@ namespace Datos
         public DbSet<UPreserva> platoR { get; set; }
         public DbSet<ULReserva> listReser { get; set; }
         public DbSet<UAutenticatio> autentication { get; set; }
+        public DbSet<UAuditoria> auditoria { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder builder)

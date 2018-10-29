@@ -86,3 +86,28 @@ D:\Ing. Sistemas\Ing. Sistemas\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.ca
 D:\Ing. Sistemas\Ing. Sistemas\Datos\obj\Debug\Datos.csproj.CopyComplete
 D:\Ing. Sistemas\Ing. Sistemas\Datos\obj\Debug\Datos.dll
 D:\Ing. Sistemas\Ing. Sistemas\Datos\obj\Debug\Datos.pdb
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\Datos.dll.config
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\Datos.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\Datos.pdb
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\EntityFramework.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\EntityFramework.SqlServer.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\EntityFramework6.Npgsql.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\Npgsql.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\System.ValueTuple.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\Utilitarios.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\Utilitarios.pdb
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\EntityFramework.xml
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\EntityFramework.SqlServer.xml
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\EntityFramework6.Npgsql.xml
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\Npgsql.pdb
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\Npgsql.xml
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Ing.Sistemas\Ing.Sistemas\Datos\bin\Debug\System.ValueTuple.xml
+D:\Ing.Sistemas\Ing.Sistemas\Datos\obj\Debug\Datos.dll
+D:\Ing.Sistemas\Ing.Sistemas\Datos\obj\Debug\Datos.pdb
+D:\Ing.Sistemas\Ing.Sistemas\Datos\obj\Debug\Datos.csprojAssemblyReference.cache
+D:\Ing.Sistemas\Ing.Sistemas\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+D:\Ing.Sistemas\Ing.Sistemas\Datos\obj\Debug\Datos.csproj.CopyComplete

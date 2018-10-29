@@ -9,8 +9,7 @@ using NpgsqlTypes;
 using System.Data;
 using System.Configuration;
 using Utilitarios;
-
-
+using System.Data.SqlClient;
 
 namespace Datos
 {
@@ -19,14 +18,14 @@ namespace Datos
         public DataTable loggin(UUser datos)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("seguridad.f_loggin", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("seguridad.f_loggin", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Varchar, 100).Value = datos.User_name;
-                dataAdapter.SelectCommand.Parameters.Add("_clave", NpgsqlDbType.Varchar, 100).Value = datos.Clave;
+                dataAdapter.SelectCommand.Parameters.Add("_user_name", SqlDbType.VarChar, 100).Value = datos.User_name;
+                dataAdapter.SelectCommand.Parameters.Add("_clave", SqlDbType.VarChar, 100).Value = datos.Clave;
                 conection.Open();
                 dataAdapter.Fill(Usuario);
             }
@@ -43,7 +42,6 @@ namespace Datos
             }
             return Usuario;
         }
-
         public DataTable cerrarSession(UUsuario datos)
         {
             DataTable Usuario = new DataTable();
@@ -76,16 +74,16 @@ namespace Datos
         public DataTable guardadoSession(UUser datos)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("seguridad.f_guardado_session", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("seguridad.f_guardado_session", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_user_id", NpgsqlDbType.Integer).Value = datos.UserId;
-                dataAdapter.SelectCommand.Parameters.Add("_ip", NpgsqlDbType.Varchar, 100).Value = datos.Ip;
-                dataAdapter.SelectCommand.Parameters.Add("_mac", NpgsqlDbType.Varchar, 100).Value = datos.Mac;
-                dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = datos.Session;
+                dataAdapter.SelectCommand.Parameters.Add("_user_id", SqlDbType.Int).Value = datos.UserId;
+                dataAdapter.SelectCommand.Parameters.Add("_ip", SqlDbType.VarChar, 100).Value = datos.Ip;
+                dataAdapter.SelectCommand.Parameters.Add("_mac", SqlDbType.VarChar, 100).Value = datos.Mac;
+                dataAdapter.SelectCommand.Parameters.Add("_session", SqlDbType.Text).Value = datos.Session;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -103,7 +101,6 @@ namespace Datos
             }
             return Usuario;
         }
-
         public void InsertarUsuario(UUsuario datos)
         {
             DataTable Registro = new DataTable();
@@ -146,13 +143,13 @@ namespace Datos
         public DataTable validarSesiones(UUser datos)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("seguridad.f_validar_sesiones", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("seguridad.f_validar_sesiones", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = datos.User_name;
+                dataAdapter.SelectCommand.Parameters.Add("_user_name", SqlDbType.VarChar, 100).Value = datos.User_name;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -174,13 +171,13 @@ namespace Datos
         public DataTable validarIntentos(UUser datos)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("seguridad.f_validar_intentos", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("seguridad.f_validar_intentos", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = datos.User_name;
+                dataAdapter.SelectCommand.Parameters.Add("_user_name", SqlDbType.VarChar, 100).Value = datos.User_name;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -201,13 +198,13 @@ namespace Datos
         public DataTable validarFecha(UUser datos)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("seguridad.f_validar_fecha", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("seguridad.f_validar_fecha", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = datos.User_name;
+                dataAdapter.SelectCommand.Parameters.Add("_user_name", SqlDbType.VarChar, 100).Value = datos.User_name;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -228,14 +225,14 @@ namespace Datos
         public DataTable validarRegistro(String user_name, String correo)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_validar_registro", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_validar_registro", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = user_name;
-                dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = correo;
+                dataAdapter.SelectCommand.Parameters.Add("_user_name", SqlDbType.VarChar, 50).Value = user_name;
+                dataAdapter.SelectCommand.Parameters.Add("_correo", SqlDbType.VarChar, 50).Value = correo;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -253,6 +250,7 @@ namespace Datos
             }
             return Usuario;
         }
+
 
         public void InsertReserva(UReserva datos)
         {
@@ -315,13 +313,13 @@ namespace Datos
         public DataTable generarTokenReserva(Int32 user_id)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_validar_reserva", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_validar_reserva", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_user_id", NpgsqlDbType.Integer).Value = user_id;
+                dataAdapter.SelectCommand.Parameters.Add("_user_id", SqlDbType.Int).Value = user_id;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -601,13 +599,13 @@ namespace Datos
         public DataTable obtenerId(String nombre)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_Id", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_obtener_Id", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = nombre;
+                dataAdapter.SelectCommand.Parameters.Add("_nombre", SqlDbType.VarChar, 100).Value = nombre;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -1201,13 +1199,13 @@ namespace Datos
         public DataTable generarToken(String user_name)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_validar_usuario", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_validar_usuario", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = user_name;
+                dataAdapter.SelectCommand.Parameters.Add("_user_name", SqlDbType.VarChar, 100).Value = user_name;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -1256,13 +1254,13 @@ namespace Datos
         public DataTable obtenerUsusarioToken(String token)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_usuario_token", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_obtener_usuario_token", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_token", NpgsqlDbType.Text).Value = token;
+                dataAdapter.SelectCommand.Parameters.Add("_token", SqlDbType.VarChar, 200).Value = token;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -1393,12 +1391,12 @@ namespace Datos
         public DataTable redimir(Int32 Id)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_redimir", conection);
-                dataAdapter.SelectCommand.Parameters.Add("_user_id", NpgsqlDbType.Integer).Value = Id;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_redimir", conection);
+                dataAdapter.SelectCommand.Parameters.Add("_user_id", SqlDbType.Int).Value = Id;
 
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
 
@@ -1536,13 +1534,13 @@ namespace Datos
         public DataTable obtenerIdm(String nombre)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_Idm", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_obtener_Idm", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = nombre;
+                dataAdapter.SelectCommand.Parameters.Add("_nombre", SqlDbType.VarChar, 100).Value = nombre;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -1957,13 +1955,13 @@ namespace Datos
         public DataTable obtenerIdre(String nombre)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_idre", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_obtener_idre", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = nombre;
+                dataAdapter.SelectCommand.Parameters.Add("_nombre", SqlDbType.VarChar, 100).Value = nombre;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -1981,6 +1979,7 @@ namespace Datos
             }
             return Usuario;
         }
+
 
         public DataTable buscarMesas(String nombre)
         {
@@ -2612,6 +2611,5 @@ namespace Datos
                 db.SaveChanges();
             }
         }
-
     }
 }

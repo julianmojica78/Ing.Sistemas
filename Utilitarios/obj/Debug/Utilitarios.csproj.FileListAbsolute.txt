@@ -34,3 +34,12 @@ D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CopyComp
 D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.dll
 D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.pdb
 D:\Ing. Sistemas\Ing. Sistemas\Utilitarios\obj\Debug\Utilitarios.csprojAssemblyReference.cache
+D:\Ing.Sistemas\Ing.Sistemas\Utilitarios\obj\Debug\Utilitarios.dll
+D:\Ing.Sistemas\Ing.Sistemas\Utilitarios\obj\Debug\Utilitarios.pdb
+D:\Ing.Sistemas\Ing.Sistemas\Utilitarios\bin\Debug\Utilitarios.dll
+D:\Ing.Sistemas\Ing.Sistemas\Utilitarios\bin\Debug\Utilitarios.pdb
+D:\Ing.Sistemas\Ing.Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.dll
+D:\Ing.Sistemas\Ing.Sistemas\Utilitarios\bin\Debug\Newtonsoft.Json.xml
+D:\Ing.Sistemas\Ing.Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CoreCompileInputs.cache
+D:\Ing.Sistemas\Ing.Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CopyComplete
+D:\Ing.Sistemas\Ing.Sistemas\Utilitarios\obj\Debug\Utilitarios.csprojAssemblyReference.cache

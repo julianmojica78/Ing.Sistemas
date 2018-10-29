@@ -3,6 +3,7 @@ using System.Web.UI;
 using Utilitarios;
 using Logica;
 using System.Collections;
+using System.Data;
 
 public partial class View_Contactenos : System.Web.UI.Page
 {

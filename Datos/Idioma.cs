@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,65 +18,14 @@ namespace Datos
         public DataTable obtenerIdioma(Int32 formulario, Int32 idioma)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("idioma.f_obtener_idioma_formulario", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("idioma.f_obtener_idioma_formulario", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_formulario_id", NpgsqlDbType.Integer).Value = formulario;
-                dataAdapter.SelectCommand.Parameters.Add("_idioma_id", NpgsqlDbType.Integer).Value = idioma;
-
-                conection.Open();
-                dataAdapter.Fill(Usuario);
-            }
-            catch (Exception Ex)
-            {
-                throw Ex;
-            }
-            finally
-            {
-                if (conection != null)
-                {
-                    conection.Close();
-                }
-            }
-            return Usuario;
-        }
-
-        public DataTable obtenerUbicacion()
-        {
-            DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
-            try
-            {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_ubicacion", conection);
-                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-                conection.Open();
-                dataAdapter.Fill(Usuario);
-            }
-            catch (Exception Ex)
-            {
-                throw Ex;
-            }
-            finally
-            {
-                if (conection != null)
-                {
-                    conection.Close();
-                }
-            }
-            return Usuario;
-        }
-        public DataTable obtenerIdio()
-        {
-            DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
-            try
-            {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("idioma.f_obtener_idioma", conection);
-                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_formulario_id", SqlDbType.Int).Value = formulario;
+                dataAdapter.SelectCommand.Parameters.Add("_idioma_id", SqlDbType.Int).Value = idioma;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -152,14 +102,14 @@ namespace Datos
         public DataTable validarIdioma(UAidioma datos)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("idioma.f_validar_idioma", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("idioma.f_validar_idioma", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = datos.Nombre;
-                dataAdapter.SelectCommand.Parameters.Add("_terminacion", NpgsqlDbType.Text).Value = datos.Terminacion;
+                dataAdapter.SelectCommand.Parameters.Add("_nombre", SqlDbType.VarChar, 100).Value = datos.Nombre;
+                dataAdapter.SelectCommand.Parameters.Add("_terminacion", SqlDbType.VarChar, 10).Value = datos.Terminacion;
 
                 conection.Open();
                 dataAdapter.Fill(Usuario);
@@ -181,15 +131,15 @@ namespace Datos
         public DataTable validarControl(UControles datos)
         {
             DataTable Usuario = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("idioma.f_validar_controles", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("idioma.f_validar_controles", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                dataAdapter.SelectCommand.Parameters.Add("_idioma", NpgsqlDbType.Integer).Value = datos.Idioma_id;
+                dataAdapter.SelectCommand.Parameters.Add("_idioma", SqlDbType.Int).Value = datos.Idioma_id;
                 //dataAdapter.SelectCommand.Parameters.Add("_formulario", NpgsqlDbType.Integer).Value = datos.Formulario;
-                dataAdapter.SelectCommand.Parameters.Add("_control", NpgsqlDbType.Text).Value = datos.Control;
+                dataAdapter.SelectCommand.Parameters.Add("_control", SqlDbType.VarChar, 100).Value = datos.Control;
                 //dataAdapter.SelectCommand.Parameters.Add("_texto", NpgsqlDbType.Text).Value = datos.Texto;
 
                 conection.Open();
@@ -208,7 +158,6 @@ namespace Datos
             }
             return Usuario;
         }
-
         public void agregarControl(UIdioma datos)
         {
             DataTable Registro = new DataTable();
