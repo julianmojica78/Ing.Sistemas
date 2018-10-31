@@ -825,12 +825,12 @@ namespace Logica
             return com;
         }
 
-        public DataTable obtenerIdioma()
-        {
-            Idioma dato = new Idioma();
-            DataTable data = dato.obtenerIdio();
-            return data;
-        }
+        //public DataTable obtenerIdioma()
+        //{
+        //    Idioma dato = new Idioma();
+        //    DataTable data = dato.obtenerIdioma();
+        //    return data;
+        //}
 
         public DataTable obtenerFormulario()
         {

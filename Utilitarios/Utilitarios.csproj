@@ -50,6 +50,7 @@
     <Compile Include="Correo.cs" />
     <Compile Include="CorreoR.cs" />
     <Compile Include="Estado.cs" />
+    <Compile Include="FacebookService.cs" />
     <Compile Include="Idiomas.cs" />
     <Compile Include="Mac.cs" />
     <Compile Include="Menu.cs" />

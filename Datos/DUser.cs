@@ -2611,5 +2611,16 @@ namespace Datos
                 db.SaveChanges();
             }
         }
+
+        public List<UEmpleados> verificarRegistro(String correo)
+        {
+            using (var db = new Mapeo("user"))
+            {
+                var a = db.user.ToList<UEmpleados>().Where(x => x.Email == correo);
+                return a.ToList<UEmpleados>();
+
+            }
+
+        }
     }
 }

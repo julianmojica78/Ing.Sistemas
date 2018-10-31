@@ -135,7 +135,7 @@ namespace Datos
             eAuditoria.Schema = esquema;
             eAuditoria.Tabla = tabla;
             eAuditoria.Pk = datos.Pk;
-            eAuditoria.Session = data.Session;
+            eAuditoria.Session = datos.Session;
 
             JObject jObject = new JObject();
 

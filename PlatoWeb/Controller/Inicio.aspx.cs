@@ -59,7 +59,8 @@ public partial class View_Inicio : System.Web.UI.Page
         L_Detalle3.Text = com.K;
         L_Precio3.Text = com.L;
 
-
+        Session["user_name"] = "";
+        Session["correo"] = "";
 
     }
 

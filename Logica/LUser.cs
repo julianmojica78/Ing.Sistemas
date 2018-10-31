@@ -1215,5 +1215,12 @@ namespace Logica
             //put a breakpoint here and check datatable
             return dataTable;
         }
+
+        public DataTable verificarRegistro(String correo)
+        {
+            DUser dato = new DUser();
+            DataTable data =ToDataTable(dato.verificarRegistro(correo));
+            return data;
+        }
     }
 }

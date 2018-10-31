@@ -95,6 +95,7 @@
             <td id="L_Clave" class="auto-style28" style="width: 30%"><strong>
                 <asp:Label ID="LB_pass" runat="server" Text="Contraseña:"></asp:Label>
                 </strong>:</td>
+
             <td class="auto-style32">
                             <div class="row form-group">
                <div class="auto-style34">
@@ -108,8 +109,7 @@
         <tr>
             <td class="auto-style32"></td>
             <td class="auto-style35" colspan="2">
-                <asp:Label ID="L_mensaje" runat="server" CssClass="auto-style4"></asp:Label>
-            </td>
+                &nbsp;</td>
             <td class="auto-style32"></td>
         </tr>
         <tr>
@@ -127,7 +127,14 @@
             &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="B_Registrarse" runat="server" OnClick="B_Registrarse_Click" Text="Registrarse" class="btn btn-primary" ValidationGroup="dos" />
                 &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="ImageButton1" runat="server"  Text="Ingresar con Gmail" class="btn btn-primary" ValidationGroup="tres" OnClick="B_Ingresar_Gmail_Click" />
+                &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="B_Facebook" runat="server"  Text="Ingresar con FaceBook" class="btn btn-primary" ValidationGroup="cuatro" OnClick="B_Facebook_Click" />
+                &nbsp;&nbsp;&nbsp;
                 </div>
+
                      </td>
             <td>&nbsp;</td>
         </tr>

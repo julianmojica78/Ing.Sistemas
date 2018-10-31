@@ -16,7 +16,7 @@ public partial class View_Registro : System.Web.UI.Page
         Int32 FORMULARIO = 31;
         LIdioma idioma = new LIdioma();
         UIdioma com = new UIdioma();
-        
+
 
         try
         {
@@ -32,7 +32,7 @@ public partial class View_Registro : System.Web.UI.Page
 
         Hashtable compIdioma = new Hashtable();
         Session["mensajes"] = compIdioma;
-        
+
         LB_regis.Text = com.A;
         LB_nombre.Text = com.B;
         LB_user.Text = com.C;
@@ -51,6 +51,19 @@ public partial class View_Registro : System.Web.UI.Page
         B_Crear.Text = com.P;
         Session["mensaje"] = com.Q;
         Session["men1"] = com.R;
+
+
+
+        if (Session["band"].Equals(true))
+        {
+            TB_Usuario.Text = Session["user_name"].ToString();
+            TB_Email.Text = Session["correo"].ToString();
+        }
+        else
+        {
+            TB_Usuario.Text = "";
+            TB_Email.Text = "";
+        }
     }
 
     protected void B_Crear_Click(object sender, EventArgs e)
@@ -61,6 +74,8 @@ public partial class View_Registro : System.Web.UI.Page
         LUsuario user = new LUsuario();
         UUser mensaje = new UUser();
         LUser us = new LUser();
+
+     
 
         datos.Nombre = TB_Nombre.Text.ToString();
         datos.Apellido = TB_Apellido.Text.ToString();
