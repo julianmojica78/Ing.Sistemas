@@ -56,6 +56,13 @@ public partial class View_Contactenos : System.Web.UI.Page
         //dato = contacto.contactenos(TB_Nombre.Text, TB_Telefono.Text, TB_Email.Text, TB_Detalle.Text);
         String mens = Session["men"].ToString();
         this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + mens.ToString() + "');window.location=\"Inicio.aspx\"</script>");
+
+        DataTable regis = contacto.ToDataTable(contacto.obtenerAcontacto());
+        String esquema = "usuario";
+        String tabla = "contacto";
+        String pk = "1";
+        String session = Session.SessionID;
+        contacto.insert(regis, esquema, tabla, pk, session);
         //this.Page.Response.Write(mens);
     }
 }

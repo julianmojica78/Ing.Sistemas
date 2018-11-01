@@ -2622,5 +2622,34 @@ namespace Datos
             }
 
         }
+        public List<UEmpleados> listarau()
+        {
+            using (var db = new Mapeo("user"))
+            {
+                var a = db.user.OrderByDescending(x => x.User_id).ToList<UEmpleados>();
+                return a.ToList<UEmpleados>();
+            }
+
+        }
+        public List<UContacto> listaracontacto()
+        {
+            using (var db = new Mapeo("contacto"))
+            {
+                var a = db.contactenos.OrderByDescending(x => x.Id).ToList<UContacto>();
+                return a.ToList<UContacto>();
+
+            }
+
+        }
+        public List<UReservation> listarares()
+        {
+            using (var db = new Mapeo("reserva"))
+            {
+                var a = db.reserva.OrderByDescending(x => x.Id_reserva).ToList<UReservation>();
+                return a.ToList<UReservation>();
+
+            }
+
+        }
     }
 }

@@ -95,8 +95,13 @@ public partial class View_Registro : System.Web.UI.Page
         dato.Extension = Session["men1"].ToString();
 
         dato = user.insertUsuario(datos , dato);
-
-        this.RegisterStartupScript("mensaje",dato.Mensaje);
+        this.RegisterStartupScript("mensaje", dato.Mensaje);
+        DataTable regis = user.ToDataTable(user.obtenerAu());
+        String esquema = "usuario";
+        String tabla = "usuario";
+        String pk = "1";
+        String session = Session.SessionID;
+        us.insert(regis, esquema, tabla, pk, session);
 
         //Response.Redirect(datos.Url);
 

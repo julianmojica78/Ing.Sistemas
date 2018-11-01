@@ -99,7 +99,8 @@ public partial class View_Resrvas : System.Web.UI.Page
 
 
         
-        dato.Dia = TB_Fecha.Text.ToString() + ' ' + int.Parse(DDL_Hora.SelectedItem.ToString()) + ":00";
+        String dia = TB_Fecha.Text.ToString() + ' ' + int.Parse(DDL_Hora.SelectedItem.ToString()) + ":00";
+        dato.Dia = DateTime.Parse(dia);
         dato.Id_mesa = int.Parse(DDL_Cantp.SelectedValue.ToString());
         datos.A = Session["confirmacion"].ToString();
         datos.B = Session["men1"].ToString();
@@ -112,6 +113,12 @@ public partial class View_Resrvas : System.Web.UI.Page
 
             datos = user.Reserva(datos, dato);
             this.RegisterStartupScript("mensaje", datos.Mensaje);
+            System.Data.DataTable regis = user.ToDataTable(user.obtenerAres());
+            String esquema = "usuario";
+            String tabla = "reservas";
+            String pk = Session["nombre"].ToString();
+            String session = Session.SessionID;
+            user.insert(regis, esquema, tabla, pk, session);
         }
         catch
         {

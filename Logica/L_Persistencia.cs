@@ -385,7 +385,7 @@ namespace Logica
             reserva.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
             reserva.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
             reserva.Id_mesa = int.Parse(validez1.Rows[0]["id_mesa"].ToString());
-            reserva.Dia = validez1.Rows[0]["dia"].ToString();
+            reserva.Dia = DateTime.Parse(validez1.Rows[0]["dia"].ToString());
             reserva.Estado = 1;
             reserva.Puntos = 10;
             user.eliminarToken(token);

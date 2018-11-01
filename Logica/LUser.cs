@@ -1222,5 +1222,33 @@ namespace Logica
             DataTable data =ToDataTable(dato.verificarRegistro(correo));
             return data;
         }
+
+        public List<UContacto> obtenerAcontacto()
+        {
+            DUser dao = new DUser();
+            return dao.listaracontacto();
+        }
+
+        public List<UReservation> obtenerAres()
+        {
+            DUser dao = new DUser();
+            return dao.listarares();
+        }
+        public void insert(DataTable regis, String esquema, String tabla, String pk, String session)
+        {
+            DAuditoria datos = new DAuditoria();
+            UAuditoria data = new UAuditoria();
+            Object obj = new Object();
+            obj = regis;
+
+            data.Pk = pk;
+            data.Session = session;
+
+
+            datos.insert(obj, data, esquema, tabla);
+
+        }
+
+
     }
 }

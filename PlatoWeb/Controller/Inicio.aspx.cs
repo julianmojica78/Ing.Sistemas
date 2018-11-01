@@ -61,6 +61,7 @@ public partial class View_Inicio : System.Web.UI.Page
 
         Session["user_name"] = "";
         Session["correo"] = "";
+        Session["band"] = "";
 
     }
 

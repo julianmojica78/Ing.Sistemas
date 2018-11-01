@@ -15,7 +15,7 @@ namespace Utilitarios
 
         private Int32 id_reserva;
         private Int32 id_mesa;
-        private String dia;
+        private DateTime dia;
         private Int32 id_usuario;
         private Int32? puntos;
         private Int32? estado;
@@ -26,7 +26,7 @@ namespace Utilitarios
         [Column("id_mesa")]
         public int Id_mesa { get => id_mesa; set => id_mesa = value; }
         [Column("dia")]
-        public string Dia { get => dia; set => dia = value; }
+        public DateTime Dia { get => dia; set => dia = value; }
         [Column("id_usuario")]
         public int Id_usuario { get => id_usuario; set => id_usuario = value; }
         [Column("puntos")]
