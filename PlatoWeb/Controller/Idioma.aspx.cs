@@ -105,6 +105,7 @@ public partial class View_Idioma : System.Web.UI.Page
         UControles user = new UControles();
         L_Persistencia datos = new L_Persistencia();
         UIdioma mensaje = new UIdioma();
+        LUser data = new LUser();
 
         user.Texto = TB_Texto.Text.ToString();
         user.Id = int.Parse(Session["id"].ToString());
@@ -112,7 +113,15 @@ public partial class View_Idioma : System.Web.UI.Page
         user.Idioma_id = int.Parse(Session["idioma_id"].ToString());
         user.Formulario_id = int.Parse(Session["formulario_id"].ToString());
         mensaje.Mensaje = Session["men4"].ToString();
+        String text = user.Texto;
+        DataTable regis = data.ToDataTable(data.obtenerModiControles(text));
+        String esquema = "idioma";
+        String tabla = "controles";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
+
         mensaje = datos.modificarIdioma(user, mensaje);
+        data.updateIdioma(regis, user, esquema, tabla, pk, session);
         this.RegisterStartupScript("mensaje", mensaje.Mensaje);
     }
 
@@ -129,6 +138,7 @@ public partial class View_Idioma : System.Web.UI.Page
          L_Persistencia datos = new L_Persistencia();
         //LIdioma datos = new LIdioma();
         UIdioma idioma = new UIdioma();
+        LUser data = new LUser();
 
         user.Nombre = TB_Nombre.Text.ToString();
         user.Terminacion = TB_Terminacion.Text.ToString();
@@ -136,6 +146,12 @@ public partial class View_Idioma : System.Web.UI.Page
         idioma.A = Session["men3"].ToString();
         //idioma = datos.insertarIdioma(user,idioma);
         idioma = datos.insertarIdioma(user,idioma);
+        DataTable regis = data.ToDataTable(data.obtenerAdiomas());
+        String esquema = "idioma";
+        String tabla = "idioma";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
+        data.insert(regis, esquema, tabla, pk, session);
 
         this.RegisterStartupScript("mensaje", idioma.Mensaje);
     }
@@ -147,6 +163,7 @@ public partial class View_Idioma : System.Web.UI.Page
         UIdioma datos = new UIdioma();
         L_Persistencia user = new L_Persistencia();
         UAidioma idioma = new UAidioma();
+        LUser data = new LUser();
         //LIdioma user = new LIdioma();
         ClientScriptManager cm = this.ClientScript;
         try
@@ -156,6 +173,13 @@ public partial class View_Idioma : System.Web.UI.Page
             idioma.Terminacion = Session["terminacion"].ToString();
             datos.Mensaje = Session["men1"].ToString();
             datos.B = Session["men2"].ToString();
+            String nombre = idioma.Nombre;
+            DataTable regis = data.ToDataTable(data.obtenerIdiomac(nombre));
+            String esquema = "idioma";
+            String tabla = "idioma";
+            String pk = Session["user_id"].ToString();
+            String session = Session.SessionID;
+            data.delete(regis, esquema, tabla, pk, session);
             datos = user.eliminarIdioma(idioma, datos);
             
             this.RegisterStartupScript("mensaje", datos.Mensaje);

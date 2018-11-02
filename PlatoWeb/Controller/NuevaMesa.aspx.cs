@@ -4,6 +4,7 @@ using System.Web.UI;
 using Utilitarios;
 using Logica;
 using System.Collections;
+using System.Data;
 
 public partial class View_NuevaMesa : System.Web.UI.Page
 {
@@ -55,9 +56,12 @@ public partial class View_NuevaMesa : System.Web.UI.Page
         mesas.Cantidad = int.Parse(TB_Cantidad.Text.ToString());
         mesas.Ubicacion = TB_Ubicacion.Text.ToString();
         datos = logica.insertarmesas(mesas);
-        //logica.insertarmesas(mesas);
-
-        //user.insertmesa(datos);
+        DataTable regis = user.ToDataTable(user.obtenerAMesa());
+        String esquema = "usuario";
+        String tabla = "mesas";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
+        user.insert(regis, esquema, tabla, pk, session);
         String mens = Session["men"].ToString();
         this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + mens.ToString() + "');window.location=\"ListarMesas.aspx\"</script>");
 

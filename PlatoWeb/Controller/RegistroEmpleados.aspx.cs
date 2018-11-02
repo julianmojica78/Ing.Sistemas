@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Utilitarios;
 using Logica;
 using System.Collections;
+using System.Data;
 
 public partial class View_RegistroEmpleados : System.Web.UI.Page
 {
@@ -57,6 +58,8 @@ public partial class View_RegistroEmpleados : System.Web.UI.Page
         LUsuario user = new LUsuario();
         UUsuario mensaje = new UUsuario();
         ClientScriptManager cm = this.ClientScript;
+        LUser us = new LUser();
+
 
         datos.Nombre = TB_Nombre.Text.ToString();
         datos.Apellido = TB_Apellido.Text.ToString();
@@ -75,6 +78,13 @@ public partial class View_RegistroEmpleados : System.Web.UI.Page
 
         mensaje = user.insertarUsuario(datos, mensaje);
         this.RegisterStartupScript("mensaje", mensaje.Mensaje);
+        mensaje = user.insertarUsuario(datos, mensaje);
+        DataTable regis = user.ToDataTable(user.obtenerAu());
+        String esquema = "usuario";
+        String tabla = "usuario";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
+        us.insert(regis, esquema, tabla, pk, session);
 
     }
 }

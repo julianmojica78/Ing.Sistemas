@@ -23,7 +23,7 @@ namespace Logica
             }
             else
             {
-                user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Extension.ToString() + "');window.location=\"Registro.aspx\"</script>";
+                user.Mensaje = "<script type='text/javascript'>alert('Correo o Usuario ya existe');window.location=\"Registro.aspx\"</script>";
             }
 
             return user;

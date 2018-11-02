@@ -53,6 +53,7 @@ public partial class View_AgregarControl : System.Web.UI.Page
         UIdioma user = new UIdioma();
         LIdioma datos = new LIdioma();
         UControles idioma = new UControles();
+        LUser data = new LUser();
 
 
 
@@ -64,5 +65,11 @@ public partial class View_AgregarControl : System.Web.UI.Page
         user.A = Session["men1"].ToString();
         user = datos.agregarControl(idioma,user);
         this.RegisterStartupScript("mensaje", user.Mensaje);
+        DataTable regis = data.ToDataTable(data.obtenerAdioma());
+        String esquema = "idioma";
+        String tabla = "controles";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
+        data.insert(regis, esquema, tabla, pk, session);
     }
 }

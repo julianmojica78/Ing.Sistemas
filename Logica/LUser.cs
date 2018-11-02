@@ -1234,6 +1234,71 @@ namespace Logica
             DUser dao = new DUser();
             return dao.listarares();
         }
+
+        public List<UEmpleados> obtenerModiA(String nombre)
+        {
+            DUser dao = new DUser();
+            UUsuario datos = new UUsuario();
+            datos.User_Name1 = nombre;
+
+            return dao.obtenusuario(datos);
+        }
+
+        public List<Menu> obtenerAMenu()
+        {
+            DUser dao = new DUser();
+            return dao.listaramenu();
+        }
+
+        public List<Menu> obtenerMen(String text)
+        {
+            DUser dao = new DUser();
+            Menu datos = new Menu();
+            datos.Nombre = text;
+
+            return dao.obtenmen(datos);
+        }
+
+        public List<Mesas> obtenerAMesa()
+        {
+            DUser dao = new DUser();
+            return dao.listaramesa();
+        }
+        public List<Mesas> obtenerMes(Int32 text)
+        {
+            DUser dao = new DUser();
+            Mesas datos = new Mesas();
+            datos.Id_mesas = text;
+
+            return dao.obtenmesa(datos);
+        }
+        public List<UAidioma> obtenerAdiomas()
+        {
+            DUser dao = new DUser();
+            return dao.listaraidiomas();
+        }
+        public List<UAidioma> obtenerIdiomac(String text)
+        {
+            DUser dao = new DUser();
+            UAidioma datos = new UAidioma();
+            datos.Nombre = text;
+
+            return dao.obtenidiom(datos);
+        }
+        public List<UControles> obtenerModiControles(String text)
+        {
+            DUser dao = new DUser();
+            UControles datos = new UControles();
+            datos.Texto = text;
+
+            return dao.obtencontroles(datos);
+        }
+        public List<UControles> obtenerAdioma()
+        {
+            DUser dao = new DUser();
+            return dao.listaraidioma();
+        }
+
         public void insert(DataTable regis, String esquema, String tabla, String pk, String session)
         {
             DAuditoria datos = new DAuditoria();
@@ -1249,6 +1314,154 @@ namespace Logica
 
         }
 
+        public void update(DataTable regis, UEmpleados dato, String esquema, String tabla, String pk, String session)
+        {
+            DAuditoria datos = new DAuditoria();
+            UAuditoria data = new UAuditoria();
+            UEmpleados emp = new UEmpleados();
+
+            emp.Nombre = regis.Rows[0]["nombre"].ToString();
+            emp.Apellido = regis.Rows[0]["apellido"].ToString();
+            emp.Email = regis.Rows[0]["email"].ToString();
+            emp.Telefono = regis.Rows[0]["telefono"].ToString();
+            emp.Cedula = regis.Rows[0]["cedula"].ToString();
+            emp.Id_Rol = int.Parse(regis.Rows[0]["id_rol"].ToString());
+            emp.User_Name1 = regis.Rows[0]["user_name1"].ToString();
+            emp.Clave = regis.Rows[0]["clave"].ToString();
+            emp.Rclave = regis.Rows[0]["rclave"].ToString();
+            emp.User_id = int.Parse(regis.Rows[0]["user_id"].ToString());
+            emp.Session = regis.Rows[0]["session"].ToString();
+
+
+            Object newObj = new Object();
+            Object oldObj = new Object();
+            newObj = dato;
+            oldObj = emp;
+
+
+            data.Pk = pk;
+            data.Session = session;
+            //data.Session = regis.Rows[0]["Session"].ToString();
+
+
+            datos.update(newObj, oldObj, data, esquema, tabla);
+
+        }
+
+        public void updateMenu(DataTable regis, Menu dato, String esquema, String tabla, String pk, String session)
+        {
+            DAuditoria datos = new DAuditoria();
+            UAuditoria data = new UAuditoria();
+            Menu emp = new Menu();
+
+            DataTable dat = regis;
+
+            emp.Nombre = dat.Rows[0]["nombre"].ToString();
+            emp.Id_plato = int.Parse(dat.Rows[0]["id_plato"].ToString());
+            emp.Descripcion = dat.Rows[0]["descripcion"].ToString();
+            emp.Precio = dat.Rows[0]["precio"].ToString();
+            emp.Imagen = dat.Rows[0]["imagen"].ToString();
+            //emp.Id_Rol = int.Parse(regis.Rows[0]["id_rol"].ToString());
+            //emp.User_Name1 = regis.Rows[0]["user_name1"].ToString();
+            //emp.Clave = regis.Rows[0]["clave"].ToString();
+            //emp.Rclave = regis.Rows[0]["rclave"].ToString();
+            //emp.User_id = int.Parse(regis.Rows[0]["user_id"].ToString());
+            //emp.Session = regis.Rows[0]["session"].ToString();
+
+
+            Object newObj = new Object();
+            Object oldObj = new Object();
+            newObj = dato;
+            oldObj = emp;
+
+
+            data.Pk = pk;
+            data.Session = session;
+            //data.Session = regis.Rows[0]["Session"].ToString();
+
+
+            datos.update(newObj, oldObj, data, esquema, tabla);
+
+        }
+
+        public void updateMesas(DataTable regis, Mesas dato, String esquema, String tabla, String pk, String session)
+        {
+            DAuditoria datos = new DAuditoria();
+            UAuditoria data = new UAuditoria();
+            Mesas emp = new Mesas();
+
+            emp.Ubicacion = regis.Rows[0]["ubicacion"].ToString();
+            emp.Id_mesas = int.Parse(regis.Rows[0]["Id_mesas"].ToString());
+            emp.Cantidad = int.Parse(regis.Rows[0]["cantidad"].ToString());
+            //emp.User_Name1 = regis.Rows[0]["user_name1"].ToString();
+            //emp.Clave = regis.Rows[0]["clave"].ToString();
+            //emp.Rclave = regis.Rows[0]["rclave"].ToString();
+            //emp.User_id = int.Parse(regis.Rows[0]["user_id"].ToString());
+            //emp.Session = regis.Rows[0]["session"].ToString();
+
+
+            Object newObj = new Object();
+            Object oldObj = new Object();
+            newObj = dato;
+            oldObj = emp;
+
+
+            data.Pk = pk;
+            data.Session = session;
+            //data.Session = regis.Rows[0]["Session"].ToString();
+
+
+            datos.update(newObj, oldObj, data, esquema, tabla);
+
+        }
+        public void updateIdioma(DataTable regis, UControles dato, String esquema, String tabla, String pk, String session)
+        {
+            DAuditoria datos = new DAuditoria();
+            UAuditoria data = new UAuditoria();
+            UControles emp = new UControles();
+
+            emp.Texto = regis.Rows[0]["Texto"].ToString();
+            emp.Id = int.Parse(regis.Rows[0]["id"].ToString());
+            emp.Formulario_id = int.Parse(regis.Rows[0]["formulario_id"].ToString());
+            emp.Idioma_id = int.Parse(regis.Rows[0]["idioma_id"].ToString());
+            emp.Control = regis.Rows[0]["control"].ToString();
+            //emp.Id_Rol = int.Parse(regis.Rows[0]["id_rol"].ToString());
+            //emp.User_Name1 = regis.Rows[0]["user_name1"].ToString();
+            //emp.Clave = regis.Rows[0]["clave"].ToString();
+            //emp.Rclave = regis.Rows[0]["rclave"].ToString();
+            //emp.User_id = int.Parse(regis.Rows[0]["user_id"].ToString());
+            //emp.Session = regis.Rows[0]["session"].ToString();
+
+
+            Object newObj = new Object();
+            Object oldObj = new Object();
+            newObj = dato;
+            oldObj = emp;
+
+
+            data.Pk = pk;
+            data.Session = session;
+            //data.Session = regis.Rows[0]["Session"].ToString();
+
+
+            datos.update(newObj, oldObj, data, esquema, tabla);
+
+        }
+        public void delete(DataTable regis, String esquema, String tabla, String pk, String session)
+        {
+            DAuditoria datos = new DAuditoria();
+            UAuditoria data = new UAuditoria();
+            Object obj = new Object();
+            obj = regis;
+
+            data.Pk = pk;
+            data.Session = session;
+            //data.Session = regis.Rows[0]["Session"].ToString();
+
+
+            datos.delete(obj, data, esquema, tabla);
+
+        }
 
     }
 }

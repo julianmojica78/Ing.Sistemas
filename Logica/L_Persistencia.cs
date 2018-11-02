@@ -509,13 +509,13 @@ namespace Logica
             auten.Fecha_fin = DateTime.Now;
             data.actualizarAutentication(auten);
             System.Data.DataTable validez = ToDataTable(data.obtenusuario(datos));
-            usuario.User_id = int.Parse(validez.Rows[0]["user_id"].ToString());
+            usuario.User_id = int.Parse(validez.Rows[0]["User_id"].ToString());
             usuario.Nombre = validez.Rows[0]["nombre"].ToString();
             usuario.Apellido = validez.Rows[0]["apellido"].ToString();
             usuario.Email = validez.Rows[0]["email"].ToString();
             usuario.Telefono = validez.Rows[0]["telefono"].ToString();
             usuario.Cedula = validez.Rows[0]["cedula"].ToString();
-            usuario.Puntos = int.Parse(validez.Rows[0]["puntos"].ToString());
+            usuario.Puntos = int.Parse(validez.Rows[0]["Puntos"].ToString());
             usuario.Id_Rol = int.Parse(validez.Rows[0]["id_rol"].ToString());
             usuario.User_Name1 = validez.Rows[0]["User_Name1"].ToString();
             usuario.Clave = validez.Rows[0]["clave"].ToString();

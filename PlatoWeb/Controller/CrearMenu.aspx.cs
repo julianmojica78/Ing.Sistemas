@@ -5,6 +5,7 @@ using Utilitarios;
 using Logica;
 using System.Linq;
 using System.Collections;
+using System.Data;
 
 public partial class View_CrearMenu : System.Web.UI.Page
 {
@@ -50,6 +51,7 @@ public partial class View_CrearMenu : System.Web.UI.Page
         UUser info = new UUser();
         L_Persistencia logica = new L_Persistencia();
         Menu menu = new Menu();
+        LUser user = new LUser();
 
         menu.Nombre = TB_nompla.Text.ToString();
         menu.Descripcion = TB_desc.Text.ToString();
@@ -58,7 +60,14 @@ public partial class View_CrearMenu : System.Web.UI.Page
         menu.Imagen = cargarImagen();
 
         datos = logica.insertarmenu(menu);
-        //ins.insertmenu(datos);
+
+        DataTable regis = user.ToDataTable(user.obtenerAMenu());
+        String esquema = "usuario";
+        String tabla = "menu";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
+        user.insert(regis, esquema, tabla, pk, session);
+
 
     }
 

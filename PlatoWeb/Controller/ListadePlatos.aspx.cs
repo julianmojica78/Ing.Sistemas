@@ -109,7 +109,17 @@ public partial class View_ListadePlatos : System.Web.UI.Page
         DataTable validez1 = dato.obtenerMesa(nombre);
         Int32 User_id = int.Parse(validez1.Rows[0]["id_plato"].ToString());
         menu.Id_plato = User_id;
+        menu.Nombre = validez1.Rows[0]["nombre"].ToString();
+        menu.Descripcion = validez1.Rows[0]["descripcion"].ToString();
+        menu.Precio = validez1.Rows[0]["precio"].ToString();
+        menu.Imagen = validez1.Rows[0]["imagen"].ToString();
         //dato.eliminarPlato(datos);
+        DataTable regis = dato.ToDataTable(dato.obtenerMen(nombre));
+        String esquema = "usuario";
+        String tabla = "platos";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
+        dato.delete(regis, esquema, tabla, pk, session);
         datos = logica.BorrarMenu(menu);
         String mens = Session["men"].ToString();
         this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + mens.ToString() + "');window.location=\"ListadePlatos.aspx\"</script>");

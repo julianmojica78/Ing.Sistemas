@@ -4,6 +4,7 @@ using System.Web.UI;
 using Utilitarios;
 using Logica;
 using System.Collections;
+using System.Data;
 
 public partial class View_ModificarMesa : System.Web.UI.Page
 {
@@ -79,8 +80,14 @@ public partial class View_ModificarMesa : System.Web.UI.Page
         mesas.Id_mesas = int.Parse(Session["id_mesa"].ToString());
         mesas.Cantidad = int.Parse(TB_Cantidad.Text.ToString());
         mesas.Ubicacion = TB_Ubicacion.Text.ToString();
-
+        Int32 nombre = mesas.Id_mesas;
+        DataTable regis = user.ToDataTable(user.obtenerMes(nombre));
+        String esquema = "usuario";
+        String tabla = "mesas";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
         datos = logica.actualizarMesas(mesas);
+        user.updateMesas(regis, mesas, esquema, tabla, pk, session);
         //logica.actualizarMesas(mesas);
 
 

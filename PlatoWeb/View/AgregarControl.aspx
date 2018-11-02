@@ -25,7 +25,7 @@
             <td style="height: 20px">
                 <asp:DropDownList ID="DDL_Idioma" runat="server" DataSourceID="ODS_Idioma" DataTextField="nombre" DataValueField="id" Height="31px" Width="216px" AutoPostBack="True">
                 </asp:DropDownList>
-                <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="obtenerIdioma" TypeName="Logica.LIdioma"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="obtenerIdioma" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
             </td>
             <td style="width: 5%; height: 20px;"></td>
         </tr>

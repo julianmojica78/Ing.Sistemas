@@ -71,6 +71,13 @@ public partial class View_ListarMesas : System.Web.UI.Page
         ClientScriptManager cm = this.ClientScript;
 
         mesas.Id_mesas = int.Parse(Session["id_mesa"].ToString());
+        Int32 nombre = mesas.Id_mesas;
+        DataTable regis = user.ToDataTable(user.obtenerMes(nombre));
+        String esquema = "usuario";
+        String tabla = "mesas";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
+        user.delete(regis, esquema, tabla, pk, session);
         logica.BorrarMesa(mesas);
         this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Mesa Eliminada Correctamente');window.location=\"ListarMesas.aspx\"</script>");
 

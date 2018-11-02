@@ -70,12 +70,12 @@ public partial class View_ModificarMenu : System.Web.UI.Page
         LUser ins = new LUser();
 
         L_Persistencia logica = new L_Persistencia();
-        Utilitarios.Menu menu = new Utilitarios.Menu();
+        Menu menu = new Menu();
         //user.ispost1(data);
         UUser info = new UUser();
 
         info.Ruta = (FU_imagen.PostedFile.FileName);
-        data.Imagen = cargarImagen();
+        menu.Imagen = cargarImagen();
 
 
         //user.ispost1(data);
@@ -91,7 +91,13 @@ public partial class View_ModificarMenu : System.Web.UI.Page
         //data.F = Session["precio"].ToString();
         //data.Ispos = prueba(info);
         //ins.aux1(data);
+        DataTable regis = ins.ToDataTable(ins.obtenerMen(nombre));
+        String esquema = "usuario";
+        String tabla = "platos";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
         data = logica.actualizarMenu(menu);
+        user.updateMenu(regis, menu, esquema, tabla, pk, session);
     }
     protected String cargarImagen()
     {
@@ -101,19 +107,19 @@ public partial class View_ModificarMenu : System.Web.UI.Page
         String nombreArchivo = System.IO.Path.GetFileName(FU_imagen.PostedFile.FileName);
         enca.A = System.IO.Path.GetExtension(FU_imagen.PostedFile.FileName);
 
+
+
         UUser mensaje = new UUser();
         try
         {
-
 
             enca.Ubicacion = Server.MapPath("~\\Imagen") + "\\" + nombreArchivo;
             mensaje = user.CargaImagen(enca);
             //cm.RegisterClientScriptBlock(this.GetType(), "", mensaje.Url);
 
-            enca.Ubicacion = enca.Ubicacion;
+            enca.Ubicacion = mensaje.Ubicacion;
 
             FU_imagen.PostedFile.SaveAs(enca.Ubicacion);
-
             String mens = Session["men"].ToString();
             this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + mens.ToString() + "');window.location=\"ListadePlatos.aspx\"</script>");
 
@@ -121,9 +127,8 @@ public partial class View_ModificarMenu : System.Web.UI.Page
         }
         catch
         {
-
             enca.Ubicacion = Server.MapPath("~\\Imagen") + "\\" + nombreArchivo;
-            //mensaje = user.cargaImage(enca,extension);
+            //mensaje = user.cargaImage();
             //enca.Ubicacion = mensaje.B;
             nombreArchivo = mensaje.Ubicacion;
             cm.RegisterClientScriptBlock(this.GetType(), "", mensaje.Url);

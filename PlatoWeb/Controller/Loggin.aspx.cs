@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 using System.Collections.Generic;
 using Facebook;
 
-public partial class View_Loggin : System.Web.UI.Page
+public partial class View_Loggin : System.Web.UI.Page 
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -188,6 +188,7 @@ public partial class View_Loggin : System.Web.UI.Page
             {
                 datos = user.logear(datos);
                 Session["nombre"] = (datos.User_name);
+                Session["name"]= (datos.User_name);
                 Session["user_id"] = (datos.UserId);
                 Response.Redirect(datos.Url);
             }

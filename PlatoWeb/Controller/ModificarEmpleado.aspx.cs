@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Utilitarios;
 using Logica;
 using System.Collections;
+using System.Data;
 
 public partial class View_ModificarEmpleado : System.Web.UI.Page
 {
@@ -116,9 +117,14 @@ public partial class View_ModificarEmpleado : System.Web.UI.Page
         datos.Session = "a";
         //datos.User_id = int.Parse(Session["codigo"].ToString());
         data.Mensaje = Session["modificar"].ToString();
+        DataTable regis = user.ToDataTable(user.obtenerModiA(nombre));
+        String esquema = "usuario";
+        String tabla = "usuario";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
 
-
-        data = modificar.modificarUsuario(datos,data);
+        data = modificar.modificarUsuario(datos, data);
+        user.update(regis, datos, esquema, tabla, pk, session);
         this.RegisterStartupScript("mensaje", data.Mensaje);
 
     }

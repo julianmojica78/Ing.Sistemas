@@ -20,7 +20,7 @@ public partial class View_Cerrar : System.Web.UI.Page
         L_Persistencia user = new L_Persistencia();
         UUsuario datos = new UUsuario();
         datos.Session = Session.SessionID;
-        datos.User_Name1 = Session["nombre"].ToString();
+        datos.User_Name1 = Session["name"].ToString();
         datos = user.Cerrar(datos);
         Session["user_id"] = null;
         Session["nombre"] = null;

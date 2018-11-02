@@ -110,6 +110,12 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
         data.Mensaje = Session["eliminar"].ToString();
         data.A = Session["men1"].ToString();
         data.B = Session["men2"].ToString();
+        DataTable regis = user.ToDataTable(user.obtenerModiA(nombre));
+        String esquema = "usuario";
+        String tabla = "usuario";
+        String pk = Session["user_id"].ToString();
+        String session = Session.SessionID;
+        user.delete(regis, esquema, tabla, pk, session);
         data = eliminar.eliminarUsuario(datos,data);
         this.RegisterStartupScript("mensaje", data.Mensaje);
 

@@ -2651,5 +2651,86 @@ namespace Datos
             }
 
         }
+
+        public List<Menu> listaramenu()
+        {
+            using (var db = new Mapeo("menu"))
+            {
+                var a = db.menu.OrderByDescending(x => x.Id_plato).ToList<Menu>();
+                return a.ToList<Menu>();
+
+            }
+
+        }
+        public List<Menu> obtenmen(Menu data)
+        {
+            using (var db = new Mapeo("menu"))
+            {
+                var a = db.menu.ToList<Menu>().Where(x => x.Nombre == data.Nombre);
+                return a.ToList<Menu>();
+
+            }
+
+        }
+        public List<Mesas> listaramesa()
+        {
+            using (var db = new Mapeo("mesas"))
+            {
+                var a = db.mesa.OrderByDescending(x => x.Id_mesas).ToList<Mesas>();
+                return a.ToList<Mesas>();
+
+            }
+
+        }
+        public List<Mesas> obtenmesa(Mesas data)
+        {
+            using (var db = new Mapeo("mesa"))
+            {
+                var a = db.mesa.ToList<Mesas>().Where(x => x.Id_mesas == data.Id_mesas);
+                return a.ToList<Mesas>();
+
+            }
+
+        }
+        public List<UAidioma> listaraidiomas()
+        {
+            using (var db = new Mapeo("idioma"))
+            {
+                var a = db.idioma.OrderByDescending(x => x.Id).ToList<UAidioma>();
+                return a.ToList<UAidioma>();
+
+            }
+
+        }
+        public List<UAidioma> obtenidiom(UAidioma data)
+        {
+            using (var db = new Mapeo("idioma"))
+            {
+                var a = db.idioma.ToList<UAidioma>().Where(x => x.Nombre == data.Nombre);
+                return a.ToList<UAidioma>();
+
+            }
+
+        }
+        public List<UControles> obtencontroles(UControles data)
+        {
+            using (var db = new Mapeo("controles"))
+            {
+                var a = db.controles.ToList<UControles>().Where(x => x.Texto == data.Texto);
+                return a.ToList<UControles>();
+
+            }
+
+        }
+        public List<UControles> listaraidioma()
+        {
+            using (var db = new Mapeo("controles"))
+            {
+                var a = db.controles.OrderByDescending(x => x.Id).ToList<UControles>();
+                return a.ToList<UControles>();
+
+            }
+
+        }
     }
 }
