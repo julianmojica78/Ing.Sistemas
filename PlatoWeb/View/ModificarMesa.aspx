@@ -33,7 +33,9 @@
                 <asp:Label ID="LB_cantper" runat="server" Text="Cantidad de Personas"></asp:Label>
             </td>
             <td style="height: 22px">
-                <asp:TextBox ID="TB_Cantidad" runat="server" Width="168px" class="form-control"></asp:TextBox>
+                <asp:TextBox ID="TB_Cantidad" runat="server" Width="168px" class="form-control" MaxLength="2" ValidationGroup="uno"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RFV_Cantidad" runat="server" ControlToValidate="TB_Cantidad" ErrorMessage="*" ForeColor="Red" ValidationGroup="uno"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="REV_Cantidad" runat="server" ControlToValidate="TB_Cantidad" ErrorMessage="Ingrese solo Numeros" ForeColor="Red" ValidationExpression="^[0-9]*" ValidationGroup="uno"></asp:RegularExpressionValidator>
             </td>
             <td style="height: 22px"></td>
         </tr>
@@ -49,20 +51,23 @@
                 <asp:Label ID="LB_ubi" runat="server" Text="Ubicacion"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="TB_Ubicacion" runat="server" Width="168px" class="form-control"></asp:TextBox>
+                <asp:TextBox ID="TB_Ubicacion" runat="server" Width="168px" class="form-control" ValidationGroup="uno"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:RequiredFieldValidator ID="RFV_Ubicacion" runat="server" ControlToValidate="TB_Ubicacion" ErrorMessage="*" ForeColor="Red" ValidationGroup="uno"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="REV_Ubicacion" runat="server" ControlToValidate="TB_Ubicacion" ErrorMessage="Ingrese solo letras" ForeColor="Red" ValidationExpression="^[A-Za-z]*$" ValidationGroup="uno"></asp:RegularExpressionValidator>
+            </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
             <td class="text-center" colspan="2">
-                <asp:Button ID="BT_Modificar" runat="server" OnClick="BT_Modificar_Click" Text="Modificar" class="btn btn-primary" />
+                <asp:Button ID="BT_Modificar" runat="server" OnClick="BT_Modificar_Click" Text="Modificar" class="btn btn-primary" ValidationGroup="uno" />
             </td>
             <td>&nbsp;</td>
         </tr>

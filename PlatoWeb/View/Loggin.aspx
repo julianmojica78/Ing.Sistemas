@@ -84,7 +84,7 @@
                     <asp:RegularExpressionValidator ID="validator_username" 
                     runat="server" ControlToValidate="UserName" 
                     ErrorMessage="Ingrese solo letras Y Numeros" 
-                    ForeColor="Red" ValidationExpression="^[A-Za-z0-9_-ñÑ]*$" ValidationGroup="Uno"></asp:RegularExpressionValidator>
+                    ForeColor="Red" ValidationExpression="^[A-Za-z0-9_-ñÑ_ ]*$" ValidationGroup="Uno"></asp:RegularExpressionValidator>
                     </div>
                 </div>
             </td>

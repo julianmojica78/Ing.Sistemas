@@ -22,10 +22,10 @@
         width: 530px;
     }
     .auto-style35 {
-        text-align: right;
-        width: ;
-        height: 45px;
-    }
+            text-align: right;
+            width: ;
+            height: 45px;
+        }
     .auto-style38 {
         width: 5%;
         height: 45px;
@@ -68,11 +68,7 @@
             text-align: right;
             width: 117px;
         }
-        .auto-style50 {
-            width: 117px;
-            height: 47px;
-        }
-    </style>
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
@@ -86,34 +82,31 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style29" style="width: 1%" rowspan="3">&nbsp;</td>
+            <td class="auto-style29" style="width: 1%" rowspan="2">&nbsp;</td>
            <div class="row form-group">
-             <td class="auto-style48">&nbsp;</td>
-            <td class="auto-style30" rowspan="2">
+             <td class="auto-style49">
+                 <asp:Label ID="LB_nombre" runat="server" Text="Nombre"></asp:Label>
+             </td>
+            <td class="auto-style30">
                
-                 <asp:TextBox ID="TB_Nombre" runat="server" class="form-control"  MaxLength="20"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RFV_Nombre" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                 <asp:TextBox ID="TB_Nombre" runat="server" class="form-control"  MaxLength="20" ValidationGroup="uno"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RFV_Nombre" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True" ValidationGroup="uno"></asp:RequiredFieldValidator>
                 
-                 <asp:RegularExpressionValidator ID="REV_Nombre" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="Solo Puede Ingresar Letras" ForeColor="Red" ValidationExpression="^[A-Za-z]*$"></asp:RegularExpressionValidator>
+                 <asp:RegularExpressionValidator ID="REV_Nombre" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="Solo Puede Ingresar Letras" ForeColor="Red" ValidationExpression="^[A-Za-z]*$" ValidationGroup="uno"></asp:RegularExpressionValidator>
                 
             </td>
         </div>
          <div class="row form-group">
-            <td class="auto-style35" rowspan="3">
+            <td class="auto-style35" rowspan="2">
                 <asp:Label ID="LB_apellido" runat="server" Text="Apellido"></asp:Label>
             </td>
-            <td class="auto-style39" rowspan="3">
-                <asp:TextBox ID="TB_Apellido" runat="server" class="form-control" ></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RFV_Apellido" runat="server" ControlToValidate="TB_Apellido" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="REV_Nombre0" runat="server" ControlToValidate="TB_Apellido" ErrorMessage="Solo Puede Ingresar Letras" ForeColor="Red" ValidationExpression="^[A-Za-z]*$"></asp:RegularExpressionValidator>
+            <td class="auto-style39" rowspan="2">
+                <asp:TextBox ID="TB_Apellido" runat="server" class="form-control" ValidationGroup="uno" ></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RFV_Apellido" runat="server" ControlToValidate="TB_Apellido" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True" ValidationGroup="uno"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="REV_Nombre0" runat="server" ControlToValidate="TB_Apellido" ErrorMessage="Solo Puede Ingresar Letras" ForeColor="Red" ValidationExpression="^[A-Za-z]*$" ValidationGroup="uno"></asp:RegularExpressionValidator>
             </td>
         </div>
-            <td style="width: 5%" rowspan="3">&nbsp;</td>
-        </tr>
-        <tr>
-             <td class="auto-style50">
-                 <asp:Label ID="LB_nombre" runat="server" Text="Nombre"></asp:Label>
-             </td>
+            <td style="width: 5%" rowspan="2">&nbsp;</td>
         </tr>
         <tr>
              <td class="auto-style48">&nbsp;</td>
@@ -128,12 +121,12 @@
                 <asp:Label ID="LB_user" runat="server" Text="Usuario"></asp:Label>
             </td>
             <td class="auto-style30" rowspan="3">
-                <asp:TextBox ID="TB_Usuario" runat="server" class="form-control" MaxLength="20"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RFV_Usuario" runat="server" ControlToValidate="TB_Usuario" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="TB_Usuario" runat="server" class="form-control" MaxLength="20" ValidationGroup="uno"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RFV_Usuario" runat="server" ControlToValidate="TB_Usuario" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True" ValidationGroup="uno"></asp:RequiredFieldValidator>
            <asp:RegularExpressionValidator ID="validator_username" 
                     runat="server" ControlToValidate="TB_Usuario" 
                     ErrorMessage="Ingrese solo letras Y Numeros" 
-                    ForeColor="Red" ValidationExpression="^[A-Za-z0-9_-ñÑ]*$"></asp:RegularExpressionValidator>
+                    ForeColor="Red" ValidationExpression="^[A-Za-z0-9_-ñÑ_ ]*$" ValidationGroup="uno"></asp:RegularExpressionValidator>
                 </td>
         </div>
          <div class="row form-group">
@@ -141,8 +134,8 @@
                 <asp:Label ID="LB_email" runat="server" Text="Email"></asp:Label>
             </td>
             <td class="auto-style39" rowspan="3">
-                <asp:TextBox ID="TB_Email" runat="server" class="form-control" TextMode="Email" ></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RFV_Email" runat="server" ControlToValidate="TB_Email" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="TB_Email" runat="server" class="form-control" TextMode="Email" ValidationGroup="uno" ></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RFV_Email" runat="server" ControlToValidate="TB_Email" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True" ValidationGroup="uno"></asp:RequiredFieldValidator>
             </td>
         </div>
             <td style="width: 5%" class="auto-style38" rowspan="3"></td>
@@ -162,7 +155,7 @@
             </td>
             <td class="auto-style30">
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <asp:TextBox ID="TB_Contrasena" runat="server" class="form-control" TextMode="Password" ></asp:TextBox>
+                <asp:TextBox ID="TB_Contrasena" runat="server" class="form-control" TextMode="Password" ValidationGroup="uno" ></asp:TextBox>
                 <ajaxToolkit:PasswordStrength StrengthIndicatorType="Text"
                     ID="PasswordStrength1"  
                     runat="server" 
@@ -178,7 +171,7 @@
                     DisplayPosition="BelowLeft" 
                     PrefixText="Seguridad:" 
                     RequiresUpperAndLowerCaseCharacters="True" />
-                   <asp:RequiredFieldValidator ID="RFV_Contrasena" runat="server" ControlToValidate="TB_Contrasena" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                   <asp:RequiredFieldValidator ID="RFV_Contrasena" runat="server" ControlToValidate="TB_Contrasena" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True" ValidationGroup="uno"></asp:RequiredFieldValidator>
              <asp:Label ID="LB_status2" runat="server"></asp:Label>
             </td>
         </div>
@@ -187,9 +180,9 @@
                 <asp:Label ID="LB_cedula" runat="server" Text="Cedula"></asp:Label>
             </td>
             <td class="auto-style33">
-                <asp:TextBox ID="TB_Cedula" runat="server" class="form-control"  MaxLength="10" Height="46px"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RFV_Cedula" runat="server" ControlToValidate="TB_Cedula" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="REV_Nombre1" runat="server" ControlToValidate="TB_Cedula" ErrorMessage="Solo Puede Ingresar Numeros" ForeColor="Red" ValidationExpression="^[0-9]*"></asp:RegularExpressionValidator>
+                <asp:TextBox ID="TB_Cedula" runat="server" class="form-control"  MaxLength="10" Height="46px" ValidationGroup="uno"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RFV_Cedula" runat="server" ControlToValidate="TB_Cedula" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True" ValidationGroup="uno"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="REV_Nombre1" runat="server" ControlToValidate="TB_Cedula" ErrorMessage="Solo Puede Ingresar Numeros" ForeColor="Red" ValidationExpression="^[0-9]*" ValidationGroup="uno"></asp:RegularExpressionValidator>
             </td>
     </div>
             <td style="width: 5%">&nbsp;</td>
@@ -201,8 +194,8 @@
                 <asp:Label ID="LB_rpass" runat="server" Text="Confirmar Contraseña"></asp:Label>
             </td>
             <td class="auto-style30">
-                <asp:TextBox ID="TB_CConrasena" runat="server" class="form-control" TextMode="Password" ></asp:TextBox>
-                <asp:CompareValidator ID="CV_CContrasena" runat="server" ControlToCompare="TB_Contrasena" ControlToValidate="TB_CConrasena" ErrorMessage="La Contraseña no es identica " ForeColor="Red" SetFocusOnError="True"></asp:CompareValidator>
+                <asp:TextBox ID="TB_CConrasena" runat="server" class="form-control" TextMode="Password" ValidationGroup="uno" ></asp:TextBox>
+                <asp:CompareValidator ID="CV_CContrasena" runat="server" ControlToCompare="TB_Contrasena" ControlToValidate="TB_CConrasena" ErrorMessage="La Contraseña no es identica " ForeColor="Red" SetFocusOnError="True" ValidationGroup="uno"></asp:CompareValidator>
             </td>
     </div>
              <div class="row form-group">
@@ -210,9 +203,9 @@
                 <asp:Label ID="LB_celu" runat="server" Text="Celular"></asp:Label>
             </td>
             <td class="auto-style33">
-                <asp:TextBox ID="TB_Celular" runat="server" class="form-control" Height="46px"  MaxLength="10"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RFV_Celular" runat="server" ControlToValidate="TB_Celular" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="REV_Nombre2" runat="server" ControlToValidate="TB_Celular" ErrorMessage="Solo Puede Ingresar Numeros" ForeColor="Red" ValidationExpression="^[0-9]*"></asp:RegularExpressionValidator>
+                <asp:TextBox ID="TB_Celular" runat="server" class="form-control" Height="46px"  MaxLength="10" ValidationGroup="uno"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RFV_Celular" runat="server" ControlToValidate="TB_Celular" ErrorMessage="*" ForeColor="Red" SetFocusOnError="True" ValidationGroup="uno"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="REV_Nombre2" runat="server" ControlToValidate="TB_Celular" ErrorMessage="Solo Puede Ingresar Numeros" ForeColor="Red" ValidationExpression="^[0-9]*" ValidationGroup="uno"></asp:RegularExpressionValidator>
             </td>
         </div>
             <td style="width: 5%">&nbsp;</td>
@@ -237,7 +230,7 @@
             <td class="auto-style29" style="width: 5%">&nbsp;</td>
             <td class="auto-style13" colspan="4">
             <div class="form-group">
-                <asp:Button ID="B_Crear" class="btn btn-primary" runat="server" OnClick="B_Crear_Click" Text="Crear Usuario" />
+                <asp:Button ID="B_Crear" class="btn btn-primary" runat="server" OnClick="B_Crear_Click" Text="Crear Usuario" ValidationGroup="uno" />
             </div>
             </td>
             <td style="width: 5%">&nbsp;</td>

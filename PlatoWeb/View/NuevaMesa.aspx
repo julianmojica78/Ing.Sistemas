@@ -17,8 +17,9 @@
                 <asp:Label ID="LB_cantper" runat="server" Text="Cantidad de Personas"></asp:Label>
             </td>
             <td style="height: 20px">
-                <asp:TextBox ID="TB_Cantidad" runat="server"  class="form-control" MaxLength="5"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RFV_numeros" runat="server" ControlToValidate="TB_Cantidad" ErrorMessage="*Ingrese solo Numeros" ForeColor="Red" ValidationExpression="^[0-9_-]*$" ValidationGroup="1"></asp:RegularExpressionValidator>
+                <asp:TextBox ID="TB_Cantidad" runat="server"  class="form-control" MaxLength="2" ValidationGroup="uno"></asp:TextBox>
+                <asp:RegularExpressionValidator ID="RFV_numeros" runat="server" ControlToValidate="TB_Cantidad" ErrorMessage="*" ForeColor="Red" ValidationExpression="^[0-9_-]*$" ValidationGroup="uno"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_Cantidad" ErrorMessage="Ingrese solo numeros" ForeColor="Red" ValidationExpression="^[0-9]*" ValidationGroup="uno"></asp:RegularExpressionValidator>
             </td>
             <td style="height: 20px"></td>
         </tr>
@@ -35,8 +36,9 @@
                 <asp:Label ID="LB_ubi" runat="server" Text="Ubicación"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="TB_Ubicacion" runat="server" class="form-control" MaxLength="20"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RFV_ubi" runat="server" ControlToValidate="TB_Ubicacion" ErrorMessage="*Ingrese solo letras Y Numeros" ForeColor="Red" ValidationExpression="^[A-Za-z0-9_-]*$" ValidationGroup="1"></asp:RegularExpressionValidator>
+                <asp:TextBox ID="TB_Ubicacion" runat="server" class="form-control" MaxLength="20" ValidationGroup="uno"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_Ubicacion" ErrorMessage="*" ForeColor="Red" ValidationGroup="uno"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RFV_ubi" runat="server" ControlToValidate="TB_Ubicacion" ErrorMessage="Ingrese solo letras Y Numeros" ForeColor="Red" ValidationExpression="^[A-Za-z0-9_-]*$" ValidationGroup="uno"></asp:RegularExpressionValidator>
             </td>
             <td>&nbsp;</td>
         </tr>
@@ -48,7 +50,7 @@
         </tr>
         <tr>
             <td class="text-center" colspan="4">
-                <asp:Button ID="BT_Nuevo" runat="server" OnClick="BT_Nuevo_Click" Text="Nuevo" class="btn btn-primary"/>
+                <asp:Button ID="BT_Nuevo" runat="server" OnClick="BT_Nuevo_Click" Text="Nuevo" class="btn btn-primary" ValidationGroup="uno"/>
             </td>
         </tr>
     </table>

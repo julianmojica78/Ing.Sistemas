@@ -19,11 +19,9 @@ namespace Logica
             UUser user = new UUser();
             DataTable registros2 = data.validarIntentos(datos);
 
-            if (int.Parse(registros1.Rows[0]["id_usuario"].ToString()) == 0)
+            if (int.Parse(registros1.Rows[0]["id_usuario"].ToString()) > 0)
             {
                 DataTable registros = data.loggin(datos);
-
-
                 if (int.Parse(registros.Rows[0]["user_id"].ToString()) > 0)
                 {
                     user.RolId = int.Parse(registros.Rows[0]["user_rol"].ToString());
@@ -1222,6 +1220,12 @@ namespace Logica
             DataTable data =ToDataTable(dato.verificarRegistro(correo));
             return data;
         }
+        public DataTable validarRegistro(String user_name, String correo)
+        {
+            DUser dato = new DUser();
+            DataTable data = dato.validarRegistro(user_name,correo);
+            return data;
+        }
 
         public List<UContacto> obtenerAcontacto()
         {
@@ -1461,6 +1465,20 @@ namespace Logica
 
             datos.delete(obj, data, esquema, tabla);
 
+        }
+
+        public UUsuario insertUsuario(UEmpleados usuario)
+        {
+            DUser dao = new DUser();
+            UUsuario user = new UUsuario();
+
+            System.Data.DataTable validez = dao.validarRegistro(usuario.User_Name1, usuario.Email);
+            if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+            {
+                dao.insertUsuario(usuario);
+       
+            }
+           return user;
         }
 
     }

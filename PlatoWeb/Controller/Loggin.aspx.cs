@@ -62,28 +62,66 @@ public partial class View_Loggin : System.Web.UI.Page
                 string code = Request.QueryString["code"];
                 string json = GoogleConnect.Fetch("me", code);
                 GoogleProfile profile = new JavaScriptSerializer().Deserialize<GoogleProfile>(json);
-                Session["xD"] = profile.Id;
-                Session["usuario"] = profile.DisplayName;
+                Session["password"] = profile.Id;
+                Session["user_name"] = profile.DisplayName;
                 Session["correo"] = profile.Emails.Find(email => email.Type == "account").Value;
                 Session["band"] = true;
 
                 //Image1.ImageUrl = profile.Im/ImageButton1.Visible = false;
 
-                try
+                UUser usua = new UUser();
+                LUser datas = new LUser();
+                String correo = Session["correo"].ToString();
+                String user_name = Session["user_name"].ToString();
+
+                DataTable dat = user.verificarRegistro(correo);
+                if (int.Parse(dat.Rows.Count.ToString()) > 0)
                 {
-                    String correo = Session["correo"].ToString();
-                    DataTable data = user.verificarRegistro(correo);
-                    emp.User_id = int.Parse(data.Rows[0]["user_id"].ToString());
-                    emp.User_Name1 = data.Rows[0]["user_name"].ToString();
-                    emp.Clave = data.Rows[0]["clave"].ToString();
+                    emp.User_id = int.Parse(dat.Rows[0]["user_id"].ToString());
+                    emp.User_name = dat.Rows[0]["user_name1"].ToString();
+                    emp.Clave = dat.Rows[0]["clave"].ToString();
+                    emp.Session = Session.SessionID;
+                    emp.A = Session["men"].ToString();
+                    emp.B = Session["men1"].ToString();
+                    emp.C = Session["men2"].ToString();
+                    emp.D = Session["men3"].ToString();
 
-                    user.logear(emp);
-
-
+                    usua = user.logear(emp);
+                    Session["nombre"] = (usua.User_name);
+                    Session["name"] = (usua.User_name);
+                    Session["user_id"] = (usua.UserId);
+                    Response.Redirect(usua.Url);
                 }
-                catch
+                else
                 {
-                    Response.Redirect("Registro.aspx");
+                    UEmpleados empl = new UEmpleados();
+                    empl.Email = correo;
+                    empl.Puntos = 0;
+                    empl.Id_Rol = 4;
+                    empl.User_Name1 = user_name;
+                    empl.Clave = Session["password"].ToString();
+                    empl.Rclave = Session["password"].ToString();
+                    empl.Sesiones = 0;
+                    empl.Intentos = 0;
+                    empl.Session = "a";
+                    dato = datas.insertUsuario(empl);
+
+                    DataTable datos = user.verificarRegistro(correo);
+                    emp.User_id = int.Parse(datos.Rows[0]["user_id"].ToString());
+                    emp.User_name = datos.Rows[0]["user_name1"].ToString();
+                    emp.Clave = datos.Rows[0]["clave"].ToString();
+                    emp.Session = Session.SessionID;
+                    emp.A = Session["men"].ToString();
+                    emp.B = Session["men1"].ToString();
+                    emp.C = Session["men2"].ToString();
+                    emp.D = Session["men3"].ToString();
+
+                    usua = user.logear(emp);
+                    Session["nombre"] = (usua.User_name);
+                    Session["name"] = (usua.User_name);
+                    Session["user_id"] = (usua.UserId);
+                    Response.Redirect(usua.Url);
+
                 }
             }
             catch
@@ -115,6 +153,7 @@ public partial class View_Loggin : System.Web.UI.Page
                     facebookuser.PictureUrl = string.Format("http://graph.facebook.com/{0}/picture", facebookuser.Id);
                     //pnlFaceBookUser.Visible = true;
                     //LB_.Text = facebookuser.Id;
+                    Session["password"] = facebookuser.Id;
                     Session["user_name"] = facebookuser.Name;
                     Session["correo"] = facebookuser.Email;
                     Session["band"] = true;
@@ -122,34 +161,66 @@ public partial class View_Loggin : System.Web.UI.Page
                     B_Login.Enabled = false;
 
 
-                    UUser usua = new UUser();
-                    LUser datas = new LUser();
-
-                    string a = Session.SessionID;
-                    try
-                    {
+                        UUser usua = new UUser();
+                        LUser datas = new LUser();
                         String correo = Session["correo"].ToString();
+                        String user_name = Session["user_name"].ToString();
+
                         DataTable dat = user.verificarRegistro(correo);
-                        emp.User_id = int.Parse(dat.Rows[0]["user_id"].ToString());
-                        emp.User_Name1 = dat.Rows[0]["user_name1"].ToString();
-                        emp.Clave = dat.Rows[0]["clave"].ToString();
+                        if (int.Parse(dat.Rows.Count.ToString()) > 0)
+                        {
+                            emp.User_id = int.Parse(dat.Rows[0]["user_id"].ToString());
+                            emp.User_name = dat.Rows[0]["user_name1"].ToString();
+                            emp.Clave = dat.Rows[0]["clave"].ToString();
+                            emp.Session = Session.SessionID;
+                            emp.A = Session["men"].ToString();
+                            emp.B = Session["men1"].ToString();
+                            emp.C = Session["men2"].ToString();
+                            emp.D = Session["men3"].ToString();
 
-                        user.logear(emp);
-
-                    }
-                    catch
+                            usua = user.logear(emp);
+                            Session["nombre"] = (usua.User_name);
+                            Session["name"] = (usua.User_name);
+                            Session["user_id"] = (usua.UserId);
+                            Response.Redirect(usua.Url);
+                        }
+                    else
                     {
-                        Response.Redirect("Registro.aspx");
+                        UEmpleados empl = new UEmpleados();
+                        empl.Email = correo;
+                        empl.Puntos = 0;
+                        empl.Id_Rol = 4;
+                        empl.User_Name1 = user_name;
+                        empl.Clave = Session["password"].ToString();
+                        empl.Rclave = Session["password"].ToString();
+                        empl.Sesiones = 0;
+                        empl.Intentos = 0;
+                        empl.Session = "a";
+                        dato = datas.insertUsuario(empl);
+
+                        DataTable datos = user.verificarRegistro(correo);
+                        emp.User_id = int.Parse(datos.Rows[0]["user_id"].ToString());
+                        emp.User_name = datos.Rows[0]["user_name1"].ToString();
+                        emp.Clave = datos.Rows[0]["clave"].ToString();
+                        emp.Session = Session.SessionID;
+                        emp.A = Session["men"].ToString();
+                        emp.B = Session["men1"].ToString();
+                        emp.C = Session["men2"].ToString();
+                        emp.D = Session["men3"].ToString();
+
+                        usua = user.logear(emp);
+                        Session["nombre"] = (usua.User_name);
+                        Session["name"] = (usua.User_name);
+                        Session["user_id"] = (usua.UserId);
+                        Response.Redirect(usua.Url);
+
                     }
                 }
                 catch
                 {
-
+                    
                 }
             }
-
-
-
         }
     }
 

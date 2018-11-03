@@ -66,9 +66,9 @@
                     <asp:Label ID="LB_Nombre" runat="server" Text="Nombre:"></asp:Label>
                 </td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="TB_Nombre" runat="server" class="form-control" MaxLength="30" ></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="validator_username" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="Ingrese solo letras" ForeColor="Red" ValidationExpression="^[A-Za-z_ ]*$" ValidationGroup="1"></asp:RegularExpressionValidator>
+                    <asp:TextBox ID="TB_Nombre" runat="server" class="form-control" MaxLength="30" ValidationGroup="uno" ></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="*" ForeColor="Red" ValidationGroup="uno"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="validator_username" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="Ingrese solo letras" ForeColor="Red" ValidationExpression="^[A-Za-z_ ]*$" ValidationGroup="uno"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
@@ -81,8 +81,8 @@
                     <asp:Label ID="LB_Email" runat="server" Text="Email:"></asp:Label>
                 </td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="TB_Email" runat="server" class="form-control" MaxLength="30" TextMode="Email"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_Email" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="TB_Email" runat="server" class="form-control" MaxLength="30" TextMode="Email" ValidationGroup="uno"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_Email" ErrorMessage="*" ForeColor="Red" ValidationGroup="uno"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -94,9 +94,9 @@
                     <asp:Label ID="LB_Telefono" runat="server" Text="Telefono:"></asp:Label>
                 </td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="TB_Telefono" runat="server" class="form-control" MaxLength="10" ></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_Telefono" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="REV_Telefono" runat="server" ControlToValidate="TB_Telefono" ErrorMessage="*Ingrese solo Numeros" ForeColor="Red" ValidationExpression="^[0-9]*$" ValidationGroup="1"></asp:RegularExpressionValidator>
+                    <asp:TextBox ID="TB_Telefono" runat="server" class="form-control" MaxLength="10" ValidationGroup="uno" ></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_Telefono" ErrorMessage="*" ForeColor="Red" ValidationGroup="uno"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="REV_Telefono" runat="server" ControlToValidate="TB_Telefono" ErrorMessage="*Ingrese solo Numeros" ForeColor="Red" ValidationExpression="^[0-9]*$" ValidationGroup="uno"></asp:RegularExpressionValidator>
 
                 </td>
             </tr>
@@ -109,13 +109,13 @@
                     <asp:Label ID="LB_Detalle" runat="server" Text="Detalle:"></asp:Label>
                 </td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="TB_Detalle" runat="server" Height="131px" Width="297px" class="form-control" TextMode="MultiLine" MaxLength="50"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TB_Detalle" ErrorMessage="*" ForeColor="Red" ></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="TB_Detalle" runat="server" Height="131px" Width="297px" class="form-control" TextMode="MultiLine" MaxLength="50" ValidationGroup="uno"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TB_Detalle" ErrorMessage="*" ForeColor="Red" ValidationGroup="uno" ></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="revTexbox3" runat="server"
                         ErrorMessage="Debe ingresar hasta un maximo de 50 caracteres"
                         ValidationExpression="^([A-Za-z0-9_-ñÑ]{1,50})$"
                         ControlToValidate="TB_Detalle"
-                        Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
+                        Display="Dynamic" ForeColor="Red" ValidationGroup="uno"></asp:RegularExpressionValidator>
 
                 </td>
             </tr>
@@ -125,7 +125,7 @@
             </tr>
             <tr>
                 <td class="text-center" colspan="2">
-                    <asp:Button ID="BT_Enviar" runat="server" OnClick="BT_Enviar_Click1" Text="Enviar" class="btn btn-primary" />
+                    <asp:Button ID="BT_Enviar" runat="server" OnClick="BT_Enviar_Click1" Text="Enviar" class="btn btn-primary" ValidationGroup="uno" />
                 </td>
             </tr>
         </table>
