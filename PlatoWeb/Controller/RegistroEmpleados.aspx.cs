@@ -78,7 +78,6 @@ public partial class View_RegistroEmpleados : System.Web.UI.Page
 
         mensaje = user.insertarUsuario(datos, mensaje);
         this.RegisterStartupScript("mensaje", mensaje.Mensaje);
-        mensaje = user.insertarUsuario(datos, mensaje);
         DataTable regis = user.ToDataTable(user.obtenerAu());
         String esquema = "usuario";
         String tabla = "usuario";

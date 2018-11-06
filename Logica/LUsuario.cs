@@ -13,9 +13,9 @@ namespace Logica
         {
             DUser dao = new DUser();
             UUsuario user = new UUsuario();
-        
+
             System.Data.DataTable validez = dao.validarRegistro(usuario.User_Name1, usuario.Email);
-            if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+            if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) == 0)
             {
                 dao.insertUsuario(usuario);
                 user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"ListaEmpleados.aspx\"</script>";
@@ -36,7 +36,7 @@ namespace Logica
             UUsuario user = new UUsuario();
 
             System.Data.DataTable validez = dao.validarRegistro(usuario.User_Name1, usuario.Email);
-            if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+            if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) == 0)
             {
                 dao.insertUsuario(usuario);
                 user.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Loggin.aspx\"</script>";

@@ -14,7 +14,7 @@ namespace Utilitarios
     {
         private String user_name;
         private String ubicacion;
-        private String dia;
+        private DateTime dia;
 
         [Key]
         [Column("user_name")]
@@ -22,6 +22,6 @@ namespace Utilitarios
         [Column("ubicacion")]
         public string Ubicacion { get => ubicacion; set => ubicacion = value; }
         [Column("dia")]
-        public string Dia { get => dia; set => dia = value; }
+        public DateTime Dia { get => dia; set => dia = value; }
     }
 }

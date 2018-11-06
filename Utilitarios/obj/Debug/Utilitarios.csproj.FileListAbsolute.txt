@@ -60,3 +60,4 @@ D:\Ing.Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CoreCompileInputs.cache
 D:\Ing.Sistemas\Utilitarios\obj\Debug\Utilitarios.csproj.CopyComplete
 D:\Ing.Sistemas\Utilitarios\obj\Debug\Utilitarios.dll
 D:\Ing.Sistemas\Utilitarios\obj\Debug\Utilitarios.pdb
+C:\Users\Duvan\Downloads\Ing.Sistemas-master\Utilitarios\obj\Debug\Utilitarios.csprojAssemblyReference.cache

@@ -54,16 +54,16 @@ public partial class View_Registro : System.Web.UI.Page
 
 
 
-        if (Session["band"].Equals(true))
-        {
-            TB_Usuario.Text = Session["user_name"].ToString();
-            TB_Email.Text = Session["correo"].ToString();
-        }
-        else
-        {
-            TB_Usuario.Text = "";
-            TB_Email.Text = "";
-        }
+        //if (Session["band"].Equals(true))
+        //{
+        //    TB_Usuario.Text = Session["user_name"].ToString();
+        //    TB_Email.Text = Session["correo"].ToString();
+        //}
+        //else
+        //{
+        //    TB_Usuario.Text = "";
+        //    TB_Email.Text = "";
+        //}
     }
 
     protected void B_Crear_Click(object sender, EventArgs e)

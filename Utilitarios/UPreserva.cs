@@ -24,7 +24,7 @@ namespace Utilitarios
         public int Id_reserva { get => id_reserva; set => id_reserva = value; }
         [Column("id_plato")]
         public int Id_plato { get => id_plato; set => id_plato = value; }
-        [Column("id_cantidad")]
+        [Column("cantidad")]
         public int Cantidad { get => cantidad; set => cantidad = value; }
         [Column("fecha_ingreso")]
         public string Fecha_ingreso { get => fecha_ingreso; set => fecha_ingreso = value; }

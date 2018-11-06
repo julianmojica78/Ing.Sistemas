@@ -14,7 +14,7 @@ namespace Utilitarios
     {
         private Int32 id_reserva;
         private String user_name;
-        private String dia;
+        private DateTime dia;
 
         [Key]
         [Column("id_reserva")]
@@ -22,7 +22,7 @@ namespace Utilitarios
         [Column("user_name")]
         public string User_name { get => user_name; set => user_name = value; }
         [Column("dia")]
-        public string Dia { get => dia; set => dia = value; }
+        public DateTime Dia { get => dia; set => dia = value; }
 
     
     }

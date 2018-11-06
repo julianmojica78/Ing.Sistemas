@@ -31,9 +31,10 @@ public partial class View_MenuReserva : System.Web.UI.Page
             com = idioma.idiomaMenureserva(FORMULARIO, DDL);
         }
 
-        Hashtable compIdioma = new Hashtable();
-        Session["mensajes"] = compIdioma;
-        Session["men"] = compIdioma["JS_menuR"].ToString();
+       // Hashtable compIdioma = new Hashtable();
+        //Session["mensajes"] = compIdioma;
+       // DL_menuReser.Columns[0].HeaderText = com.B;
+        Session["men"] = com.F;
         DL_menuReser.DataBind();
 
 
@@ -94,7 +95,7 @@ public partial class View_MenuReserva : System.Web.UI.Page
         DataListItem item = (DataListItem)btn.NamingContainer;
         TextBox guardar = (TextBox)item.FindControl("TB_insertarPedido");
         datos.Cantidad = int.Parse(guardar.Text);
-        Label lblid = (Label)item.FindControl("LB_idPlato");
+        Label lblid = (Label)item.FindControl("LB_idPlatos");
         datos.Id_plato = int.Parse(lblid.Text);
         datos.Id_reserva = id_reserva;
 
