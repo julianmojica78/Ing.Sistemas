@@ -1220,6 +1220,12 @@ namespace Logica
             DataTable data =ToDataTable(dato.verificarRegistro(correo));
             return data;
         }
+        public DataTable verificarRes(String user_name)
+        {
+            DUser dato = new DUser();
+            DataTable data = ToDataTable(dato.verificarRes(user_name));
+            return data;
+        }
         public DataTable validarRegistro(String user_name, String correo)
         {
             DUser dato = new DUser();
@@ -1481,5 +1487,173 @@ namespace Logica
            return user;
         }
 
-    }
+        public UReserva Rserva(UReserva datos, UReservation dato)
+        {
+            DUser data = new DUser();
+            UReserva user = new UReserva();
+            L_Persistencia conver = new L_Persistencia();
+
+            if (datos.Nombre != null)
+            {
+                data.insertarReserva(dato);
+                System.Data.DataTable validez1 = conver.ToDataTable(data.obtenerReser(dato));
+                user.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+
+                System.Data.DataTable validez = data.generarTokenReserva(user.Id_reserva);
+                if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+                {
+                    UUserToken token = new UUserToken();
+                    token.Id = int.Parse(validez.Rows[0]["id_reserva"].ToString());
+                    token.Id_usuario = int.Parse(validez.Rows[0]["id_usuario"].ToString());
+                    token.Id_Mesa = int.Parse(validez.Rows[0]["id_mesa"].ToString());
+                    token.Estado = int.Parse(validez.Rows[0]["estado"].ToString());
+                    token.Correo = validez.Rows[0]["email"].ToString();
+                    token.Fecha = DateTime.Now.ToFileTimeUtc();
+
+                    UTokenRe toke = new UTokenRe();
+                    String userToken = encriptar(JsonConvert.SerializeObject(token));
+                    toke.Token = userToken;
+                    toke.Reserva_id = token.Id;
+                    toke.Fecha_creado = DateTime.Now;
+                    toke.Fecha_vigencia = DateTime.Now.AddHours(12);
+
+                    data.insertTokenre(toke);
+
+                    CorreoR correo = new CorreoR();
+
+                    String mensaje = "su link de acceso es: " + "http://52.14.131.2/View/pago.aspx?" + userToken;
+                    correo.enviarCorreo(token.Correo, userToken, mensaje);
+
+                    //cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Para Confirmar su reseva por favor pague el valor de la reserva');</script>");
+                    user.Mensaje = "<script type='text/javascript'>alert('Para Confirmar su reseva,por favor pague el valor de la reserva');</script>";
+
+                }
+                else if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) == -2)
+                {
+                    user.Mensaje = "<script type='text/javascript'>alert('Ya existe un token, por favor verifique su correo.');</script>";
+
+                }
+                else
+                {
+                    user.Mensaje = "<script type='text/javascript'>alert('La Reserva no existe');</script>";
+
+                }
+
+            }
+            else
+            {
+                user.Mensaje = "<script type='text/javascript'>alert('No puede reservas si no esta Logueado');</script>";
+               
+                //this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('No puede reservas si no esta Logueado');window.location=\"Loggin.aspx\"</script>");
+
+                //cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('No puede reservas si no esta Logueado');</script>");
+                ////Response.Redirect("Loggin.aspx");
+
+            }
+
+            return user;
+
+        }
+        public DataTable login(UUser datos)
+        {
+            DUser data = new DUser();
+            UUser user = new UUser();
+
+            DataTable registros = ToDataTable(data.listarlogin(datos));
+                if (int.Parse(registros.Rows[0]["user_id"].ToString()) > 0)
+                {
+                    user.RolId = int.Parse(registros.Rows[0]["id_rol"].ToString());
+                    switch (int.Parse(registros.Rows[0]["id_rol"].ToString()))
+                    {
+                        case 1:
+
+
+                            user.User_name = registros.Rows[0]["nombre"].ToString();
+                            user.UserId = int.Parse(registros.Rows[0]["user_id"].ToString());
+
+
+
+                            UUser datosUsuario = new UUser();
+                            Mac datosConexion = new Mac();
+
+                            /* ipAddress = HttpConteinxt.Current.Request.UserHostAddress;
+                             mac = Utilidades.Mac.GetMAC(ref ipAddress);*/
+
+                            datosUsuario.UserId = user.UserId;
+                            datosUsuario.Ip = datosConexion.ip();
+                            datosUsuario.Mac = datosConexion.mac();
+                            datosUsuario.Session = datos.Session;
+
+                            data.guardadoSession(datosUsuario);
+                            user.Url = "ListadePlatos.aspx";
+                            break;
+
+                        case 2:
+
+                            user.User_name = registros.Rows[0]["nombre"].ToString();
+                            user.UserId = int.Parse(registros.Rows[0]["user_id"].ToString());
+
+                            UUser datosUsuario1 = new UUser();
+                            Mac datosConexion1 = new Mac();
+
+                            /* ipAddress = HttpContext.Current.Request.UserHostAddress;
+                             mac = Utilidades.Mac.GetMAC(ref ipAddress);*/
+
+                            datosUsuario1.UserId = user.UserId;
+                            datosUsuario1.Ip = datosConexion1.ip();
+                            datosUsuario1.Mac = datosConexion1.mac();
+                            datosUsuario1.Session = datos.Session;
+
+                            data.guardadoSession(datosUsuario1);
+
+                            user.Url = "Despachos.aspx";
+                            break;
+
+                        case 3:
+
+                            user.User_name = registros.Rows[0]["nombre"].ToString();
+                            user.UserId = int.Parse(registros.Rows[0]["user_id"].ToString());
+
+                            UUser datosUsuario2 = new UUser();
+                            Mac datosConexion2 = new Mac();
+
+                            /* ipAddress = HttpContext.Current.Request.UserHostAddress;
+                             mac = Utilidades.Mac.GetMAC(ref ipAddress);*/
+
+                            datosUsuario2.UserId = user.UserId;
+                            datosUsuario2.Ip = datosConexion2.ip();
+                            datosUsuario2.Mac = datosConexion2.mac();
+                            datosUsuario2.Session = datos.Session;
+
+                            data.guardadoSession(datosUsuario2);
+
+                            user.Url = "Pedido.aspx";
+                            break;
+
+
+                        case 4:
+
+                            user.User_name = registros.Rows[0]["user_name1"].ToString();
+                            user.UserId = int.Parse(registros.Rows[0]["user_id"].ToString());
+                            user.Nombre = registros.Rows[0]["nombre"].ToString();
+                            user.Apellido = registros.Rows[0]["apellido"].ToString();
+                            user.Clave = registros.Rows[0]["clave"].ToString();
+                            user.Email = registros.Rows[0]["email"].ToString();
+
+                            user.Url = "InicioCliente.aspx";
+                            break;
+
+                    }
+                }
+                else
+                {
+
+                    user.Mensaje = "<script type='text/javascript'>alert('" + datos.B.ToString() + "');window.location=\"Loggin.aspx\"</script>";
+
+                }
+            return registros;
+        }
+            
+        }
+
 }

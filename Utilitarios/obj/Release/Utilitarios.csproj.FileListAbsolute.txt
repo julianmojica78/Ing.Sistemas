@@ -1,0 +1,9 @@
+D:\Ing.Sistemas\Utilitarios\bin\Release\Utilitarios.dll
+D:\Ing.Sistemas\Utilitarios\bin\Release\Utilitarios.pdb
+D:\Ing.Sistemas\Utilitarios\bin\Release\Newtonsoft.Json.dll
+D:\Ing.Sistemas\Utilitarios\bin\Release\Newtonsoft.Json.xml
+D:\Ing.Sistemas\Utilitarios\obj\Release\Utilitarios.csprojAssemblyReference.cache
+D:\Ing.Sistemas\Utilitarios\obj\Release\Utilitarios.csproj.CoreCompileInputs.cache
+D:\Ing.Sistemas\Utilitarios\obj\Release\Utilitarios.csproj.CopyComplete
+D:\Ing.Sistemas\Utilitarios\obj\Release\Utilitarios.dll
+D:\Ing.Sistemas\Utilitarios\obj\Release\Utilitarios.pdb

@@ -2622,6 +2622,16 @@ namespace Datos
             }
 
         }
+        public List<UEmpleados> verificarRes(String user_name)
+        {
+            using (var db = new Mapeo("user"))
+            {
+                var a = db.user.ToList<UEmpleados>().Where(x => x.User_Name1 == user_name);
+                return a.ToList<UEmpleados>();
+
+            }
+
+        }
         public List<UEmpleados> listarau()
         {
             using (var db = new Mapeo("user"))
@@ -2728,6 +2738,17 @@ namespace Datos
             {
                 var a = db.controles.OrderByDescending(x => x.Id).ToList<UControles>();
                 return a.ToList<UControles>();
+
+            }
+
+        }
+
+        public List<UEmpleados> listarlogin(UUser datos)
+        {
+            using (var db = new Mapeo("user"))
+            {
+                var a = db.user.ToList<UEmpleados>().Where(x => x.User_Name1 == datos.User_name && x.Clave == datos.Clave);
+                return a.ToList<UEmpleados>();
 
             }
 
