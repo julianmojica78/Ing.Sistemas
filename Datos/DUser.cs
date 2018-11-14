@@ -2134,8 +2134,22 @@ namespace Datos
                 return a.ToList<Menu>();
 
             }
-
-
+        }
+        public List<Ofertas> listarOferta()
+        {
+            using (var db = new Mapeo("ofertas"))
+            {
+                var a = db.ofertas.ToList<Ofertas>();
+                return a.ToList<Ofertas>();
+            }
+        }
+        public List<TopPlatos> listarTop()
+        {
+            using (var db = new Mapeo("topPlatos"))
+            {
+                var a = db.topPlatos.ToList<TopPlatos>();
+                return a.ToList<TopPlatos>();
+            }
         }
 
         public void insertComentario(UComentarios comentario)

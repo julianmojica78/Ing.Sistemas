@@ -164,3 +164,29 @@ D:\Ing.Sistemas\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
 D:\Ing.Sistemas\Datos\obj\Debug\Datos.csproj.CopyComplete
 D:\Ing.Sistemas\Datos\obj\Debug\Datos.dll
 D:\Ing.Sistemas\Datos\obj\Debug\Datos.pdb
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\Datos.dll.config
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\Datos.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\Datos.pdb
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\EntityFramework.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\EntityFramework6.Npgsql.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\Npgsql.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\System.ValueTuple.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\Utilitarios.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\Utilitarios.pdb
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\EntityFramework.xml
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\EntityFramework6.Npgsql.xml
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\Npgsql.pdb
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\Npgsql.xml
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\bin\Debug\System.ValueTuple.xml
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\obj\Debug\Datos.csprojAssemblyReference.cache
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\obj\Debug\Datos.csproj.CopyComplete
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\obj\Debug\Datos.dll
+C:\Users\Duvan\3D Objects\Ing.Sistemas-master\Datos\obj\Debug\Datos.pdb

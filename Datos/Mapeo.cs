@@ -26,7 +26,8 @@ namespace Datos
         public DbSet<ULcomentarios> comentario { get; set; }
         public DbSet<UInformeRe> informeRe { get; set; }
         public DbSet<UReservation> reserva { get; set; }
-
+        public DbSet<Ofertas> ofertas { get; set; }
+        public DbSet<TopPlatos> topPlatos { get; set; }
         public DbSet<UInformeVe> informeVe { get; set; }
         public DbSet<UFormularios> formulario { get; set; }
         public DbSet<UPedido> pedid { get; set; }

@@ -119,6 +119,16 @@ namespace Logica
             DUser dao = new DUser();
             return dao.listarMenu();
         }
+        public List<Ofertas> obtenerOferta()
+        {
+            DUser dao = new DUser();
+            return dao.listarOferta();
+        }
+        public List<TopPlatos> obtenerTop()
+        {
+            DUser dao = new DUser();
+            return dao.listarTop();
+        }
 
         public UUsuario insertarcomentario(UComentarios comentario ,UUsuario mensaje)
         {
