@@ -35,65 +35,100 @@ public class Servicios : System.Web.Services.WebService
         //InitializeComponent(); 
     }
 
+    public Seguridad SoapHeader;
+
     [WebMethod]
-    public String HelloWorld()
+    [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
+    public string AutenticationUsuario()
     {
-        Image _imagen = Image.FromFile(HttpContext.Current.Server.MapPath("~/Imagen/astronomia.jpg"));
-        byte[] _bytes = ImgToByteArray(_imagen);
-        String _strBase64 = Convert.ToBase64String(_bytes);
-        return "http://localhost:53180/Imagen/astronomia.jpg";
+        try
+        {
+            if (SoapHeader == null) return "-1";
+            if (!SoapHeader.blCredencialesValidas(SoapHeader.stToken)) return "-1";
+
+            string stToken = Guid.NewGuid().ToString();
+
+            HttpRuntime.Cache.Add(stToken,
+                SoapHeader.stToken,
+                null,
+                System.Web.Caching.Cache.NoAbsoluteExpiration,
+                TimeSpan.FromDays(2),
+                System.Web.Caching.CacheItemPriority.NotRemovable,
+                null);
+            return stToken;
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }
 
     [WebMethod]
+    [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
     public String LMenu()
     {
-        L_Persistencia datos = new L_Persistencia();
-        Menu m = new Menu();
-        UUser dato = new UUser();
-        DataTable data = datos.ToDataTable(datos.obtenerMenu());
-        DataTable d = new DataTable();
-        d.Columns.Add("id");
-        d.Columns.Add("nombre");
-        d.Columns.Add("descripcion");
-        d.Columns.Add("precio");
-        d.Columns.Add("imagen");
-        d.AcceptChanges();
-        
-        int i = 0;
-        foreach (DataRow dat in data.Rows)
+        try
         {
-            
-            m.Id_plato = int.Parse(data.Rows[i]["id_plato"].ToString());
-            m.Nombre = data.Rows[i]["nombre"].ToString();
-            m.Descripcion = data.Rows[i]["descripcion"].ToString();
-            m.Precio = data.Rows[i]["precio"].ToString();
-            String img = data.Rows[i]["imagen"].ToString();
+            if (SoapHeader == null) throw new Exception("Requiere validacion");
+
+            if (!SoapHeader.blCredencialesValidas(SoapHeader)) throw new Exception("Requiere validacion");
+
+            L_Persistencia datos = new L_Persistencia();
+            Menu m = new Menu();
+            UUser dato = new UUser();
+            DataTable data = datos.ToDataTable(datos.obtenerMenu());
+            DataTable d = new DataTable();
+            d.Columns.Add("id");
+            d.Columns.Add("nombre");
+            d.Columns.Add("descripcion");
+            d.Columns.Add("precio");
+            d.Columns.Add("imagen");
+            d.AcceptChanges();
+
+            int i = 0;
+            foreach (DataRow dat in data.Rows)
+            {
+
+                m.Id_plato = int.Parse(data.Rows[i]["id_plato"].ToString());
+                m.Nombre = data.Rows[i]["nombre"].ToString();
+                m.Descripcion = data.Rows[i]["descripcion"].ToString();
+                m.Precio = data.Rows[i]["precio"].ToString();
+                String img = data.Rows[i]["imagen"].ToString();
 
 
-            //m.Id_plato = int.Parse(data.Rows[1]["id_plato"].ToString());
-            //m.Nombre = data.Rows[1]["nombre"].ToString();
-            //m.Descripcion = data.Rows[1]["descripcion"].ToString();
-            //m.Precio = data.Rows[1]["precio"].ToString();
-            //String img = data.Rows[1]["imagen"].ToString();
+                //m.Id_plato = int.Parse(data.Rows[1]["id_plato"].ToString());
+                //m.Nombre = data.Rows[1]["nombre"].ToString();
+                //m.Descripcion = data.Rows[1]["descripcion"].ToString();
+                //m.Precio = data.Rows[1]["precio"].ToString();
+                //String img = data.Rows[1]["imagen"].ToString();
 
-            String a = img.Replace("~","");
-            //Image _imagen = Image.FromFile(HttpContext.Current.Server.MapPath(img));
-            //byte[] _bytes = ImgToByteArray(_imagen);
-            //String _strBase64 = Convert.ToBase64String(_bytes);
-            m.Imagen = "http://localhost:53180" + a;
+                String a = img.Replace("~", "");
+                //Image _imagen = Image.FromFile(HttpContext.Current.Server.MapPath(img));
+                //byte[] _bytes = ImgToByteArray(_imagen);
+                //String _strBase64 = Convert.ToBase64String(_bytes);
+                m.Imagen = "http://localhost:53180" + a;
 
-            d.Rows.Add(m.Id_plato,m.Nombre,m.Descripcion,m.Precio,m.Imagen);
-            i++;
+                d.Rows.Add(m.Id_plato, m.Nombre, m.Descripcion, m.Precio, m.Imagen);
+                i++;
+            }
+
+            String datas = JsonConvert.SerializeObject(d);
+            return datas;
         }
-
-        String datas = JsonConvert.SerializeObject(d);
-        return datas;
+        catch(Exception ex){ throw ex; }
+      
     }
 
     [WebMethod]
+    [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
     public String Filtro(String nombre)
     {
-        L_Persistencia dato = new L_Persistencia();
+        try
+        {
+            if (SoapHeader == null) throw new Exception("Requiere validacion");
+
+            if (!SoapHeader.blCredencialesValidas(SoapHeader)) throw new Exception("Requiere validacion");
+            L_Persistencia dato = new L_Persistencia();
         UUser datos = new UUser();
         Menu m = new Menu();
         ClientScriptManager cm = this.ClientScript;
@@ -135,6 +170,8 @@ public class Servicios : System.Web.Services.WebService
 
         String datas = JsonConvert.SerializeObject(d);
         return datas;
+        }
+        catch (Exception ex) { throw ex; }
     }
     
     private void RegisterStartupScript(string v1, string v2)
@@ -165,9 +202,16 @@ public class Servicios : System.Web.Services.WebService
     }
 
     [WebMethod]
+    [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
     public UReserva Reserva(String fecha, String hora, Int32 cantidad, String data)
     {
-        UReserva datos = new UReserva();
+        try
+        {
+            if (SoapHeader == null) throw new Exception("Requiere validacion");
+
+            if (!SoapHeader.blCredencialesValidas(SoapHeader)) throw new Exception("Requiere validacion");
+
+            UReserva datos = new UReserva();
         UReservation dato = new UReservation();
         LUser user = new LUser();
         UEmpleados usuario = new UEmpleados();
@@ -229,12 +273,20 @@ public class Servicios : System.Web.Services.WebService
         }
 
         return datos;
+        }
+        catch (Exception ex) { throw ex; }
     }
 
     [WebMethod]
+    [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
     public DataTable Login(String user,String clave)
     {
-        UUser datos = new UUser();
+        try
+        {
+            if (SoapHeader == null) throw new Exception("Requiere validacion");
+
+            if (!SoapHeader.blCredencialesValidas(SoapHeader)) throw new Exception("Requiere validacion");
+            UUser datos = new UUser();
         LUser data = new LUser();
 
         datos.User_name = user;
@@ -245,5 +297,7 @@ public class Servicios : System.Web.Services.WebService
         DataSet dat = new DataSet();
         dat.Tables.Add(dato);
         return dato;
+        }
+        catch (Exception ex) { throw ex; }
     }
 }
