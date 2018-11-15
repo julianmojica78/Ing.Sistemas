@@ -166,4 +166,9 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
     {
 
     }
+
+    protected void BT_consumo_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TopAspirantes.aspx");
+    }
 }

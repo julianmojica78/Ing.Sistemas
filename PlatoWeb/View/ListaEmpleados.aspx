@@ -18,6 +18,8 @@
                 <asp:Button ID="BT_Modificar" runat="server" OnClick="Button1_Click" Text="Modificar" class="btn btn-primary"/>
             &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="BT_Eliminar" runat="server" Text="Eliminar" OnClick="BT_Eliminar_Click1" class="btn btn-primary" />
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="BT_consumo" runat="server" Text="Consumo Aspirantes" class="btn btn-primary" OnClick="BT_consumo_Click" />
             </td>
             <td style="height: 20px"></td>
         </tr>

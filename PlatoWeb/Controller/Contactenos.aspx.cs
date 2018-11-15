@@ -65,4 +65,9 @@ public partial class View_Contactenos : System.Web.UI.Page
         contacto.insert(regis, esquema, tabla, pk, session);
         //this.Page.Response.Write(mens);
     }
+
+    protected void BT_consumo_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ConsumirContactenos.aspx");
+    }
 }
