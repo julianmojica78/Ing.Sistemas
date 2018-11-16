@@ -320,7 +320,7 @@ namespace Logica
 
         }
 
-        public UDespachos despachos(Int32 id_pedido, DateTime fecha_despacho)
+        public UDespachos despachos(Int32 id_pedido,DateTime fecha_despacho)
         {
             DUser llamar = new DUser();
             UDespachos desp = new UDespachos();

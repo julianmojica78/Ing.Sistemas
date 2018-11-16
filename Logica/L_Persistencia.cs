@@ -366,7 +366,15 @@ namespace Logica
         public UDespachos actualizardespacho1(UPreserva reserva)
         {
             DUser dao = new DUser();
-            dao.actualizarDespachos1(reserva);
+            UPreserva datos = new UPreserva();
+            System.Data.DataTable validez1 = ToDataTable(dao.obtenerRese(reserva));
+            datos.Id = int.Parse(validez1.Rows[0]["id"].ToString());
+            datos.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+            datos.Id_plato = int.Parse(validez1.Rows[0]["id_plato"].ToString());
+            datos.Cantidad = int.Parse(validez1.Rows[0]["cantidad"].ToString());
+            datos.Fecha_ingreso = DateTime.Parse(validez1.Rows[0]["fecha_ingreso"].ToString());
+            datos.Fecha_despacho = DateTime.Now;
+            dao.actualizarDespachos1(datos);
             UDespachos desp = new UDespachos();
 
             desp.Url = "Despachos.aspx";

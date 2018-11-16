@@ -55,7 +55,7 @@
         </tr>
         <tr>
             <td class="auto-style1">
-                <asp:GridView ID="GV_Pedidos" runat="server" AutoGenerateColumns="False" DataSourceID="ODS_Despachos" Width="100%" DataKeyNames="id_pedido" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                <asp:GridView ID="GV_Pedidos" runat="server" AutoGenerateColumns="False" DataSourceID="ODS_Despachos" Width="100%" DataKeyNames="id_pedido" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" OnSelectedIndexChanged="GV_Pedidos_SelectedIndexChanged">
                     <Columns>
                         <asp:CommandField ButtonType="Button" EditText="Pedido" HeaderText="Ordenes" ShowSelectButton="True" />
                         <asp:BoundField DataField="id_pedido" HeaderText="Pedido" />
@@ -123,7 +123,7 @@
         </tr>
         <tr>
             <td class="auto-style1">
-                <asp:GridView ID="GV_Reservas" runat="server" AutoGenerateColumns="False" DataSourceID="ODS_Despacho1" Width="100%" DataKeyNames="id_pedido" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                <asp:GridView ID="GV_Reservas" runat="server" AutoGenerateColumns="False" DataSourceID="ODS_Despacho1" Width="100%" DataKeyNames="id_pedido" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" OnSelectedIndexChanged="GV_Reservas_SelectedIndexChanged">
                     <Columns>
                         <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                         <asp:BoundField DataField="id_pedido" HeaderText="Pedido" />
@@ -143,7 +143,7 @@
             <td style="width: 0.1%" class="auto-style1">
                 &nbsp;</td>
             <td class="auto-style1">
-                <asp:GridView ID="GV_DespachoR" runat="server" AutoGenerateColumns="False" DataSourceID="ODS_Plato" OnSelectedIndexChanged="GridView3_SelectedIndexChanged" Width="100%" DataKeyNames="id_pedido" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                <asp:GridView ID="GV_DespachoR" runat="server" AutoGenerateColumns="False" DataSourceID="ODS_Reserva" OnSelectedIndexChanged="GridView3_SelectedIndexChanged" Width="100%" DataKeyNames="id_pedido" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
                     <Columns>
                         <asp:BoundField DataField="id_pedido" HeaderText="Pedido" />
                         <asp:BoundField DataField="Nombre" HeaderText="Plato" />
@@ -159,9 +159,9 @@
                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                     <SortedDescendingHeaderStyle BackColor="#242121" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Plato1" runat="server" SelectMethod="listarPlatos1" TypeName="Logica.L_Persistencia">
+                <asp:ObjectDataSource ID="ODS_Reserva" runat="server" SelectMethod="listarPlatos1" TypeName="Logica.L_Persistencia">
                     <SelectParameters>
-                        <asp:ControlParameter ControlID="GV_Reservas" Name="id_pedido" PropertyName="SelectedValue" Type="Int32" DefaultValue="" />
+                        <asp:ControlParameter ControlID="GV_Reservas" Name="id_pedido" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>
                 </asp:ObjectDataSource>
             </td>

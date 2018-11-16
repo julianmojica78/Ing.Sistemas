@@ -98,6 +98,8 @@ public partial class View_MenuReserva : System.Web.UI.Page
         Label lblid = (Label)item.FindControl("LB_idPlatos");
         datos.Id_plato = int.Parse(lblid.Text);
         datos.Id_reserva = id_reserva;
+        datos.Fecha_ingreso = DateTime.Now;
+        //datos.Fecha_despacho = DateTime.Parse(null);
 
         dac.insertarPlatoR(datos);
         // doc.insertarplares(dato);

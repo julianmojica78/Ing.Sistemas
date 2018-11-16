@@ -15,11 +15,13 @@ namespace Utilitarios
         private int id_reserva;
         private int id_plato;
         private int cantidad;
-        private String fecha_ingreso;
-        private DateTime fecha_despacho;
+        private DateTime fecha_ingreso;
+        private DateTime? fecha_despacho;
         private int id;
 
         [Key]
+        [Column("id")]
+        public int Id { get => id; set => id = value; }
         [Column("id_reserva")]
         public int Id_reserva { get => id_reserva; set => id_reserva = value; }
         [Column("id_plato")]
@@ -27,10 +29,9 @@ namespace Utilitarios
         [Column("cantidad")]
         public int Cantidad { get => cantidad; set => cantidad = value; }
         [Column("fecha_ingreso")]
-        public string Fecha_ingreso { get => fecha_ingreso; set => fecha_ingreso = value; }
+        public DateTime Fecha_ingreso { get => fecha_ingreso; set => fecha_ingreso = value; }
         [Column("fecha_despacho")]
-        public DateTime Fecha_despacho { get => fecha_despacho; set => fecha_despacho = value; }
-        [Column("id")]
-        public int Id { get => id; set => id = value; }
+        public DateTime? Fecha_despacho { get => fecha_despacho; set => fecha_despacho = value; }
+
     }
 }

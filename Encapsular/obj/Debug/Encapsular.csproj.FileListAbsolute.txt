@@ -14,3 +14,9 @@ D:\Ing.Sistemas\Ing.Sistemas\Encapsular\obj\Debug\Encapsular.csprojAssemblyRefer
 D:\Ing.Sistemas\Ing.Sistemas\Encapsular\obj\Debug\Encapsular.csproj.CoreCompileInputs.cache
 D:\Ing.Sistemas\Ing.Sistemas\Encapsular\obj\Debug\Encapsular.dll
 D:\Ing.Sistemas\Ing.Sistemas\Encapsular\obj\Debug\Encapsular.pdb
+D:\Ing.Sistemas\Encapsular\bin\Debug\Encapsular.dll
+D:\Ing.Sistemas\Encapsular\bin\Debug\Encapsular.pdb
+D:\Ing.Sistemas\Encapsular\obj\Debug\Encapsular.csprojAssemblyReference.cache
+D:\Ing.Sistemas\Encapsular\obj\Debug\Encapsular.csproj.CoreCompileInputs.cache
+D:\Ing.Sistemas\Encapsular\obj\Debug\Encapsular.dll
+D:\Ing.Sistemas\Encapsular\obj\Debug\Encapsular.pdb

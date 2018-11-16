@@ -544,7 +544,7 @@ namespace Logica
             com.C = compIdioma["LB_desc"].ToString();
             com.D = compIdioma["LB_precio"].ToString();
             com.E = compIdioma["LB_ingreCant"].ToString();
-            com.F = compIdioma["JS_menRe"].ToString();
+            com.F = compIdioma["JS_menuR"].ToString();
 
 
             return com;

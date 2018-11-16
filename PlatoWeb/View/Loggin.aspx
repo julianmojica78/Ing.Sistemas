@@ -60,7 +60,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <ajaxToolkit:NoBot ID="NoBot1" runat="server" ResponseMinimumDelaySeconds="3" CutoffWindowSeconds="10" CutoffMaximumInstances="3"  />
-                   <%-- Cantidad minina de segundos en la devolucion de datos // intervalo de tiempo en el que son medidas la devolucion de datos desde una ip// Maximos segundos por intervalo de tiempo --%>
+    <%-- Cantidad minina de segundos en la devolucion de datos // intervalo de tiempo en el que son medidas la devolucion de datos desde una ip// Maximos segundos por intervalo de tiempo --%>
 
     <table class="auto-style27">
         <tr>
@@ -134,6 +134,14 @@
                 <asp:Button ID="B_Facebook" runat="server"  Text="Ingresar con FaceBook" class="btn btn-primary" ValidationGroup="cuatro" OnClick="B_Facebook_Click" />
                 &nbsp;&nbsp;&nbsp;
                 </div>
+
+                     </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td class="auto-style31" colspan="2">
+                 <asp:Button ID="BT_Games" runat="server" Text="Ingresar con Games" class="btn btn-primary" OnClick="BT_Games_Click" />
 
                      </td>
             <td>&nbsp;</td>

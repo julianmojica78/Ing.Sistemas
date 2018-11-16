@@ -301,4 +301,9 @@ public partial class View_Loggin : System.Web.UI.Page
     {
         FaceBookConnect.Authorize("user_photos,email", Request.Url.AbsoluteUri.Split('?')[0]);
     }
+
+    protected void BT_Games_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("LoginGames.aspx");
+    }
 }

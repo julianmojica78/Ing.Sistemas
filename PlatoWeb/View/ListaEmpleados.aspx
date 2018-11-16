@@ -11,6 +11,20 @@
             </td>
         </tr>
         <tr>
+            <td style="height: 20px">&nbsp;</td>
+            <td style="height: 20px">
+        <asp:GridView ID="GridView1" runat="server" Width="100%">
+        </asp:GridView>
+            </td>
+            <td style="height: 20px">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="height: 20px">&nbsp;</td>
+            <td style="height: 20px">
+                &nbsp;</td>
+            <td style="height: 20px">&nbsp;</td>
+        </tr>
+        <tr>
             <td style="height: 20px"></td>
             <td style="height: 20px">
                 <asp:Button ID="BT_Nuevo" runat="server" OnClick="BT_Nuevo_Click" Text="Nuevo" class="btn btn-primary"/>
@@ -19,8 +33,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="BT_Eliminar" runat="server" Text="Eliminar" OnClick="BT_Eliminar_Click1" class="btn btn-primary" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="BT_consumo" runat="server" Text="Consumo Aspirantes" class="btn btn-primary" OnClick="BT_consumo_Click" />
-            </td>
+                </td>
             <td style="height: 20px"></td>
         </tr>
         <tr>

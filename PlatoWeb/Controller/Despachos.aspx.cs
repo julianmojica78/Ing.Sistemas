@@ -114,12 +114,7 @@ public partial class View_Despachos : System.Web.UI.Page
         L_Persistencia user = new L_Persistencia();
 
         Session["pedido"] = GV_DespachoR.SelectedRow.Cells[0].Text;
-        //Session["reserva"] = GridView1.SelectedRow.Cells[0].Text;
-        Session["plato"] = GV_DespachoR.SelectedRow.Cells[1].Text;
-        Session["cantidad"] = GV_DespachoR.SelectedRow.Cells[2].Text;
         reserva.Id_reserva = int.Parse(Session["pedido"].ToString());
-        reserva.Id_plato = int.Parse(Session["plato"].ToString());
-        reserva.Cantidad = int.Parse(Session["cantidad"].ToString());
         reserva.Fecha_despacho = DateTime.Now;
 
         datos = user.actualizardespacho1(reserva);
@@ -127,4 +122,14 @@ public partial class View_Despachos : System.Web.UI.Page
     }
 
 
+
+    protected void GV_Reservas_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void GV_Pedidos_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

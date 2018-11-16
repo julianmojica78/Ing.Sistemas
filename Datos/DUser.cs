@@ -2427,6 +2427,17 @@ namespace Datos
 
             }
         }
+
+        public List<UPreserva> obtenerRese(UPreserva pedido)
+        {
+
+            using (var db = new Mapeo("platoR"))
+            {
+                var a = db.platoR.ToList<UPreserva>().Where(x => x.Id_reserva == pedido.Id_reserva);
+                return a.ToList<UPreserva>();
+
+            }
+        }
         public void actualizarDespachos(UPedidoplato platos)
         {
             using (var db = new Mapeo("pedidos"))
@@ -2440,7 +2451,7 @@ namespace Datos
 
         public void actualizarDespachos1(UPreserva reserva)
         {
-            using (var db = new Mapeo("plator"))
+            using (var db = new Mapeo("platoR"))
             {
                 db.platoR.Attach(reserva);
                 var entry = db.Entry(reserva);

@@ -62,15 +62,39 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
         Session["men2"] = com.S;
         Session["buscaremp"] = com.S;
 
-
-
         LUsuario dato = new LUsuario();
         GV_Empleados.DataSource = dato.obtenerEmpleados();
         GV_Empleados.DataBind();
-        //}
-    }
+        //try
+        //{
+        //    Servicios.ServiciosSoapClient men = new Servicios.ServiciosSoapClient();
+        //    //men.ClientCredentials.UserName.UserName = "";
 
-    protected void BT_Nuevo_Click(object sender, EventArgs e)
+        //    Servicios.Seguridad obSeguridad = new Servicios.Seguridad()
+        //    {
+        //        stToken = DateTime.Now.ToString("yyyyMMdd")
+        //    };
+
+        //    String StToken = men.AutenticationUsuario(obSeguridad);
+        //    if (StToken.Equals("-1")) throw new Exception("Requiere Validacion");
+
+        //    obSeguridad.AutenticationToken = StToken;
+
+        //    String ofertas = men.Ofertas(obSeguridad);
+
+        //    DataTable ofer = JsonConvert.DeserializeObject<DataTable>(ofertas);
+        SRUniempleo.ServidorUniempleoSoapClient servicio = new SRUniempleo.ServidorUniempleoSoapClient();
+        DataSet topaaspirantes = servicio.Top_5_Aspirantes();
+        GridView1.DataSource = topaaspirantes;
+        GridView1.DataBind();
+    //catch (Exception ex)
+    //{
+    //    Response.Write("<Script language='JavaScript'>parent.alert('" + ex.Message + "');</Script>");
+    //}   
+
+}
+
+protected void BT_Nuevo_Click(object sender, EventArgs e)
     {
         Response.Redirect("RegistroEmpleados.aspx");
     }
