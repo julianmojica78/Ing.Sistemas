@@ -350,7 +350,7 @@ public class Servicios : System.Web.Services.WebService
             foreach (DataRow dat in data.Rows)
             {
 
-                m.Id_plato = int.Parse(data.Rows[i]["id_plato"].ToString());
+                m.Id_ofertas = int.Parse(data.Rows[i]["id_plato"].ToString());
                 m.Nombre = data.Rows[i]["nombre"].ToString();
                 m.Descripcion = data.Rows[i]["descripcion"].ToString();
                 m.Precio = data.Rows[i]["precio"].ToString();
@@ -360,7 +360,7 @@ public class Servicios : System.Web.Services.WebService
                 String a = img.Replace("~", "");
                 m.Imagen = "http://localhost:53180" + a;
 
-                d.Rows.Add(m.Id_plato, m.Nombre, m.Descripcion, m.Precio, m.Oferta, m.Imagen);
+                d.Rows.Add(m.Id_ofertas, m.Nombre, m.Descripcion, m.Precio, m.Oferta, m.Imagen);
                 i++;
             }
 

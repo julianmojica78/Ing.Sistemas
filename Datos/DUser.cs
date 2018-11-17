@@ -2107,6 +2107,14 @@ namespace Datos
                 db.SaveChanges();
             }
         }
+        public void insertOferta(Ofertas menu)
+        {
+            using (var db = new Mapeo("ofertas"))
+            {
+                db.ofertas.Add(menu);
+                db.SaveChanges();
+            }
+        }
         public void actualizarMenu(Menu menu)
         {
             using (var db = new Mapeo("menu"))
@@ -2693,6 +2701,16 @@ namespace Datos
             {
                 var a = db.menu.OrderByDescending(x => x.Id_plato).ToList<Menu>();
                 return a.ToList<Menu>();
+
+            }
+
+        }
+        public List<Ofertas> listarAofertas()
+        {
+            using (var db = new Mapeo("ofertas"))
+            {
+                var a = db.ofertas.OrderByDescending(x => x.Id_ofertas).ToList<Ofertas>();
+                return a.ToList<Ofertas>();
 
             }
 

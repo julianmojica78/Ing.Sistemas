@@ -100,6 +100,14 @@ namespace Logica
             UuserCrear user = new UuserCrear();
             return user;
         }
+
+        public UuserCrear insertaroferta(Ofertas menu)
+        {
+            DUser dao = new DUser();
+            dao.insertOferta(menu);
+            UuserCrear user = new UuserCrear();
+            return user;
+        }
         public UuserCrear actualizarMenu(Menu menu)
         {
             DUser dao = new DUser();

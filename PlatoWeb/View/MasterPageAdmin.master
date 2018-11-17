@@ -179,6 +179,11 @@
                                 <asp:Label ID="LB_Idioma" runat="server" Text="Idioma"></asp:Label></span>
                         </a>
                     </li>
+                         <li><a href="Ofertas.aspx"><i class="fa fa-arrow-circle-down"></i>
+                            <span>
+                                <asp:Label ID="Label1" runat="server" Text="Ofertas"></asp:Label></span>
+                        </a>
+                    </li>
             </section>
         </aside>
 

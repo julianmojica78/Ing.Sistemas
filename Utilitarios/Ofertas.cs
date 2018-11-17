@@ -8,8 +8,8 @@ namespace Utilitarios
     [Table("ofertas", Schema = "usuario")]
     public class Ofertas
     {
-        private int id_plato;
-        private String nombre;
+        private int id_ofertas;
+        private String nombre;  
         private String descripcion;
         private String precio;
         private String oferta;
@@ -17,7 +17,7 @@ namespace Utilitarios
 
         [Key]
         [Column("id_ofertas")]
-        public int Id_plato { get => id_plato; set => id_plato = value; }
+        public int Id_ofertas { get => id_ofertas; set => id_ofertas = value; }
         [Column("nombre")]
         public string Nombre { get => nombre; set => nombre = value; }
         [Column("descripcion")]

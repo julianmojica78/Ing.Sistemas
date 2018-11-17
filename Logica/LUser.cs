@@ -1259,6 +1259,12 @@ namespace Logica
             DUser dao = new DUser();
             return dao.listaramenu();
         }
+        public List<Ofertas> obtenerOfertas()
+        {
+            DUser dao = new DUser();
+            return dao.listarAofertas();
+        }
+
 
         public List<Menu> obtenerMen(String text)
         {

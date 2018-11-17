@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using Utilitarios;
 using Logica;
 using System.Collections;
+using Newtonsoft.Json;
+using SRUniempleo;
 
 public partial class View_ListaEmpleados : System.Web.UI.Page
 {
@@ -65,34 +67,34 @@ public partial class View_ListaEmpleados : System.Web.UI.Page
         LUsuario dato = new LUsuario();
         GV_Empleados.DataSource = dato.obtenerEmpleados();
         GV_Empleados.DataBind();
-        //try
-        //{
-        //    Servicios.ServiciosSoapClient men = new Servicios.ServiciosSoapClient();
-        //    //men.ClientCredentials.UserName.UserName = "";
+        try
+        {
+            SRUniempleo.ServidorUniempleoSoapClient men = new SRUniempleo.ServidorUniempleoSoapClient();
+            men.ClientCredentials.UserName.UserName = "uniempleo";
+            men.ClientCredentials.UserName.Password = "8EivjBUdnO";
 
-        //    Servicios.Seguridad obSeguridad = new Servicios.Seguridad()
-        //    {
-        //        stToken = DateTime.Now.ToString("yyyyMMdd")
-        //    };
+            SRUniempleo.SeguridadToken obSeguridad = new SRUniempleo.SeguridadToken()
+            {
+                username = "platoweb",
+                Pass = "GLseE6G7mb"
+            };
+            String StToken = men.AutenticacionUsuario(obSeguridad);
+            if (StToken.Equals("-1")) throw new Exception("Requiere Validacion");
 
-        //    String StToken = men.AutenticationUsuario(obSeguridad);
-        //    if (StToken.Equals("-1")) throw new Exception("Requiere Validacion");
+            obSeguridad.Token_Autenticacion = StToken;
+            DataSet a = men.Top_5_Aspirantes(obSeguridad);
+            DataTable ofer = a.Tables[0];
+            SRUniempleo.ServidorUniempleoSoapClient servicio = new SRUniempleo.ServidorUniempleoSoapClient();
+            //DataSet topaaspirantes = servicio.Top_5_Aspirantes();
+            GridView1.DataSource = ofer;
+            GridView1.DataBind();
+        }
+        catch (Exception ex)
+        {
+            Response.Write("<Script language='JavaScript'>parent.alert('" + ex.Message + "');</Script>");
+        }
 
-        //    obSeguridad.AutenticationToken = StToken;
-
-        //    String ofertas = men.Ofertas(obSeguridad);
-
-        //    DataTable ofer = JsonConvert.DeserializeObject<DataTable>(ofertas);
-        SRUniempleo.ServidorUniempleoSoapClient servicio = new SRUniempleo.ServidorUniempleoSoapClient();
-        DataSet topaaspirantes = servicio.Top_5_Aspirantes();
-        GridView1.DataSource = topaaspirantes;
-        GridView1.DataBind();
-    //catch (Exception ex)
-    //{
-    //    Response.Write("<Script language='JavaScript'>parent.alert('" + ex.Message + "');</Script>");
-    //}   
-
-}
+    }
 
 protected void BT_Nuevo_Click(object sender, EventArgs e)
     {

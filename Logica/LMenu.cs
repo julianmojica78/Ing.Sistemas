@@ -42,6 +42,38 @@ namespace Logica
             return mensaje;
         }
 
+        public UUser CargaImg(UUser enca)
+        {
+            DUser dato = new DUser();
+            UUser mensaje = new UUser();
+            String saveLocation = "";
+            mensaje.Ispos = true;
+            if (!(string.Compare(enca.A, ".JPG", true) == 0 || string.Compare(enca.A, ".jpeg", true) == 0 || string.Compare(enca.A, ".gif", true) == 0 || string.Compare(enca.A, ".jpe", true) == 0))
+            {
+                mensaje.Url = "<script type='text/javascript'>alert('Solo se admiten imagenes en formato Jpeg o Gif');</script>";
+                mensaje.Ubicacion = null;
+
+                return mensaje;
+            }
+             else
+            {
+                saveLocation = enca.Ubicacion;
+                mensaje.Ubicacion = enca.Ubicacion;
+            }
+
+            //if (System.IO.File.Exists(saveLocation))
+            //{
+            //    mensaje.Url = "<script type='text/javascript'>alert('Ya existe una imagen en el servidor con ese nombre');</script>";
+            //    mensaje.Ubicacion = null;
+            //    //return null;
+            //}
+            //else
+            //{
+            //    mensaje.Ubicacion = enca.Ubicacion;
+            //}
+            return mensaje;
+        }
+
         public void insertmenu(UuserCrear datos)
         {
             DUser dato = new DUser();

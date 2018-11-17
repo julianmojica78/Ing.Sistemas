@@ -27,13 +27,13 @@ public partial class View_TopAspirantes : System.Web.UI.Page
         //    String ofertas = men.Ofertas(obSeguridad);
 
         //    DataTable ofer = JsonConvert.DeserializeObject<DataTable>(ofertas);
-        SRUniempleo.ServidorUniempleoSoapClient servicio = new SRUniempleo.ServidorUniempleoSoapClient();
-        DataSet topaaspirantes = servicio.Top_5_Aspirantes();
-        GridView1.DataSource = topaaspirantes;
-        GridView1.DataBind();
-    }
+    //    SRUniempleo.ServidorUniempleoSoapClient servicio = new SRUniempleo.ServidorUniempleoSoapClient();
+    //    DataSet topaaspirantes = servicio.Top_5_Aspirantes();
+    //    GridView1.DataSource = topaaspirantes;
+    //    GridView1.DataBind();
+    //}
     //catch (Exception ex)
     //{
     //    Response.Write("<Script language='JavaScript'>parent.alert('" + ex.Message + "');</Script>");
-    //}
+    }
 }

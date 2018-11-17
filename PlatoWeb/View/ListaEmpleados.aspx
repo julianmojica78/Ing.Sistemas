@@ -5,23 +5,43 @@
 
         <tr>
             <td colspan="3" style="height: 56px">
-                <h3 class="text-center">
-                    <asp:Label ID="LB_listEmple" runat="server" Text="Lista de Empleados"></asp:Label>
-                </h3>
+                <h4>
+                    <asp:Label ID="L_Top" runat="server" Text="Top Apirantes"></asp:Label>
+                </h4>
             </td>
         </tr>
         <tr>
             <td style="height: 20px">&nbsp;</td>
-            <td style="height: 20px">
-        <asp:GridView ID="GridView1" runat="server" Width="100%">
+            <td style="height: 20px" class="text-center">
+        <asp:GridView ID="GridView1" runat="server" Width="100%" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <Columns>
+                <asp:BoundField DataField="Nombre_aspirante" HeaderText="Nombre" />
+                <asp:BoundField DataField="Apellido_aspirante" HeaderText="Apellido" />
+                <asp:BoundField DataField="Titulo" HeaderText="Titulo" />
+                <asp:BoundField HeaderText="Puntos" DataField="Puntostotales" />
+            </Columns>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
             </td>
             <td style="height: 20px">&nbsp;</td>
         </tr>
         <tr>
             <td style="height: 20px">&nbsp;</td>
-            <td style="height: 20px">
-                &nbsp;</td>
+            <td style="height: 20px" class="text-center">
+                <h2>
+                    <asp:Label ID="LB_listEmple" runat="server" Text="Lista de Empleados"></asp:Label>
+                </h2>
+            </td>
             <td style="height: 20px">&nbsp;</td>
         </tr>
         <tr>

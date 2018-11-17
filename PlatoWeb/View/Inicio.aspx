@@ -15,6 +15,9 @@
     .auto-style4 {
         text-align: right;
     }
+        .auto-style5 {
+            text-align: center;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -64,9 +67,9 @@
                     <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="obtenerIdioma" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
 
                 </td>
-                <td>
+                <td class="auto-style5">
 
-                    &nbsp;</td>
+                    <a href="../Imagen/ManualdeUsuario.pdf"target="_blank">Manual de Usuario</a>
             </tr>
         </table>
 	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(../imagen/fondo.jpeg)" data-stellar-background-ratio="0.5">
