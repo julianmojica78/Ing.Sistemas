@@ -103,6 +103,8 @@
     <Compile Include="UuserReservas.cs" />
     <Compile Include="UUserToken.cs" />
     <Compile Include="UUsuario.cs" />
+    <Compile Include="UVerificar.cs" />
+    <Compile Include="UVistames.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="UReportes.xsc">

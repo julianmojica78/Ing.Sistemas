@@ -15,8 +15,8 @@ namespace Utilitarios
         private Int32 id_pedido;
         private String nombre;
         private Int32 cantidad;
-        private String fecha_ingreso;
-        private String fecha_despacho;
+        private DateTime fecha_ingreso;
+        private DateTime fecha_despacho;
         private String precio;
 
 
@@ -28,9 +28,9 @@ namespace Utilitarios
         [Column("cantidad")]
         public int Cantidad { get => cantidad; set => cantidad = value; }
         [Column("fecha_ingreso")]
-        public string Fecha_ingreso { get => fecha_ingreso; set => fecha_ingreso = value; }
+        public DateTime Fecha_ingreso { get => fecha_ingreso; set => fecha_ingreso = value; }
         [Column("fecha_despacho")]
-        public string Fecha_despacho { get => fecha_despacho; set => fecha_despacho = value; }
+        public DateTime Fecha_despacho { get => fecha_despacho; set => fecha_despacho = value; }
         [Column("precio")]
         public string Precio { get => precio; set => precio = value; }
     }

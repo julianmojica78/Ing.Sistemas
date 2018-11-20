@@ -302,6 +302,17 @@ namespace Datos
             }
 
         }
+
+        public List<UVistames> listarVmes()
+        {
+            using (var db = new Mapeo("vmesas"))
+            {
+                var a = db.vmesas.ToList<UVistames>();
+                return a.ToList<UVistames>();
+
+            }
+
+        }
         public List<UControles> listarControl(Int32 formulario, Int32 idioma)
         {
             List<UControles> lista;

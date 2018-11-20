@@ -52,8 +52,8 @@ public partial class View_CanjePuntos : System.Web.UI.Page
 
         DataTable inter = data.ToDataTable(data.listadePuntos(Id));
         //tabla = data.listadePuntos(Id);
-        UuserReservas dato = dao.canje(tabla);
-        LB_puntos.Text = dato.Cant.ToString();
+        UuserReservas dato = dao.canje(inter);
+        LB_puntos.Text = inter.Rows[0]["puntos"].ToString();
         L_puntosInsu.Visible = dato.Est1;
         DL_canje.Visible = dato.Est2;
     }
@@ -70,7 +70,7 @@ public partial class View_CanjePuntos : System.Web.UI.Page
         DataTable data = datos.redimir(Id);
         Button btn = (Button)sender;
         DataListItem item = (DataListItem)btn.NamingContainer;
-        Label lblid = (Label)item.FindControl("Label1");
+        Label lblid = (Label)item.FindControl("L_codigo");
         int x = int.Parse(lblid.Text);
 
         datos.cortesia(x);

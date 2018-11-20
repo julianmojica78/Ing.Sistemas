@@ -99,8 +99,8 @@ public partial class View_Resrvas : System.Web.UI.Page
 
 
         
-        String dia = TB_Fecha.Text.ToString() + ' ' + int.Parse(DDL_Hora.SelectedItem.ToString()) + ":00";
-        dato.Dia = DateTime.Parse(dia);
+        dato.Dia = TB_Fecha.Text.ToString() + ' ' + int.Parse(DDL_Hora.SelectedItem.ToString()) + ":00";
+             
         dato.Id_mesa = int.Parse(DDL_Cantp.SelectedValue.ToString());
         datos.A = Session["confirmacion"].ToString();
         datos.B = Session["men1"].ToString();

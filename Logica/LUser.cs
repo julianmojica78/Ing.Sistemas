@@ -204,51 +204,184 @@ namespace Logica
             DUser data = new DUser();
             UReserva user = new UReserva();
             L_Persistencia conver = new L_Persistencia();
-
+            Mesas mesa = new Mesas();
+            UVerificar verificar = new UVerificar();
+            UReservation reser = new UReservation();
+            
             if (datos.Nombre != null)
             {
-                data.insertarReserva(dato);
-                System.Data.DataTable validez1 = conver.ToDataTable(data.obtenerReser(dato));
-                user.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
-
-                System.Data.DataTable validez = data.generarTokenReserva(user.Id_reserva);
-                if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+                try
                 {
-                    UUserToken token = new UUserToken();
-                    token.Id = int.Parse(validez.Rows[0]["id_reserva"].ToString());
-                    token.Id_usuario = int.Parse(validez.Rows[0]["id_usuario"].ToString());
-                    token.Id_Mesa = int.Parse(validez.Rows[0]["id_mesa"].ToString());
-                    token.Estado = int.Parse(validez.Rows[0]["estado"].ToString());
-                    token.Correo = validez.Rows[0]["email"].ToString();
-                    token.Fecha = DateTime.Now.ToFileTimeUtc();
+                    System.Data.DataTable validez1 = conver.ToDataTable(data.obtenerReser(dato));
+                    user.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
 
-                    UTokenRe toke = new UTokenRe();
-                    String userToken = encriptar(JsonConvert.SerializeObject(token));
-                    toke.Token = userToken;
-                    toke.Reserva_id = token.Id;
-                    toke.Fecha_creado = DateTime.Now;
-                    toke.Fecha_vigencia = DateTime.Now.AddHours(12);
+                    System.Data.DataTable validez = data.generarTokenReserva(user.Id_reserva);
+                    if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+                    {
 
-                    data.insertTokenre(toke);
+                    }
+                    else if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) == -2)
+                    {
+                        user.Mensaje = "<script type='text/javascript'>alert('" + datos.C.ToString() + "');</script>";
 
-                    CorreoR correo = new CorreoR();
-
-                    String mensaje = "su link de acceso es: " + "http://52.14.131.2/View/pago.aspx?" + userToken;
-                    correo.enviarCorreo(token.Correo, userToken, mensaje);
-
-                    //cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Para Confirmar su reseva por favor pague el valor de la reserva');</script>");
-                    user.Mensaje = "<script type='text/javascript'>alert('" + datos.A.ToString() + "');window.location=\"Resrvas.aspx\"</script>";
-
+                    }
                 }
-                else if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) == -2)
+                catch
                 {
-                    user.Mensaje = "<script type='text/javascript'>alert('" + datos.C.ToString() + "');</script>";
+                    System.Data.DataTable val = data.verReserva(dato);
+                    if (val.Rows.Count > 0)
+                    {
 
-                }
-                else
-                {
-                    user.Mensaje = "<script type='text/javascript'>alert('" + datos.D.ToString() + "');</script>";
+                        System.Data.DataTable vali = conver.ToDataTable(data.verificarMesas(dato));
+                        if (vali.Rows.Count > 0)
+                        {
+                            reser.Id_mesa = int.Parse(vali.Rows[0]["id_mesas"].ToString());
+                            reser.Id_usuario = dato.Id_usuario;
+                            reser.Estado = 2;
+                            reser.Dia = dato.Dia;
 
+                            data.insertarReserva(reser);
+
+                            //mesa.Id_mesas = reser.Id_mesa;
+                            //mesa.Ubicacion = vali.Rows[0]["ubicacion"].ToString();
+                            //mesa.Cantidad = int.Parse(vali.Rows[0]["cantidad"].ToString());
+                            //mesa.Estado = 1;
+                            //data.actualizarMes(mesa);
+
+                            System.Data.DataTable validez1 = conver.ToDataTable(data.obtenerReser(dato));
+                            user.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+
+                            System.Data.DataTable validez = data.generarTokenReserva(user.Id_reserva);
+                            if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+                            {
+
+                                System.Data.DataTable valide = data.generarTokenReserva(user.Id_reserva);
+                                UUserToken token = new UUserToken();
+                                token.Id = int.Parse(valide.Rows[0]["id_reserva"].ToString());
+                                token.Id_usuario = int.Parse(valide.Rows[0]["id_usuario"].ToString());
+                                token.Id_Mesa = int.Parse(valide.Rows[0]["id_mesa"].ToString());
+                                token.Estado = int.Parse(valide.Rows[0]["estado"].ToString());
+                                token.Correo = valide.Rows[0]["email"].ToString();
+                                token.Fecha = DateTime.Now.ToFileTimeUtc();
+
+                                UTokenRe toke = new UTokenRe();
+                                String userToken = encriptar(JsonConvert.SerializeObject(token));
+                                toke.Token = userToken;
+                                toke.Reserva_id = token.Id;
+                                toke.Fecha_creado = DateTime.Now;
+                                toke.Fecha_vigencia = DateTime.Now.AddHours(12);
+
+                                data.insertTokenre(toke);
+
+                                CorreoR correo = new CorreoR();
+
+                                String mensaje = "su link de acceso es: " + "http://52.14.131.2/View/pago.aspx?" + userToken;
+                                correo.enviarCorreo(token.Correo, userToken, mensaje);
+
+                                //cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Para Confirmar su reseva por favor pague el valor de la reserva');</script>");
+                                user.Mensaje = "<script type='text/javascript'>alert('" + datos.A.ToString() + "');window.location=\"Resrvas.aspx\"</script>";
+
+                            }
+                            else if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) == -2)
+                            {
+                                user.Mensaje = "<script type='text/javascript'>alert('" + datos.C.ToString() + "');</script>";
+
+                            }
+                            else
+                            {
+                                user.Mensaje = "<script type='text/javascript'>alert('" + datos.D.ToString() + "');</script>";
+
+                            }
+                        }
+                        else
+                        {
+                            user.Mensaje = "<script type='text/javascript'>alert('Mesas Ocupadas Por Favor intente con otra Fecha u Hora');</script>";
+
+                        }
+                    }
+                    else
+                    {
+                        System.Data.DataTable a = data.verReserva(dato);
+                        if (a.Rows.Count == 0) {
+                            Int32 i = 0;
+                            System.Data.DataTable v = conver.ToDataTable(data.verificarM(dato));
+                            foreach (DataRow d in v.Rows)
+                            {
+                                mesa.Id_mesas = int.Parse(v.Rows[i]["id_mesas"].ToString());
+                                mesa.Ubicacion = v.Rows[i]["ubicacion"].ToString();
+                                mesa.Cantidad = int.Parse(v.Rows[i]["cantidad"].ToString());
+                                mesa.Estado = 2;
+                                data.actualizarMes(mesa);
+
+                                i++;
+                            }
+                        }
+                        System.Data.DataTable vali = conver.ToDataTable(data.verificarMesas(dato));
+                        if (vali.Rows.Count > 0)
+                        {
+                            reser.Id_mesa = int.Parse(vali.Rows[0]["id_mesas"].ToString());
+                            reser.Id_usuario = dato.Id_usuario;
+                            reser.Estado = 2;
+                            reser.Dia = dato.Dia;
+
+                            data.insertarReserva(reser);
+
+                            //mesa.Id_mesas = reser.Id_mesa;
+                            //mesa.Ubicacion = vali.Rows[0]["ubicacion"].ToString();
+                            //mesa.Cantidad = int.Parse(vali.Rows[0]["cantidad"].ToString());
+                            //mesa.Estado = 1;
+                            //data.actualizarMes(mesa);
+
+                            System.Data.DataTable validez1 = conver.ToDataTable(data.obtenerReser(dato));
+                            user.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+
+                            System.Data.DataTable validez = data.generarTokenReserva(user.Id_reserva);
+                            if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) > 0)
+                            {
+
+                                System.Data.DataTable valide = data.generarTokenReserva(user.Id_reserva);
+                                UUserToken token = new UUserToken();
+                                token.Id = int.Parse(valide.Rows[0]["id_reserva"].ToString());
+                                token.Id_usuario = int.Parse(valide.Rows[0]["id_usuario"].ToString());
+                                token.Id_Mesa = int.Parse(valide.Rows[0]["id_mesa"].ToString());
+                                token.Estado = int.Parse(valide.Rows[0]["estado"].ToString());
+                                token.Correo = valide.Rows[0]["email"].ToString();
+                                token.Fecha = DateTime.Now.ToFileTimeUtc();
+
+                                UTokenRe toke = new UTokenRe();
+                                String userToken = encriptar(JsonConvert.SerializeObject(token));
+                                toke.Token = userToken;
+                                toke.Reserva_id = token.Id;
+                                toke.Fecha_creado = DateTime.Now;
+                                toke.Fecha_vigencia = DateTime.Now.AddHours(12);
+
+                                data.insertTokenre(toke);
+
+                                CorreoR correo = new CorreoR();
+
+                                String mensaje = "su link de acceso es: " + "http://52.14.131.2/View/pago.aspx?" + userToken;
+                                correo.enviarCorreo(token.Correo, userToken, mensaje);
+
+                                //cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Para Confirmar su reseva por favor pague el valor de la reserva');</script>");
+                                user.Mensaje = "<script type='text/javascript'>alert('" + datos.A.ToString() + "');window.location=\"Resrvas.aspx\"</script>";
+
+                            }
+                            else if (int.Parse(validez.Rows[0]["id_usuario"].ToString()) == -2)
+                            {
+                                user.Mensaje = "<script type='text/javascript'>alert('" + datos.C.ToString() + "');</script>";
+
+                            }
+                            else
+                            {
+                                user.Mensaje = "<script type='text/javascript'>alert('" + datos.D.ToString() + "');</script>";
+
+                            }
+                        }
+                        else
+                        {
+                            user.Mensaje = "<script type='text/javascript'>alert('Mesas Ocupadas');</script>";
+                        }
+                    }
                 }
 
             }

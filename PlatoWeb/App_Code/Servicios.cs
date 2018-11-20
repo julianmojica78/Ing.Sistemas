@@ -65,6 +65,32 @@ public class Servicios : System.Web.Services.WebService
 
     [WebMethod]
     [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
+    public string AutenticationUsuari()
+    {
+        try
+        {
+            if (SoapHeader == null) return "-1";
+            if (!SoapHeader.blCredencialesValidas(SoapHeader.stToken)) return "-1";
+
+            string stToken = Guid.NewGuid().ToString();
+
+            HttpRuntime.Cache.Add(stToken,
+                SoapHeader.stToken,
+                null,
+                System.Web.Caching.Cache.NoAbsoluteExpiration,
+                TimeSpan.FromDays(2),
+                System.Web.Caching.CacheItemPriority.NotRemovable,
+                null);
+            return stToken;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    [WebMethod]
+    [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
     public String LMenu()
     {
         try
@@ -235,7 +261,7 @@ public class Servicios : System.Web.Services.WebService
             usuario.Session = "a";
 
             String dia = fecha + ' ' + hora + ":00";
-            dato.Dia = DateTime.Parse(dia);
+            dato.Dia = dia;
             dato.Id_mesa = cantidad;
             datos.A = "Para Confirmar su reseva,por favor pague el valor de la reserva";
             datos.B = "No puede reservas si no esta Logueado";
@@ -312,13 +338,13 @@ public class Servicios : System.Web.Services.WebService
 
             UUser dato = new UUser();
             UContacto datos = new UContacto();
-            LUser data = new LUser();
+            L_Persistencia data = new L_Persistencia();
 
             datos.Nombre = nombre;
             datos.Email = email;
             datos.Telefono = telefono;
             datos.Detalle = detalle;
-            dato = data.contactenos(nombre, email, telefono, detalle);
+            data.insertarcontacto(datos);
             return dato;
         }
         catch (Exception ex) { throw ex; }
@@ -413,5 +439,12 @@ public class Servicios : System.Web.Services.WebService
             return datas;
         }
         catch (Exception ex) { throw ex; }
+    }
+    public DataTable obtenerPost(SRGamesCol.ServiceToken p)
+    {
+        SRGamesCol.Facebook_servideSoapClient eti = new SRGamesCol.Facebook_servideSoapClient();
+        DataTable dato = new DataTable();
+        dato = eti.noticias(p);
+        return dato;
     }
 }

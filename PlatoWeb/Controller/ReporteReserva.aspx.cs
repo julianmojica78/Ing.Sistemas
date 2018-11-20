@@ -42,7 +42,7 @@ public partial class View_ReporteReserva : System.Web.UI.Page
 
         informacion = datos.Tables["Reservas"];
 
-        DataTable intermedio = report.ToDataTable(report.obtenerReporteReserva());
+        //DataTable intermedio = report.ToDataTable(report.obtenerReporteEmpleado());
         report.obtenerinformeR(inter, informacion);
 
         return datos;

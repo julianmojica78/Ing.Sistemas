@@ -50,6 +50,8 @@ namespace Datos
         public DbSet<ULReserva> listReser { get; set; }
         public DbSet<UAutenticatio> autentication { get; set; }
         public DbSet<UAuditoria> auditoria { get; set; }
+        public DbSet<UVerificar> verificar { get; set; }
+        public DbSet<UVistames> vmesas { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder builder)

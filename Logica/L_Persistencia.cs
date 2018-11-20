@@ -226,9 +226,6 @@ namespace Logica
         public DataTable obtenerinformeR(DataTable inter, DataTable informacion)
         {
             DataRow fila;
-            UReportes datos = new UReportes();
-
-            informacion = datos.Tables["Reservas"];
             DUser usuario = new DUser();
 
 
@@ -246,31 +243,27 @@ namespace Logica
 
             return informacion;
         }
-        public UReportes obtenerinfomeV(DataTable inter, DataTable informacion)
+        public DataTable obtenerinfomeV(DataTable intermedio, DataTable informacion)
         {
-            DataRow fila;  //dr
-            UReportes datos = new UReportes();
-
-            informacion = datos.Tables["Pedido"];
+            DataRow fila; 
             DUser usuario = new DUser();
 
-
-            for (int i = 0; i < inter.Rows.Count; i++)
+            for (int i = 0; i < intermedio.Rows.Count; i++)
             {
                 fila = informacion.NewRow();
 
-                fila["Pedido"] = int.Parse(inter.Rows[i]["id_pedido"].ToString());
-                fila["Nombre"] = inter.Rows[i]["nombre"].ToString();
-                fila["Cantidad"] = int.Parse(inter.Rows[i]["cantidad"].ToString());
-                fila["Fecha ingreso"] = inter.Rows[i]["fecha_ingreso"].ToString();
-                fila["Fecha despacho"] = inter.Rows[i]["fecha_despacho"].ToString();
-                fila["Precio"] = inter.Rows[i]["precio"].ToString();
+                fila["Pedido"] = int.Parse(intermedio.Rows[i]["id_pedido"].ToString());
+                fila["Nombre"] = intermedio.Rows[i]["nombre"].ToString();
+                fila["Cantidad"] = int.Parse(intermedio.Rows[i]["cantidad"].ToString());
+                fila["Fecha ingreso"] = intermedio.Rows[i]["fecha_ingreso"].ToString();
+                fila["Fecha despacho"] = intermedio.Rows[i]["fecha_despacho"].ToString();
+                fila["Precio"] = intermedio.Rows[i]["precio"].ToString();
                 //fila["Fotos"] = streamFile(intermedio.Rows[i]["foto"].ToString());
 
                 informacion.Rows.Add(fila);
             }
 
-            return datos;
+            return informacion;
         }
 
         public List<UPedido> obtenerPedido()
@@ -397,45 +390,56 @@ namespace Logica
             UTokenRe token = new UTokenRe();
             UReservation reserva = new UReservation();
             UEmpleados usuario = new UEmpleados();
+            Mesas mesa = new Mesas();
+            System.Data.DataTable val = ToDataTable(user.obtenerRes(datos));
+            if (val.Rows.Count == 0) {
+                System.Data.DataTable validez1 = ToDataTable(user.obtenerReser(datos));
+                data.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+                data.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
+                System.Data.DataTable validez2 = ToDataTable(user.obtenTokenre(data));
+                token.Id = int.Parse(validez2.Rows[0]["id"].ToString());
+                token.Reserva_id = int.Parse(validez2.Rows[0]["reserva_id"].ToString());
+                token.Token = validez2.Rows[0]["token"].ToString();
+                token.Fecha_creado = DateTime.Parse(validez2.Rows[0]["fecha_creado"].ToString());
+                token.Fecha_vigencia = DateTime.Parse(validez2.Rows[0]["fecha_vigencia"].ToString());
+                reserva.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+                reserva.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
+                reserva.Id_mesa = int.Parse(validez1.Rows[0]["id_mesa"].ToString());
+                reserva.Dia = validez1.Rows[0]["dia"].ToString();
+                reserva.Estado = 1;
+                reserva.Puntos = 10;
+                user.eliminarToken(token);
+                user.actualizarReserva(reserva);
+                System.Data.DataTable vali = ToDataTable(user.verificaMesa(reserva));
+                mesa.Id_mesas = reserva.Id_mesa;
+                mesa.Ubicacion = vali.Rows[0]["ubicacion"].ToString();
+                mesa.Cantidad = int.Parse(vali.Rows[0]["cantidad"].ToString());
+                mesa.Estado = 1;
+                user.actualizarMes(mesa);
+                System.Data.DataTable validez = ToDataTable(user.obtenDatospago(data));
+                usuario.User_id = int.Parse(validez.Rows[0]["user_id"].ToString());
+                usuario.Nombre = validez.Rows[0]["nombre"].ToString();
+                usuario.Apellido = validez.Rows[0]["apellido"].ToString();
+                usuario.Email = validez.Rows[0]["email"].ToString();
+                usuario.Telefono = validez.Rows[0]["telefono"].ToString();
+                usuario.Cedula = validez.Rows[0]["cedula"].ToString();
+                Int32 puntos = int.Parse(validez.Rows[0]["puntos"].ToString());
+                usuario.Puntos = puntos + 10;
+                usuario.Id_Rol = int.Parse(validez.Rows[0]["id_rol"].ToString());
+                usuario.User_Name1 = validez.Rows[0]["User_Name1"].ToString();
+                usuario.Clave = validez.Rows[0]["clave"].ToString();
+                usuario.Session = validez.Rows[0]["session"].ToString();
+                usuario.Rclave = validez.Rows[0]["rclave"].ToString();
+                usuario.Intentos = int.Parse(validez.Rows[0]["Intentos"].ToString());
+                usuario.Sesiones = int.Parse(validez.Rows[0]["sesiones"].ToString());
+                user.actualizarPago(usuario);
 
+            }
+            else
+            {
+                data.Mensaje = "<script type='text/javascript'>alert('Lo Sentimos Esta Reserva ya fue Tomada Por Favor Ingrese Nuevamente una Reserva');window.location=\"Inicio.aspx\"</script>";
 
-            System.Data.DataTable validez1 = ToDataTable(user.obtenerReser(datos));
-            data.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
-            data.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
-            System.Data.DataTable validez2 = ToDataTable(user.obtenTokenre(data));
-            token.Id = int.Parse(validez2.Rows[0]["id"].ToString());
-            token.Reserva_id = int.Parse(validez2.Rows[0]["reserva_id"].ToString());
-            token.Token = validez2.Rows[0]["token"].ToString();
-            token.Fecha_creado = DateTime.Parse(validez2.Rows[0]["fecha_creado"].ToString());
-            token.Fecha_vigencia = DateTime.Parse(validez2.Rows[0]["fecha_vigencia"].ToString());
-            reserva.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
-            reserva.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
-            reserva.Id_mesa = int.Parse(validez1.Rows[0]["id_mesa"].ToString());
-            reserva.Dia = DateTime.Parse(validez1.Rows[0]["dia"].ToString());
-            reserva.Estado = 1;
-            reserva.Puntos = 10;
-            user.eliminarToken(token);
-            user.actualizarReserva(reserva);
-            System.Data.DataTable validez = ToDataTable(user.obtenDatospago(data));
-            usuario.User_id = int.Parse(validez.Rows[0]["user_id"].ToString());
-            usuario.Nombre = validez.Rows[0]["nombre"].ToString();
-            usuario.Apellido = validez.Rows[0]["apellido"].ToString();
-            usuario.Email = validez.Rows[0]["email"].ToString();
-            usuario.Telefono = validez.Rows[0]["telefono"].ToString();
-            usuario.Cedula = validez.Rows[0]["cedula"].ToString();
-            Int32 puntos = int.Parse(validez.Rows[0]["puntos"].ToString());
-            usuario.Puntos = puntos + 10;
-            usuario.Id_Rol = int.Parse(validez.Rows[0]["id_rol"].ToString());
-            usuario.User_Name1 = validez.Rows[0]["User_Name1"].ToString();
-            usuario.Clave = validez.Rows[0]["clave"].ToString();
-            usuario.Session = validez.Rows[0]["session"].ToString();
-            usuario.Rclave = validez.Rows[0]["rclave"].ToString();
-            usuario.Intentos = int.Parse(validez.Rows[0]["Intentos"].ToString());
-            usuario.Sesiones = int.Parse(validez.Rows[0]["sesiones"].ToString());
-            user.actualizarPago(usuario); 
-
-
-
+            }
 
 
             data.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Inicio.aspx\"</script>";
@@ -556,7 +560,11 @@ namespace Logica
 
             return user;
         }
-
+        public List<UVistames> obtenerVmes()
+        {
+            Idioma dao = new Idioma();
+            return dao.listarVmes();
+        }
 
 
     }

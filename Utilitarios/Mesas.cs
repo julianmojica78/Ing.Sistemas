@@ -11,7 +11,7 @@ namespace Utilitarios
         private int id_mesas;
         private String ubicacion;
         private int cantidad;
-        //private Int32 x;
+        private Int32 estado;
 
         [Key]
         [Column("id_mesa")]
@@ -20,6 +20,8 @@ namespace Utilitarios
         public string Ubicacion { get => ubicacion; set => ubicacion = value; }
         [Column("cantidad")]
         public int Cantidad { get => cantidad; set => cantidad = value; }
+        [Column("estado")]
+        public int Estado { get => estado; set => estado = value; }
         //public int X { get => x; set => x = value; }
     }
 }

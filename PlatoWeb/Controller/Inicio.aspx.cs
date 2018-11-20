@@ -70,4 +70,9 @@ public partial class View_Inicio : System.Web.UI.Page
         Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
     }
+
+    protected void B_Noticias_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("NoticiasGames.aspx");
+    }
 }

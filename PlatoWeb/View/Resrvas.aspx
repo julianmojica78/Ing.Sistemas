@@ -140,9 +140,9 @@
                 <div class="row form-group" style="height: 100%; width: 100%; margin-left: 0px;">
                     <div class="auto-style3" style="height: 100%; width: 100%; margin-left: 0px;">
                         <label class="sr-only" for="fecha">Fecha:</label>
-                        <asp:DropDownList ID="DDL_Cantp" runat="server" Width="300px" DataSourceID="ODS_Cantidad" DataTextField="cantidad" DataValueField="id_mesas" OnSelectedIndexChanged="DDL_Cantp_SelectedIndexChanged" class="form-control" ValidationGroup="uno">
+                        <asp:DropDownList ID="DDL_Cantp" runat="server" Width="300px" DataSourceID="ODS_Cantidad" DataTextField="cantidad" DataValueField="cantidad" OnSelectedIndexChanged="DDL_Cantp_SelectedIndexChanged" class="form-control" ValidationGroup="uno">
                         </asp:DropDownList>
-                        <asp:ObjectDataSource ID="ODS_Cantidad" runat="server" SelectMethod="obtenerMesas" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="ODS_Cantidad" runat="server" SelectMethod="obtenerVmes" TypeName="Logica.L_Persistencia"></asp:ObjectDataSource>
                     
                     </div>
                 </div>

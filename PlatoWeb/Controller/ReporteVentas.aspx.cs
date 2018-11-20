@@ -31,26 +31,21 @@ public partial class View_ReporteVentas : System.Web.UI.Page
 
     protected UReportes ObtenerInforme()
     {
-
         DataRow fila;  //dr
         DataTable informacion = new DataTable(); //dt
-        LUser persona = new LUser();
-        UReportes datos = new UReportes();
-        L_Persistencia report = new L_Persistencia();
 
-        DataTable inter = report.ToDataTable(report.obtenerReporteVentas());
+        L_Persistencia report = new L_Persistencia();
+        UReportes datos = new UReportes();
+        LUser persona = new LUser();
+
+        //DataTable inter = report.ToDataTable(report.obtenerReporteVentas());
 
         informacion = datos.Tables["Pedido"];
 
         DataTable intermedio = report.ToDataTable(report.obtenerReporteVentas());
-        report.obtenerinfomeV(inter, informacion);
-
-        datos = persona.obtenerinfomeV();
+        report.obtenerinfomeV(intermedio, informacion);
 
         return datos;
-
-        
-
 
     }
 }

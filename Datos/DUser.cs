@@ -1420,13 +1420,13 @@ namespace Datos
         {
 
             DataTable Pedido1 = new DataTable();
-            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
             try
             {
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_insertarpedidocortesia", conection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_insertarpedidocortesia", conection);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
                 //dataAdapter.SelectCommand.Parameters.Add("_id_pedido", NpgsqlDbType.Integer).Value = datos.Id_pedido1;
-                dataAdapter.SelectCommand.Parameters.Add("_id_plato", NpgsqlDbType.Integer).Value = Id;
+                dataAdapter.SelectCommand.Parameters.Add("_id_plato", SqlDbType.Int).Value = Id;
                 conection.Open();
                 dataAdapter.Fill(Pedido1);
 
@@ -2221,6 +2221,26 @@ namespace Datos
             }
         }
 
+        public void insertarVerificar(UVerificar verificar)
+        {
+            using (var db = new Mapeo("verificar"))
+            {
+                db.verificar.Add(verificar);
+                db.SaveChanges();
+            }
+        }
+        public void actualizarMes(Mesas mesa)
+        {
+            using (var db = new Mapeo("mesa"))
+            {
+                db.mesa.Attach(mesa);
+                var entry = db.Entry(mesa);
+                entry.State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+
         public List<UPedido> listarPedidos()
         {
             using (var db = new Mapeo("pedido"))
@@ -2314,6 +2334,67 @@ namespace Datos
             }
 
         }
+        public List<UReservation> obtenerRes(UReservation dato)
+        {
+            using (var db = new Mapeo("reserva"))
+            {
+                var a = db.reserva.ToList<UReservation>().Where(x => x.Dia == dato.Dia && x.Estado == 1);
+                return a.ToList<UReservation>();
+
+            }
+
+        }
+
+        //public List<UReservation> verReserva(UReservation dato)
+        //{
+        //    using (var db = new Mapeo("reserva"))
+        //    {
+        //        var a = db.reserva.ToList<UReservation>().Where(x => x.Dia == dato.Dia && x.Estado == 1);
+        //        return a.ToList<UReservation>();
+
+        //    }
+
+        //}
+        public List<Mesas> verificarMesas(UReservation dato)
+        {
+            using (var db = new Mapeo("mesa"))
+            {
+                var a = db.mesa.ToList<Mesas>().Where(x => x.Cantidad == dato.Id_mesa && x.Estado  == 2);
+                return a.ToList<Mesas>();
+
+            }
+
+        }
+        public List<Mesas> verificarM(UReservation dato)
+        {
+            using (var db = new Mapeo("mesa"))
+            {
+                var a = db.mesa.ToList<Mesas>().Where(x => x.Cantidad == dato.Id_mesa && x.Estado == 1);
+                return a.ToList<Mesas>();
+
+            }
+
+        }
+        public List<Mesas> verificarMesa(UReservation dato)
+        {
+            using (var db = new Mapeo("mesa"))
+            {
+                var a = db.mesa.ToList<Mesas>().Where(x => x.Cantidad == dato.Id_mesa);
+                return a.ToList<Mesas>();
+
+            }
+
+        }
+        public List<Mesas> verificaMesa(UReservation dato)
+        {
+            using (var db = new Mapeo("mesa"))
+            {
+                var a = db.mesa.ToList<Mesas>().Where(x => x.Id_mesas == dato.Id_mesa);
+                return a.ToList<Mesas>();
+
+            }
+
+        }
 
         public void insertTokenre(UTokenRe toke)
         {
@@ -2350,6 +2431,17 @@ namespace Datos
             {
                 db.reserva.Attach(menu);
                 var entry = db.Entry(menu);
+                entry.State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public void actualizarMesa(Mesas mesa)
+        {
+            using (var db = new Mapeo("mesa"))
+            {
+                db.mesa.Attach(mesa);
+                var entry = db.Entry(mesa);
                 entry.State = EntityState.Modified;
                 db.SaveChanges();
             }
@@ -2498,7 +2590,7 @@ namespace Datos
         {
             using (var db = new Mapeo("reserva"))
             {
-                var a = db.user.ToList<UEmpleados>();
+                var a = db.user.ToList<UEmpleados>().Where(x => x.User_id == id);
                 return a.ToList<UEmpleados>();
 
             }
@@ -2796,5 +2888,34 @@ namespace Datos
             }
 
         }
+        public DataTable verReserva(UReservation dato)
+        {
+            DataTable Usuario = new DataTable();
+            SqlConnection conection = new SqlConnection(ConfigurationManager.ConnectionStrings["Sql"].ConnectionString);
+
+            try
+            {
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("usuario.f_reservamesa", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_cantidad", SqlDbType.Int).Value = dato.Id_mesa;
+                dataAdapter.SelectCommand.Parameters.Add("_dia", SqlDbType.VarChar,50).Value = dato.Dia;
+
+                conection.Open();
+                dataAdapter.Fill(Usuario);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return Usuario;
+        }
+
     }
 }
