@@ -391,9 +391,11 @@ namespace Logica
             UReservation reserva = new UReservation();
             UEmpleados usuario = new UEmpleados();
             Mesas mesa = new Mesas();
+
+            System.Data.DataTable validez1 = ToDataTable(user.obtenerReser(datos));
+            datos.Dia = validez1.Rows[0]["dia"].ToString();
             System.Data.DataTable val = ToDataTable(user.obtenerRes(datos));
             if (val.Rows.Count == 0) {
-                System.Data.DataTable validez1 = ToDataTable(user.obtenerReser(datos));
                 data.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
                 data.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
                 System.Data.DataTable validez2 = ToDataTable(user.obtenTokenre(data));
@@ -433,17 +435,33 @@ namespace Logica
                 usuario.Intentos = int.Parse(validez.Rows[0]["Intentos"].ToString());
                 usuario.Sesiones = int.Parse(validez.Rows[0]["sesiones"].ToString());
                 user.actualizarPago(usuario);
+                data.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Inicio.aspx\"</script>";
 
             }
             else
             {
+                //System.Data.DataTable validez1 = ToDataTable(user.obtenerReser(datos));
+                data.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+                data.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
+                reserva.Id_reserva = int.Parse(validez1.Rows[0]["id_reserva"].ToString());
+                reserva.Id_usuario = int.Parse(validez1.Rows[0]["id_usuario"].ToString());
+                reserva.Id_mesa = int.Parse(validez1.Rows[0]["id_mesa"].ToString());
+                reserva.Dia = validez1.Rows[0]["dia"].ToString();
+                reserva.Estado = 2;
+                reserva.Puntos = 0;
+                user.eliminarReserva(reserva);
+
+                System.Data.DataTable validez2 = ToDataTable(user.obtenTokenre(data));
+                token.Id = int.Parse(validez2.Rows[0]["id"].ToString());
+                token.Reserva_id = int.Parse(validez2.Rows[0]["reserva_id"].ToString());
+                token.Token = validez2.Rows[0]["token"].ToString();
+                token.Fecha_creado = DateTime.Parse(validez2.Rows[0]["fecha_creado"].ToString());
+                token.Fecha_vigencia = DateTime.Parse(validez2.Rows[0]["fecha_vigencia"].ToString());
+                user.eliminarToken(token);
                 data.Mensaje = "<script type='text/javascript'>alert('Lo Sentimos Esta Reserva ya fue Tomada Por Favor Ingrese Nuevamente una Reserva');window.location=\"Inicio.aspx\"</script>";
 
             }
-
-
-            data.Mensaje = "<script type='text/javascript'>alert('" + mensaje.Mensaje.ToString() + "');window.location=\"Inicio.aspx\"</script>";
-
+                       
             return data;
         }
 

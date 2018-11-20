@@ -2435,6 +2435,15 @@ namespace Datos
                 db.SaveChanges();
             }
         }
+        public void eliminarReserva(UReservation menu)
+        {
+            using (var db = new Mapeo("reserva"))
+            {
+                db.reserva.Attach(menu);
+                db.Entry(menu).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
 
         public void actualizarMesa(Mesas mesa)
         {
